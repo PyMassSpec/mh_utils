@@ -35,7 +35,7 @@ import pandas
 from domdf_python_tools.bases import Dictable
 
 # this package
-from mh_utils.utils import element_to_bool, strip_string
+from mh_utils.utils import add_attrs_doc, element_to_bool, strip_string
 from mh_utils.worklist_parser.columns import Column, columns
 from mh_utils.worklist_parser.enums import AttributeType
 from mh_utils.worklist_parser.parser import parse_params, parse_sample_info
@@ -233,6 +233,7 @@ class Worklist(XMLFileMixin, Dictable):
 		return pandas.DataFrame(data, columns=headers)
 
 
+@add_attrs_doc
 @attr.s(slots=True)
 class Checksum:
 	"""
@@ -262,6 +263,7 @@ class Checksum:
 				)
 
 
+@add_attrs_doc
 @attr.s(slots=True, repr=False)
 class Macro:
 	"""
@@ -300,7 +302,11 @@ class Macro:
 				)
 
 	@property
-	def undefined(self):
+	def undefined(self) -> bool:
+		"""
+		Returns whether the macro is undefined.
+		"""
+
 		return all([
 				self.project_name == '',
 				self.procedure_name == '',
@@ -318,17 +324,18 @@ class Macro:
 			return f"{self.__class__.__name__}({values})"
 
 
+@add_attrs_doc
 @attr.s(slots=True)
 class Attribute:
 	"""
-
-	Field Type - Each of the system defined columns have a field type starting from sampleid = 0 to reserved6 = 24
-	Field Type - The system used column can be compound param = 35, optim param = 36, mass param = 37 and protein param = 38
-	Field Type - The User added column  starts from 45
+	Represents an Attribute
 
 	:param attribute_id:
-	:param attribute_type: can be System Defined = 0, System Used = 1, User Added = 2
-	:param field_type:
+	:param attribute_type: can be System Defined (``0``), System Used (``1``), or User Added (``2``).
+	:param field_type: Each of the system defined columns have a field type starting from
+		sampleid = 0 to reserved6 = 24. The system used column can be 'compound param' = 35,
+		'optim param' = 36, 'mass param' = 37 and 'protein param' = 38.
+		The User added columns start from 45.
 	:param system_name:
 	:param header_name:
 	:param data_type:

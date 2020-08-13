@@ -39,7 +39,7 @@ def get_validated_tree(xml_file: PathLike, schema_file: Optional[PathLike] = Non
 	"""
 	Returns a validated lxml objectify from the given XML file, validated against the schema file.
 
-	:param xml_file: The XML file to validate
+	:param xml_file: The XML file to validate.
 	:param schema_file: The schema file to validate against.
 	"""
 
@@ -57,17 +57,18 @@ def get_validated_tree(xml_file: PathLike, schema_file: Optional[PathLike] = Non
 
 
 class XMLFileMixin(ABC):
+	"""
+	ABC mixin to provide a function for instantiating the class from an XML file.
+	"""
+
 	_schema = None
 
 	@classmethod
-	def from_xml_file(cls, filename):
+	def from_xml_file(cls, filename: PathLike):
 		"""
+		Generate an instance of this class by parsing an from an XML file.
 
-		:param filename:
-		:type filename: str or pathlib.Path
-
-		:return:
-		:rtype:
+		:param filename: The filename of the XML file.
 		"""
 
 		tree = get_validated_tree(filename, cls._schema)

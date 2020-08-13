@@ -31,7 +31,7 @@ from typing import TYPE_CHECKING, Any, Dict, List, Optional, Type, Union
 import attr
 
 # this package
-from mh_utils.utils import as_path, strip_string
+from mh_utils.utils import add_attrs_doc, as_path, strip_string
 from mh_utils.worklist_parser.enums import AttributeType
 
 if TYPE_CHECKING:
@@ -56,19 +56,19 @@ def injection_volume(val: Union[float, str]) -> Union[int, str]:
 		return int(val)
 
 
+@add_attrs_doc
 @attr.s(slots=True)
 class Column:
 	"""
 	Represents a column in a worklist.
 
-	Field Type - Each of the system defined columns have a field type starting from sampleid = 0 to reserved6 = 24
-	Field Type - The system used column can be compound param = 35, optim param = 36, mass param = 37 and protein param = 38
-	Field Type - The User added column  starts from 45
-
 	:param name: The name of the column
 	:param attribute_id:
 	:param attribute_type: can be System Defined = 0, System Used = 1, User Added = 2
-	:param field_type:
+	:param field_type: Each of the system defined columns have a field type starting from
+		sampleid = 0 to reserved6 = 24. The system used column can be 'compound param' = 35,
+		'optim param' = 36, 'mass param' = 37 and 'protein param' = 38.
+		The User added columns start from 45.
 	:param dtype:
 	:param default_value:
 	:param reorder_id:

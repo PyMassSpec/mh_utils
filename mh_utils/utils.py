@@ -1,7 +1,9 @@
-#  !/usr/bin/env python
-#   -*- coding: utf-8 -*-
+#!/usr/bin/env python
 #
 #  utils.py
+"""
+General utility functions.
+"""
 #
 #  Copyright © 2020 Dominic Davis-Foster <dominic@davis-foster.co.uk>
 #
@@ -26,7 +28,7 @@
 # stdlib
 import pathlib
 import re
-from typing import Any, Optional
+from typing import Any, Callable, Dict, Optional, Union
 
 # 3rd party
 from domdf_python_tools.utils import strtobool
@@ -38,8 +40,6 @@ def as_path(val: Any) -> Optional[pathlib.PureWindowsPath]:
 	or :py:obj:`None` if the value is empty/:py:obj:`None`/:py:obj:`False`.
 
 	:param val: The value to convert to a path
-
-	:rtype:
 	"""
 
 	if not val:
@@ -53,7 +53,7 @@ def as_path(val: Any) -> Optional[pathlib.PureWindowsPath]:
 		return None
 
 
-def element_to_bool(val: Any) -> bool:
+def element_to_bool(val: Union[str, bool]) -> bool:
 	"""
 	Returns the boolean representation of ``val``.
 
@@ -64,7 +64,6 @@ def element_to_bool(val: Any) -> bool:
 	:py:obj:`False` values are ``'n'``, ``'no'``, ``'f'``, ``'false'``, ``'off'``, ``'0'``, and ``0``.
 
 	:raises: :py:exc:`ValueError` if 'val' is anything else.
-
 	"""
 
 	val = str(val).strip()
@@ -86,7 +85,7 @@ def camel_to_snake(name: str) -> str:
 	return name.lower()
 
 
-def strip_string(val: Any) -> str:
+def strip_string(val: str) -> str:
 	"""
 	Returns ``val`` as a string, without any leading or trailing whitespace.
 
@@ -94,3 +93,53 @@ def strip_string(val: Any) -> str:
 	"""
 
 	return str(val).strip()
+
+
+def add_attrs_doc(obj: Callable) -> Callable:
+	"""
+	Add better docstrings to attrs generated functions.
+
+	:param obj:
+	"""
+
+	attrs_docstring = "Automatically created by attrs."
+
+	new_docstrings = {
+			"__eq__": "Return ``self == other``.",
+			"__ge__": "Return ``self >= other``.",
+			"__gt__": "Return ``self > other``.",
+			"__lt__": "Return ``self < other``.",
+			"__le__": "Return ``self <= other``.",
+			"__ne__": "Return ``self != other``.",
+			"__repr__": f"Return a string representation of the :class:`~.{obj.__name__}`.",
+			}
+
+	new_return_types = {
+			"__eq__": bool,
+			"__ge__": bool,
+			"__gt__": bool,
+			"__lt__": bool,
+			"__le__": bool,
+			"__ne__": bool,
+			"__repr__": str,
+			}
+
+	if obj.__eq__.__doc__ is None or obj.__eq__.__doc__.strip() == "Return self==value.":
+		obj.__eq__.__doc__ = new_docstrings["__eq__"]
+
+	if obj.__repr__.__doc__ is None or obj.__repr__.__doc__.strip() == "Return repr(self).":
+		obj.__repr__.__doc__ = new_docstrings["__repr__"]
+
+	for attribute in new_docstrings:
+		doc: Optional[str] = getattr(obj, attribute).__doc__
+		if doc is None or doc.strip() == attrs_docstring:
+			getattr(obj, attribute).__doc__ = new_docstrings[attribute]
+
+	for attribute in new_return_types:
+		annotations: Dict = getattr(getattr(obj, attribute), "__annotations__", {})
+		if "return" not in annotations or annotations["return"] is Any:
+			annotations["return"] = new_return_types[attribute]
+
+		getattr(obj, attribute).__annotations__ = annotations
+
+	return obj

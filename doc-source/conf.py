@@ -45,7 +45,7 @@ extensions = [
 		"notfound.extension",
 		"sphinx_tabs.tabs",
 		"sphinx-prompt",
-		"sphinx_autodoc_typehints",
+		"autodoc_typehints_attrs",
 		"sphinx.ext.autosummary",
 		"autodocsumm",
 		"sphinx_copybutton",
@@ -118,6 +118,7 @@ autodoc_default_options = {
 				"__parameters__",
 				"__subclasshook__",
 				"__init_subclass__",
+				"__attrs_attrs__",
 				])
 		}
 

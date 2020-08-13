@@ -1,11 +1,8 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 #
-#  __init__.py
-"""
-Utilities for handing ancillary files produced by MassHunter.
-"""
+#  enums.py
 #
-#  Copyright (c) 2020 Dominic Davis-Foster <dominic@davis-foster.co.uk>
+#  Copyright © 2020 Dominic Davis-Foster <dominic@davis-foster.co.uk>
 #
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU Lesser General Public License as published by
@@ -14,8 +11,8 @@ Utilities for handing ancillary files produced by MassHunter.
 #
 #  This program is distributed in the hope that it will be useful,
 #  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-#  GNU General Public License for more details.
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU Lesser General Public License for more details.
 #
 #  You should have received a copy of the GNU Lesser General Public License
 #  along with this program; if not, write to the Free Software
@@ -23,9 +20,15 @@ Utilities for handing ancillary files produced by MassHunter.
 #  MA 02110-1301, USA.
 #
 
-__author__: str = "Dominic Davis-Foster"
-__copyright__: str = "2020 Dominic Davis-Foster"
+# 3rd party
+from enum_tools import IntEnum
 
-__license__: str = "GNU Lesser General Public License v3 or later (LGPLv3+)"
-__version__: str = "0.0.0"
-__email__: str = "dominic@davis-foster.co.uk"
+
+class AttributeType(IntEnum):
+	"""
+	Enumeration of values for column/attribute types.
+	"""
+
+	SystemDefined = 0
+	SystemUsed = 1
+	UserAdded = 2

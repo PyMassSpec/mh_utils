@@ -1,0 +1,5 @@
+attr
+domdf_python_tools
+enum_tools
+lxml
+pandas

@@ -2,7 +2,7 @@
 #
 #  __init__.py
 """
-Utilities for handing ancillary files produced by MassHunter.
+Parser for MassHunter worklists.
 """
 #
 #  Copyright (c) 2020 Dominic Davis-Foster <dominic@davis-foster.co.uk>
@@ -23,9 +23,18 @@ Utilities for handing ancillary files produced by MassHunter.
 #  MA 02110-1301, USA.
 #
 
-__author__: str = "Dominic Davis-Foster"
-__copyright__: str = "2020 Dominic Davis-Foster"
+# 3rd party
+from domdf_python_tools.typing import PathLike
 
-__license__: str = "GNU Lesser General Public License v3 or later (LGPLv3+)"
-__version__: str = "0.0.0"
-__email__: str = "dominic@davis-foster.co.uk"
+# this package
+from mh_utils.worklist_parser.classes import Worklist
+
+
+def read_worklist(filename: PathLike) -> Worklist:
+	"""
+	Read the worklist from the given file.
+
+	:param filename: The filename of the worklist.
+	"""
+
+	return Worklist.from_xml_file(filename)

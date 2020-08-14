@@ -140,6 +140,9 @@ def add_attrs_doc(obj: Callable) -> Callable:
 		if "return" not in annotations or annotations["return"] is Any:
 			annotations["return"] = new_return_types[attribute]
 
-		getattr(obj, attribute).__annotations__ = annotations
+		try:
+			getattr(obj, attribute).__annotations__ = annotations
+		except AttributeError:
+			pass
 
 	return obj

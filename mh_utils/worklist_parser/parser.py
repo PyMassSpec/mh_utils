@@ -64,9 +64,9 @@ sample_info_tags: Dict[str, str] = {
 		}
 
 
-def parse_worklist_datetime(the_date: str) -> datetime.datetime:
+def parse_datetime(the_date: str) -> datetime.datetime:
 	"""
-	Parse a datetime from a worklist file.
+	Parse a datetime from a worklist or contents file.
 
 	:param the_date: The date and time as a string in the following format:
 
@@ -87,6 +87,9 @@ def parse_worklist_datetime(the_date: str) -> datetime.datetime:
 		return datetime.datetime.fromtimestamp(0, tz=datetime.timezone.utc)
 
 
+parse_worklist_datetime = parse_datetime
+
+
 def parse_sample_info(
 		element: lxml.objectify.ObjectifiedElement,
 		user_columns: Optional[Dict[str, Column]] = None,
@@ -103,7 +106,7 @@ def parse_sample_info(
 	if user_columns is None:
 		user_columns = {}
 
-	sample_info["Acquired Time"] = parse_worklist_datetime(element.AcqTime)
+	sample_info["Acquired Time"] = parse_datetime(element.AcqTime)
 	sample_info["Sample Locked Run Mode"] = element_to_bool(element.SampleLockedRunMode)
 	sample_info["Run Completed"] = element_to_bool(element.RunCompletedFlag)
 	sample_info["Label"] = str(element.Label).strip()

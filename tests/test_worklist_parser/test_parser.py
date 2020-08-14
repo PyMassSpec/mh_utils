@@ -10,7 +10,7 @@ import pytest
 # this package
 from mh_utils.utils import camel_to_snake
 from mh_utils.worklist_parser.classes import Macro
-from mh_utils.worklist_parser.parser import parse_params, parse_sample_info, parse_worklist_datetime
+from mh_utils.worklist_parser.parser import parse_datetime, parse_params, parse_sample_info
 from tests.common import _test_strings, counts, true_false_strings, whitespace_perms
 from tests.test_utils import Len, double_chain, whitespace
 
@@ -421,7 +421,7 @@ class TestParseDatetime:
 	@whitespace_perms
 	@counts
 	def test_whitespace(self, char: str, count: int):
-		assert parse_worklist_datetime(char * count) == datetime(
+		assert parse_datetime(char * count) == datetime(
 				year=1970, month=1, day=1, hour=0, minute=0, second=0, tzinfo=timezone.utc
 				)
 
@@ -447,7 +447,7 @@ class TestParseDatetime:
 		else:
 			with_whitespace = date
 
-		assert parse_worklist_datetime(with_whitespace) == expects
+		assert parse_datetime(with_whitespace) == expects
 
 	@dates
 	def test_no_whitespace(
@@ -456,4 +456,4 @@ class TestParseDatetime:
 			expects,
 			):
 
-		assert parse_worklist_datetime(date) == expects
+		assert parse_datetime(date) == expects

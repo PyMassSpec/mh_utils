@@ -25,7 +25,6 @@ Functions and classes for handling XML files.
 #
 
 # stdlib
-import pathlib
 from abc import ABC, abstractmethod
 from typing import Optional
 
@@ -61,7 +60,7 @@ class XMLFileMixin(ABC):
 	ABC mixin to provide a function for instantiating the class from an XML file.
 	"""
 
-	_schema = None
+	_schema: Optional[str] = None
 
 	@classmethod
 	def from_xml_file(cls, filename: PathLike):

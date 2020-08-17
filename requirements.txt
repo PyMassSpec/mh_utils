@@ -1,4 +1,6 @@
+attr_utils
 attrs
+chemistry_tools[formulae]
 domdf_python_tools>=0.4.8
 enum_tools
 lxml

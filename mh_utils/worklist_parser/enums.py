@@ -22,13 +22,15 @@
 
 # 3rd party
 from enum_tools import IntEnum
+from enum_tools.documentation import document_enum
 
 
+@document_enum
 class AttributeType(IntEnum):
 	"""
 	Enumeration of values for column/attribute types.
 	"""
 
-	SystemDefined = 0
-	SystemUsed = 1
-	UserAdded = 2
+	SystemDefined = 0  # doc: Attributes defined by the system.
+	SystemUsed = 1  # doc: Attributes used by the system.
+	UserAdded = 2  # doc: Attributes added by the user.

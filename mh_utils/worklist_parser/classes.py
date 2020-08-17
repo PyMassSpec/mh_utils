@@ -32,10 +32,11 @@ from uuid import UUID
 import attr
 import lxml.etree
 import pandas
+from attr_utils.docstrings import add_attrs_doc
 from domdf_python_tools.bases import Dictable
 
 # this package
-from mh_utils.utils import add_attrs_doc, element_to_bool, strip_string
+from mh_utils.utils import element_to_bool, strip_string
 from mh_utils.worklist_parser.columns import Column, columns
 from mh_utils.worklist_parser.enums import AttributeType
 from mh_utils.worklist_parser.parser import parse_params, parse_sample_info

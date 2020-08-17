@@ -24,14 +24,14 @@ Properties for columns in a Worklist
 #
 
 # stdlib
-from collections import namedtuple
-from typing import TYPE_CHECKING, Any, Dict, List, Optional, Type, Union
+from typing import TYPE_CHECKING, Any, Callable, Dict, Optional, Type, Union
 
 # 3rd party
 import attr
+from attr_utils.docstrings import add_attrs_doc
 
 # this package
-from mh_utils.utils import add_attrs_doc, as_path, strip_string
+from mh_utils.utils import as_path, strip_string
 from mh_utils.worklist_parser.enums import AttributeType
 
 if TYPE_CHECKING:
@@ -50,7 +50,7 @@ def injection_volume(val: Union[float, str]) -> Union[int, str]:
 	:rtype:
 	"""
 
-	if val == -1:
+	if val in {-1, "-1"}:
 		return "As Method"
 	else:
 		return int(val)
@@ -81,13 +81,13 @@ class Column:
 			self.reorder_id = self.attribute_id
 
 	def __default_value_validator(self, the_attr: attr.Attribute, the_value):
-		if self.dtype != Any:
+		if self.dtype is not Any:
 			self.default_value = self.dtype(self.default_value)
 
 	name: str = attr.ib(converter=strip_string)
 	attribute_id: int = attr.ib(converter=int)
 	attribute_type: AttributeType = attr.ib(converter=AttributeType)
-	dtype: Any = attr.ib()
+	dtype: Callable = attr.ib()
 	default_value: Any = attr.ib(validator=__default_value_validator)
 	field_type: Optional[int] = attr.ib(default=None, validator=__field_type_validator)
 	reorder_id: Optional[int] = attr.ib(default=None)
@@ -96,7 +96,7 @@ class Column:
 		if isinstance(value, str) and not value:
 			return self.default_value
 
-		if self.dtype == Any:
+		if self.dtype is Any:
 			return value
 		else:
 			return self.dtype(value)

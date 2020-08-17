@@ -19,11 +19,11 @@ class TestCreation:
 
 	def test_saturation_limit(self):
 		assert Spectrum(saturation_limit=10000).saturation_limit == 10000
-		assert Spectrum(saturation_limit="10000").saturation_limit == 10000
+		assert Spectrum(saturation_limit="10000").saturation_limit == 10000  # type: ignore
 
 	def test_scans(self):
 		assert Spectrum(scans=1).scans == 1
-		assert Spectrum(scans="1").scans == 1
+		assert Spectrum(scans="1").scans == 1  # type: ignore
 
 	def test_scan_type(self):
 		assert Spectrum(scan_type="Scan").scan_type == "Scan"

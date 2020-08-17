@@ -343,8 +343,10 @@ class Flag(str):
 	:param severity: The severity of the flag
 	"""
 
+	severity: int
+
 	def __new__(cls: Type["Flag"], string: str, severity: int) -> "Flag":
-		obj = super().__new__(cls, str(string))
+		obj = super().__new__(cls, str(string))  # type: ignore
 		obj.severity = int(severity)
 
 		return obj
@@ -374,11 +376,13 @@ class Score(float):
 	:param flag_severity: The severity of the flag.
 	"""
 
+	flag: Flag
+
 	def __init__(self, score, flag_string: str = '', flag_severity: int = 0):
 		float.__init__(float(score))
 
 	def __new__(cls, score, flag_string: str = '', flag_severity: int = 0) -> "Score":
-		obj = super().__new__(cls, float(score))
+		obj = super().__new__(cls, float(score))  # type: ignore
 		obj.flag = Flag(flag_string, flag_severity)
 
 		return obj

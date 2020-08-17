@@ -34,7 +34,7 @@ class TestCreation:
 						}
 
 		with pytest.raises(TypeError, match="'matches' must be a dictionary, not"):
-			Molecule(name="Dimethyl Phthalate", matches="Hello World")
+			Molecule(name="Dimethyl Phthalate", matches="Hello World")  # type: ignore
 
 
 def test_dict():

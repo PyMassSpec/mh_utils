@@ -85,7 +85,7 @@ class TestColumn:
 				name="Test Column",
 				attribute_id=1,
 				attribute_type=AttributeType.SystemUsed,
-				dtype=Any,
+				dtype=Any,  # type: ignore
 				default_value="The Default"
 				)
 

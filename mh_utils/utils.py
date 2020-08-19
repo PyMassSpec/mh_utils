@@ -33,6 +33,8 @@ from typing import Any, Callable, Dict, Optional, Union
 # 3rd party
 from domdf_python_tools.utils import strtobool
 
+__all__ = ["as_path", "element_to_bool", "camel_to_snake", "strip_string"]
+
 
 def as_path(val: Any) -> Optional[pathlib.PureWindowsPath]:
 	"""
@@ -77,7 +79,7 @@ def camel_to_snake(name: str) -> str:
 	"""
 	Convert ``name`` from ``CamelCase`` to ``snake_case``.
 
-	:param name:
+	:param name: The ``CamelCase`` string to convert to ``snake_case``.
 	"""
 
 	name = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', name)

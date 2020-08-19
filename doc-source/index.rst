@@ -97,6 +97,11 @@ mh_utils
 
 .. end shields
 
+The current utilities are as follows:
+
+* :mod:`mh_utils.worklist_parser`: Parse Agilent MassHunter Worklists (``*.wkl`` files).
+* :mod:`mh_utils.cef_parser`: Parse Agilent MassHunter Compound Exchange Format files (``*.cef`` files).
+
 Installation
 ---------------
 

@@ -24,6 +24,8 @@
 from enum_tools import IntEnum
 from enum_tools.documentation import document_enum
 
+__all__ = ["AttributeType"]
+
 
 @document_enum
 class AttributeType(IntEnum):

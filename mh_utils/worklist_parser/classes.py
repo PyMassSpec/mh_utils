@@ -42,6 +42,8 @@ from mh_utils.worklist_parser.enums import AttributeType
 from mh_utils.worklist_parser.parser import parse_params, parse_sample_info
 from mh_utils.xml import XMLFileMixin
 
+__all__ = ["JobData", "Worklist", "Checksum", "Macro", "Attribute"]
+
 
 class JobData(Dictable):
 	"""

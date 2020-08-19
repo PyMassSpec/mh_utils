@@ -33,6 +33,8 @@ import lxml
 from domdf_python_tools.typing import PathLike
 from lxml import etree, objectify
 
+__all__ = ["get_validated_tree", "XMLFileMixin"]
+
 
 def get_validated_tree(xml_file: PathLike, schema_file: Optional[PathLike] = None):  # TODO: rtype
 	"""

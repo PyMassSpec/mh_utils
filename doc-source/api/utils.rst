@@ -3,5 +3,4 @@
 ===========================
 
 .. automodule:: mh_utils.utils
-	:inherited-members:
 	:undoc-members:

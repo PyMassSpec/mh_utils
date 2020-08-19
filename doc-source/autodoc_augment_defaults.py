@@ -9,11 +9,12 @@ This module monkeypatches in that behaviour.
 """
 
 # stdlib
-from typing import Dict, Type
+from typing import Any, Dict, Type
 
 # 3rd party
 import sphinx.ext.autodoc.directive
 from docutils.utils import assemble_option_dict
+from sphinx.application import Sphinx
 from sphinx.config import Config
 from sphinx.ext.autodoc import Documenter, Options
 
@@ -53,3 +54,15 @@ def process_documenter_options(
 
 
 sphinx.ext.autodoc.directive.process_documenter_options = process_documenter_options
+
+
+def setup(app: Sphinx) -> Dict[str, Any]:
+	"""
+	Setup Sphinx Extension.
+
+	:param app:
+
+	:return:
+	"""
+
+	return {}

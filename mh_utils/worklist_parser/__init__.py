@@ -3,6 +3,11 @@
 #  __init__.py
 """
 Parser for MassHunter worklists.
+
+Only one function is defined here: :class:`~.read_worklist`,
+which reads the reads the given worklist file and returns
+a :class:`mh_utils.worklist_parser.classes.Worklist` file representing it.
+The other functions and classes must be imported from submodules of this package.
 """
 #
 #  Copyright (c) 2020 Dominic Davis-Foster <dominic@davis-foster.co.uk>
@@ -28,6 +33,8 @@ from domdf_python_tools.typing import PathLike
 
 # this package
 from mh_utils.worklist_parser.classes import Worklist
+
+__all__ = ["read_worklist"]
 
 
 def read_worklist(filename: PathLike) -> Worklist:

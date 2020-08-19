@@ -3,6 +3,43 @@
 #  __init__.py
 """
 Parser for MassHunter Compound Exchange Format ``.cef`` files.
+
+A CEF file represents a file identified in LC-MS data by MassHunter Qualitative.
+It consists of a list of compounds encapsulated in a :class:`~.CompoundList`.
+
+A :class:`~.CompoundList` consists of :class:`~.Compound` objects representing the
+individual compounds identified in the data. Each :class:`~.Compound` object contains
+information on the location of that compound within the LC data (:attr:`~.Compound.location`),
+the scores indicating the confidence of the match (:attr:`~.Compound.compound_scores`),
+a list of possible matching compounds (:attr:`~.Compound.results`),
+and the matching mass spectrum extracted from the LC-MS data (:attr:`~.Compound.spectra`).
+
+The following diagram represents this structure:
+
+* :class:`CompoundList`
+
+	+ :class:`Compound`
+
+		- :attr:`Compound.algo` ⇨ :class:`str`
+		- :attr:`Compound.location` ⇨ :class:`~typing.Optional` [:class:`LocationDict` ]
+		- :attr:`Compound.compound_scores` ⇨ :class:`~typing.Optional` [:class:`~typing.Dict` [:class:`str`, :class:`~.Score` ] ]
+		- :attr:`Compound.results` ⇨ :class:`~typing.List`
+
+			- :class:`~.Molecule`
+			- Another :class:`~.Molecule`
+			- ``...``
+
+		- :attr:`Compound.spectra` ⇨ :class:`~typing.List`
+
+			- :class:`~.Spectrum`
+			- Another :class:`~.Spectrum`
+			- ``...``
+
+
+
+	+ Another :class:`Compound`
+	+ ``...``
+
 """
 #
 #  Copyright (c) 2020 Dominic Davis-Foster <dominic@davis-foster.co.uk>
@@ -38,6 +75,23 @@ from domdf_python_tools.bases import Dictable, NamedList
 from domdf_python_tools.typing import PathLike
 from lxml import objectify
 from typing_extensions import TypedDict
+
+__all__ = [
+		"Molecule",
+		"Device",
+		"Peak",
+		"Spectrum",
+		"make_timedelta",
+		"RTRange",
+		"Flag",
+		"Score",
+		"parse_compound_scores",
+		"parse_match_scores",
+		"LocationDict",
+		"Compound",
+		"CompoundList",
+		"parse_cef",
+		]
 
 
 class Molecule(Dictable):
@@ -312,7 +366,7 @@ def make_timedelta(minutes: Union[float, datetime.timedelta]):
 @attr.s(slots=True)
 class RTRange:
 	"""
-	Represents a ``<RTRange>`` element from a CEF file.
+	Represents an ``<RTRange>`` element from a CEF file.
 
 	:param start: start time in minutes
 	:param end: end time in minutes
@@ -449,6 +503,10 @@ def parse_match_scores(element: lxml.objectify.ObjectifiedElement) -> Dict[str, 
 
 
 class LocationDict(TypedDict, total=False):
+	"""
+	:class:`~typing.TypedDict` representing the location of a spectrum within mass spectrometry data.
+	"""
+
 	m: float  #: the accurate mass of the compound, determined from the observed mass spectrum.
 	rt: float  #: The retention time at which the compound was detected.
 	a: float  #: The area of the peak in the EIC.
@@ -465,6 +523,12 @@ class Compound(Dictable):
 	:param results: A list of molecules that match the spectrum.
 	:param spectra: A list of spectra for the compound.
 	"""
+
+	algo: str  #: The algorithm used to identify the compound.
+	location: Optional[LocationDict]  #: A dictionary of information to locate the compound in the spectral data
+	compound_scores: Optional[Dict[str, "Score"]]  #: A dictionary of compound scores
+	results: Optional[List[Molecule]]  #: A list of molecules that match the spectrum.
+	spectra: Optional[List[Spectrum]]  #: A list of spectra for the compound.
 
 	def __init__(
 			self,
@@ -550,9 +614,13 @@ class CompoundList(NamedList):
 	"""
 	A list of Compound objects parsed from a CEF file.
 
+	The full :class:`list` API is available for this class.
+
 	:param instrument: String identifying the instrument that acquired the data.
 	:param compounds: List of compounds identified in the mass spectrometry data.
 	"""
+
+	instrument: str  #: The type of instrument that obtained the data, e.g. ``"LCQTOF"``.
 
 	def __init__(self, instrument: str = '', compounds: Optional[Iterable[Compound]] = None):
 		super().__init__(compounds)

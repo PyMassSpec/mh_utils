@@ -5,8 +5,9 @@ import pytest
 from mh_utils.worklist_parser.classes import Macro
 
 
-def test_creation():
-	data = Macro(
+@pytest.fixture()
+def sample_macro():
+	return Macro(
 			project_name="the project_name",
 			procedure_name="the procedure_name",
 			input_parameter="the input_parameter",
@@ -15,12 +16,15 @@ def test_creation():
 			display_string="the display_string",
 			)
 
-	assert data.project_name == "the project_name"
-	assert data.procedure_name == "the procedure_name"
-	assert data.input_parameter == "the input_parameter"
-	assert data.output_data_type == 42
-	assert data.output_parameter == "the output_parameter"
-	assert data.display_string == "the display_string"
+
+def test_creation(sample_macro):
+
+	assert sample_macro.project_name == "the project_name"
+	assert sample_macro.procedure_name == "the procedure_name"
+	assert sample_macro.input_parameter == "the input_parameter"
+	assert sample_macro.output_data_type == 42
+	assert sample_macro.output_parameter == "the output_parameter"
+	assert sample_macro.display_string == "the display_string"
 
 
 class FakeXMLElement:
@@ -46,18 +50,11 @@ def test_from_xml():
 	assert data.display_string == "the display_string"
 
 
-def test_undefined_and_repr():
-	macro = Macro(
-			project_name="the project_name",
-			procedure_name="the procedure_name",
-			input_parameter="the input_parameter",
-			output_data_type=42,
-			output_parameter="the output_parameter",
-			display_string="the display_string",
-			)
-	assert not macro.undefined
+def test_undefined_and_repr(sample_macro):
 
-	assert str(macro) == (
+	assert not sample_macro.undefined
+
+	assert str(sample_macro) == (
 			"Macro("
 			"project_name='the project_name', "
 			"procedure_name='the procedure_name', "
@@ -67,7 +64,7 @@ def test_undefined_and_repr():
 			"display_string='the display_string')"
 			)
 
-	assert repr(macro) == (
+	assert repr(sample_macro) == (
 			"Macro("
 			"project_name='the project_name', "
 			"procedure_name='the procedure_name', "

@@ -3,10 +3,10 @@ from pathlib import PureWindowsPath
 
 # 3rd party
 import pytest
+from domdf_python_tools.testing import count, testing_boolean_values, whitespace_perms
 
 # this package
 from mh_utils.utils import as_path, camel_to_snake, element_to_bool
-from tests.common import count, true_false_strings, whitespace_perms
 
 
 class TestAsPath:
@@ -65,12 +65,9 @@ class TestAsPath:
 
 class TestElementToBool:
 
-	@pytest.mark.parametrize(
-			"obj, expects",
-			true_false_strings,
-			)
-	def test_element_to_bool(self, obj, expects):
-		assert element_to_bool(obj) == expects
+	@testing_boolean_values(extra_truthy=[-1])
+	def test_element_to_bool(self, boolean_string, expected_boolean):
+		assert element_to_bool(boolean_string) == expected_boolean
 
 	@pytest.mark.parametrize(
 			"obj, expects",

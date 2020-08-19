@@ -1,16 +1,27 @@
 # stdlib
 from uuid import UUID
 
+# 3rd party
+import pytest
+
 # this package
 from mh_utils.worklist_parser.classes import JobData
 from tests.test_worklist_parser.test_parser import FakeSampleElement
 
 
-def test_creation():
+@pytest.mark.parametrize(
+		"id, job_type, run_status",
+		[
+				("{B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C}", 7, 1),
+				("{B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C}", 7, 1),
+				(UUID("{B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C}"), "7", "1"),
+				]
+		)
+def test_creation(id, job_type, run_status):
 	data = JobData(
-			id="{B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C}",
-			job_type=7,
-			run_status=1,
+			id=id,
+			job_type=job_type,
+			run_status=run_status,
 			)
 
 	assert data.id == UUID("{B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C}")
@@ -18,23 +29,20 @@ def test_creation():
 	assert data.run_status == 1
 	assert data.sample_info == {}
 
-	data = JobData(
-			id="{B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C}",
-			job_type=7,
-			run_status=1,
-			sample_info={"foo": "a string"},
-			)
 
-	assert data.id == UUID("{B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C}")
-	assert data.job_type == 7
-	assert data.run_status == 1
-	assert data.sample_info == {"foo": "a string"}
-
+@pytest.mark.parametrize(
+		"id, job_type, run_status, sample_info",
+		[
+				("{B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C}", 7, 1, {"foo": "a string"}),
+				(UUID("{B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C}"), "7", "1", {"foo": "a string"}),
+				]
+		)
+def test_creation_sample_info(id, job_type, run_status, sample_info):
 	data = JobData(
-			id=UUID("{B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C}"),
-			job_type="7",  # type: ignore
-			run_status="1",  # type: ignore
-			sample_info={"foo": "a string"},
+			id=id,
+			job_type=job_type,
+			run_status=run_status,
+			sample_info=sample_info,
 			)
 
 	assert data.id == UUID("{B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C}")
@@ -65,15 +73,18 @@ def test_from_xml():
 	assert data.run_status == 1
 
 
-def test_dict():
-	data = JobData(
+@pytest.fixture()
+def sample_jobdata():
+	return JobData(
 			id="{B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C}",
 			job_type=7,
 			run_status=1,
 			sample_info={"foo": "a string"},
 			)
 
-	assert dict(data) == {
+
+def test_dict(sample_jobdata):
+	assert dict(sample_jobdata) == {
 			"id": "B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C".lower(),
 			"job_type": 7,
 			"run_status": 1,
@@ -81,24 +92,17 @@ def test_dict():
 			}
 
 
-def test_repr():
-	data = JobData(
-			id="{B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C}",
-			job_type=7,
-			run_status=1,
-			sample_info={"foo": "a string"},
-			)
-
-	assert str(data).startswith("JobData(")
-	assert str(data).endswith(")")
-	assert str(data) == (
+def test_repr(sample_jobdata):
+	assert str(sample_jobdata).startswith("JobData(")
+	assert str(sample_jobdata).endswith(")")
+	assert str(sample_jobdata) == (
 			"JobData("
 			f"id='{'B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C'.lower()}', "
 			"job_type=7, run_status=1)"
 			)
-	assert repr(data).startswith("JobData(")
-	assert repr(data).endswith(")")
-	assert repr(data) == (
+	assert repr(sample_jobdata).startswith("JobData(")
+	assert repr(sample_jobdata).endswith(")")
+	assert repr(sample_jobdata) == (
 			"JobData("
 			f"id='{'B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C'.lower()}', "
 			"job_type=7, run_status=1)"

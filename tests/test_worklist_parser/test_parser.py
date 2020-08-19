@@ -5,12 +5,13 @@ from pathlib import PureWindowsPath
 
 # 3rd party
 import pytest
+from domdf_python_tools.testing import count, whitespace_perms
 
 # this package
 from mh_utils.utils import camel_to_snake
 from mh_utils.worklist_parser.classes import Macro
 from mh_utils.worklist_parser.parser import parse_datetime, parse_params, parse_sample_info
-from tests.common import _test_strings, count, true_false_strings, whitespace_perms
+from tests.common import _test_strings, true_false_strings
 
 
 class FakeMacroElement:
@@ -82,7 +83,7 @@ class __TestParseParams_str:
 	def test_parse_params(self, value, expects):
 		e = FakeParamsElement()
 		setattr(e, self.param_under_test, value)
-		params = parse_params(e)
+		params = parse_params(e)  # type: ignore
 		assert params[self.param_dict_name] == expects
 		assert isinstance(params[self.param_dict_name], self.param_type)
 
@@ -427,14 +428,7 @@ class TestParseDatetime:
 	@count(100)
 	@whitespace_perms()
 	@dates
-	def test(
-			self,
-			whitespace_pos,
-			count,
-			char,
-			date,
-			expects,
-			):
+	def test(self, whitespace_pos, count, char, date, expects):
 
 		if whitespace_pos == "left":
 			with_whitespace = f"{char * count}{date}"

@@ -1,7 +1,7 @@
 attr_utils
 attrs
 chemistry_tools[formulae]
-domdf_python_tools>=0.4.8
+domdf_python_tools>=0.4.9
 enum_tools
 lxml
 pandas

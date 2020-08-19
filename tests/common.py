@@ -1,42 +1,32 @@
 # stdlib
-from itertools import chain, permutations
-from pathlib import PureWindowsPath
-from typing import Any, Iterable
+import itertools
+import random
+from functools import lru_cache
+from itertools import permutations
+from typing import List
 
 # 3rd party
 import pytest
-
-# this package
-from mh_utils.utils import as_path, camel_to_snake, element_to_bool
+from _pytest.mark import MarkDecorator
+from domdf_python_tools.utils import Len
 
 whitespace = " \t\n\r"
 
 
-def double_chain(iterable: Iterable[Iterable]):
-	yield from chain.from_iterable(chain.from_iterable(iterable))
+@lru_cache(1)
+def whitespace_perms_list() -> List[str]:
+	chain = itertools.chain.from_iterable(permutations(whitespace, n) for n in Len(whitespace))
+	return list("".join(x) for x in chain)
 
 
-class Len(Iterable[int]):
-	"""
-	Shorthand for ``range(len(obj))``
-
-	:param obj: The object to iterate over the length of
-	:param start: The start value of the range.
-	:param step: The step of the range.
-	"""
-
-	def __init__(self, obj: Any, start: int = 0, step: int = 1):
-		self._members = range(start, len(obj), step)
-
-	def __iter__(self):
-		yield from self._members
+def whitespace_perms(ratio: float = 0.5) -> MarkDecorator:
+	perms = whitespace_perms_list()
+	return pytest.mark.parametrize("char", random.sample(perms, int(len(perms) * ratio)))
 
 
-whitespace_perms = pytest.mark.parametrize(
-		"char", "".join(double_chain(permutations(whitespace, n) for n in Len(whitespace)))
-		)
+def count(stop: int, start: int = 0, step: int = 1) -> MarkDecorator:
+	return pytest.mark.parametrize("count", range(start, stop, step))
 
-counts = pytest.mark.parametrize("count", range(0, 100))
 
 true_false_strings = [
 		(True, True),

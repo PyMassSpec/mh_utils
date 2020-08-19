@@ -1,14 +1,12 @@
 # stdlib
-from itertools import chain, permutations
 from pathlib import PureWindowsPath
-from typing import Any, Iterable
 
 # 3rd party
 import pytest
 
 # this package
 from mh_utils.utils import as_path, camel_to_snake, element_to_bool
-from tests.common import Len, counts, double_chain, true_false_strings, whitespace, whitespace_perms
+from tests.common import count, true_false_strings, whitespace_perms
 
 
 class TestAsPath:
@@ -22,8 +20,8 @@ class TestAsPath:
 					]
 			)
 
-	@whitespace_perms
-	@counts
+	@whitespace_perms()
+	@count(100)
 	def test_as_path_whitespace_none(self, char: str, count: int):
 		assert as_path(char * count) is None
 
@@ -32,8 +30,8 @@ class TestAsPath:
 		assert as_path(value) is None
 
 	@pytest.mark.parametrize("whitespace_pos", ["left", "right", "both"])
-	@counts
-	@whitespace_perms
+	@count(100)
+	@whitespace_perms()
 	@filenames
 	def test_as_path(
 			self,

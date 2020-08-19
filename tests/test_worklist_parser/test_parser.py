@@ -1,7 +1,6 @@
 # stdlib
 import random
 from datetime import datetime, timezone
-from itertools import permutations
 from pathlib import PureWindowsPath
 
 # 3rd party
@@ -11,8 +10,7 @@ import pytest
 from mh_utils.utils import camel_to_snake
 from mh_utils.worklist_parser.classes import Macro
 from mh_utils.worklist_parser.parser import parse_datetime, parse_params, parse_sample_info
-from tests.common import _test_strings, counts, true_false_strings, whitespace_perms
-from tests.test_utils import Len, double_chain, whitespace
+from tests.common import _test_strings, count, true_false_strings, whitespace_perms
 
 
 class FakeMacroElement:
@@ -188,7 +186,7 @@ class __TestParseParams_bool:
 	def test_parse_params(self, value, expects):
 		e = FakeParamsElement()
 		setattr(e, self.param_under_test, value)
-		params = parse_params(e)
+		params = parse_params(e)  # type: ignore
 		assert params[self.param_dict_name] == expects
 		assert isinstance(params[self.param_dict_name], self.param_type)
 
@@ -262,7 +260,7 @@ class __TestParseParams_macro:
 	def test_parse_params(self, value, expects):
 		e = FakeParamsElement()
 		setattr(e, self.param_under_test, value)
-		params = parse_params(e)
+		params = parse_params(e)  # type: ignore
 		assert params[self.param_dict_name] == expects
 		assert isinstance(params[self.param_dict_name], self.param_type)
 
@@ -343,7 +341,7 @@ class __TestParseSampleInfo_bool:
 	def test_parse_params(self, value, expects):
 		e = FakeSampleElement()
 		setattr(e, self.param_under_test, value)
-		sample_info = parse_sample_info(e)
+		sample_info = parse_sample_info(e)  # type: ignore
 		assert sample_info[self.param_dict_name] == expects
 		assert isinstance(sample_info[self.param_dict_name], self.param_type)
 
@@ -357,7 +355,7 @@ class __TestParseSampleInfo_str:
 	def test_parse_params(self, value, expects):
 		e = FakeSampleElement()
 		setattr(e, self.param_under_test, value)
-		sample_info = parse_sample_info(e)
+		sample_info = parse_sample_info(e)  # type: ignore
 		assert sample_info[self.param_dict_name] == expects
 		assert isinstance(sample_info[self.param_dict_name], self.param_type)
 
@@ -418,16 +416,16 @@ class TestParseDatetime:
 					]
 			)
 
-	@whitespace_perms
-	@counts
+	@whitespace_perms()
+	@count(100)
 	def test_whitespace(self, char: str, count: int):
 		assert parse_datetime(char * count) == datetime(
 				year=1970, month=1, day=1, hour=0, minute=0, second=0, tzinfo=timezone.utc
 				)
 
 	@pytest.mark.parametrize("whitespace_pos", ["left", "right", "both"])
-	@counts
-	@whitespace_perms
+	@count(100)
+	@whitespace_perms()
 	@dates
 	def test(
 			self,

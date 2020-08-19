@@ -16,7 +16,7 @@ def test_creation():
 			data_type=1,
 			default_data_value="  the default_data_value\t",
 			reorder_id=22,
-			show_hide_status="False",
+			show_hide_status="False",  # type: ignore
 			column_width=250,
 			)
 

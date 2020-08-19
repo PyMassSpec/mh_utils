@@ -107,6 +107,6 @@ def test_undefined_and_repr():
 			"display_string='')"
 			)
 
-	assert str(macro) == ("Macro(Undefined)")
+	assert str(macro) == "Macro(Undefined)"
 
-	assert repr(macro) == ("Macro(Undefined)")
+	assert repr(macro) == "Macro(Undefined)"

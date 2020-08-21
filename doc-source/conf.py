@@ -98,6 +98,7 @@ latex_documents = [('index', f'{slug}.tex', project, author, 'manual')]
 man_pages = [('index', slug, project, [author], 1)]
 texinfo_documents = [('index', slug, project, author, slug, project, 'Miscellaneous')]
 
+toctree_plus_types = {"class", "function", "method", "data"}
 
 autodoc_default_options = {
 		'members': None,  # Include all members (methods).

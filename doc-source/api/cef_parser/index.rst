@@ -16,7 +16,7 @@
 
 .. autoclass:: mh_utils.cef_parser.Flag
 
-.. autoclass:: mh_utils.cef_parser.LocationDict
+.. autoclass:: mh_utils.cef_parser.LocationDict()
 
 .. autofunction:: mh_utils.cef_parser.make_timedelta
 

@@ -105,6 +105,7 @@ autodoc_default_options = {
 		"autosummary": None,
 		'exclude-members': ','.join([   # Exclude "standard" methods.
 				"__dict__",
+				"__class__",
 				"__dir__",
 				"__weakref__",
 				"__module__",

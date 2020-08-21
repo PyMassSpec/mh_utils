@@ -22,9 +22,10 @@ repos:
     - id: mixed-line-ending
 
  - repo: https://github.com/domdfcoding/pre-commit-hooks
-   rev: v0.0.2
+   rev: v0.0.3
    hooks:
     - id: requirements-txt-sorter
+      args: [--allow-git]
     - id: check-docstring-first
 
  - repo: https://github.com/pre-commit/pygrep-hooks

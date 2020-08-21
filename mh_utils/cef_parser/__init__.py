@@ -102,7 +102,7 @@ class Molecule(Dictable):
 	:param name: The name of the compound
 	:param formula: The formula of the compound.
 		If a string it must be parsable	by :class:`chemistry_tools.formulae.Formula`
-	:param matches: Dictionary of also:score match values
+	:param matches: Dictionary of algo: score match values.
 	"""
 
 	def __init__(
@@ -152,6 +152,10 @@ class Molecule(Dictable):
 				)
 
 	def __repr__(self):
+		"""
+		Returns a string representation of the :class:`~mh_utils.cef_parser.Molecule`
+		"""
+
 		return f"<Molecule({self.name}, {str(self.formula)})>"
 
 
@@ -191,9 +195,7 @@ class Peak:
 	:param rx:
 	:param y:
 	:param charge:
-	:type charge: int
 	:param label:
-	:type label: str
 	"""
 
 	x: float = attr.ib(converter=float)
@@ -346,6 +348,10 @@ class Spectrum(Dictable):
 		return cls(**data)
 
 	def __repr__(self):
+		"""
+		Returns a string representation of the :class:`~mh_utils.cef_parser.Spectrum`
+		"""
+
 		return f"<Spectrum({pformat(self.peaks)})>"
 
 
@@ -406,18 +412,34 @@ class Flag(str):
 		return obj
 
 	def __eq__(self, other) -> bool:
+		"""
+		Return ``self == other``
+		"""
+
 		if isinstance(other, Flag):
 			return str(self) == str(other) and self.severity == other.severity
 		else:
 			return super().__eq__(other)
 
 	def __ne__(self, other) -> bool:
+		"""
+		Return ``self != other``
+		"""
+
 		return NotImplemented
 
 	def __repr__(self) -> str:
+		"""
+		Returns a string representation of the :class:`~mh_utils.cef_parser.Flag`
+		"""
+
 		return f"{self.__class__.__name__}({str(self)!r}, severity={self.severity})"
 
 	def __bool__(self) -> bool:
+		"""
+		Returns a boolean representation of the :class:`~mh_utils.cef_parser.Flag`
+		"""
+
 		return bool(str(self)) and bool(self.severity)
 
 
@@ -442,21 +464,37 @@ class Score(float):
 		return obj
 
 	def __repr__(self) -> str:
+		"""
+		Returns a string representation of the :class:`~mh_utils.cef_parser.Score`
+		"""
+
 		if self.flag:
 			return f"{self.__class__.__name__}({str(self)}, {self.flag!r})"
 		else:
 			return f"{self.__class__.__name__}({str(self)})"
 
 	def __str__(self) -> str:
+		"""
+		Returns the :class:`~mh_utils.cef_parser.Score` as a string.
+		"""
+
 		return str(float(self))
 
 	def __eq__(self, other) -> bool:
+		"""
+		Return ``self == other``
+		"""
+
 		if isinstance(other, Score):
 			return float(self) == float(other) and self.flag == other.flag
 		else:
 			return super().__eq__(other)
 
 	def __ne__(self, other) -> bool:
+		"""
+		Return ``self != other``
+		"""
+
 		return NotImplemented
 
 
@@ -607,6 +645,10 @@ class Compound(Dictable):
 				)
 
 	def __repr__(self):
+		"""
+		Returns a string representation of the :class:`~mh_utils.cef_parser.Compound`
+		"""
+
 		return f"<Compound({pformat(self.results)})>"
 
 

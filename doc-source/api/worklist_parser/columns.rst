@@ -4,4 +4,8 @@
 
 .. automodule:: mh_utils.worklist_parser.columns
 	:inherited-members:
-	:undoc-members:
+	:autosummary-members:
+	:exclude-members: columns
+
+.. autodata:: columns
+	:annotation:

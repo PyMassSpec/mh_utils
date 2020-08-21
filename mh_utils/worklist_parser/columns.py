@@ -94,7 +94,11 @@ class Column:
 	field_type: Optional[int] = attr.ib(default=None, validator=__field_type_validator)
 	reorder_id: Optional[int] = attr.ib(default=None)
 
-	def cast_value(self, value):
+	def cast_value(self, value: Any):
+		"""
+		Cast ``value`` to the dtype of this column.
+		"""
+
 		if isinstance(value, str) and not value:
 			return self.default_value
 
@@ -129,6 +133,7 @@ class Column:
 				)
 
 
+#: Mapping of column names to column objects.
 columns: Dict[str, Column] = {
 		col.name: col
 		for col in [

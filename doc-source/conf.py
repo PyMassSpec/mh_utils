@@ -51,6 +51,7 @@ extensions = [
 	'sphinxcontrib.default_values',
 	'sphinxcontrib.toctree_plus',
 	'seed_intersphinx_mapping',
+	'autodoc_augment_defaults',
 	'enum_tools.autoenum',
 	'attr_utils.autodoc_typehints',
 	]
@@ -118,7 +119,7 @@ autodoc_default_options = {
 				"__getnewargs__",
 				"__abstractmethods__",
 				"__hash__",
-				])
+				]),
 		}
 
 

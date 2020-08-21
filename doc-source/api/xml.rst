@@ -3,5 +3,3 @@
 ===========================
 
 .. automodule:: mh_utils.xml
-	:inherited-members:
-	:undoc-members:

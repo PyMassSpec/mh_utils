@@ -53,9 +53,6 @@ def process_documenter_options(
 	return Options(assemble_option_dict(options.items(), documenter.option_spec))
 
 
-sphinx.ext.autodoc.directive.process_documenter_options = process_documenter_options
-
-
 def setup(app: Sphinx) -> Dict[str, Any]:
 	"""
 	Setup Sphinx Extension.
@@ -64,5 +61,7 @@ def setup(app: Sphinx) -> Dict[str, Any]:
 
 	:return:
 	"""
+
+	sphinx.ext.autodoc.directive.process_documenter_options = process_documenter_options
 
 	return {}

@@ -3,31 +3,19 @@
 =========================================
 
 .. automodule:: mh_utils.worklist_parser.classes
+	:noindex:
 	:no-members:
-
-.. autosummary::
-
-	~mh_utils.worklist_parser.classes.Attribute
-	~mh_utils.worklist_parser.classes.Checksum
-	~mh_utils.worklist_parser.classes.JobData
-	~mh_utils.worklist_parser.classes.Macro
-	~mh_utils.worklist_parser.classes.Worklist
-
+	:autosummary-members:
 
 .. autoclass:: mh_utils.worklist_parser.classes.Attribute
 	:inherited-members:
-	:undoc-members:
 
 .. autoclass:: mh_utils.worklist_parser.classes.Checksum
 	:inherited-members:
-	:undoc-members:
 
 .. autoclass:: mh_utils.worklist_parser.classes.JobData
-	:undoc-members:
 
 .. autoclass:: mh_utils.worklist_parser.classes.Macro
 	:inherited-members:
-	:undoc-members:
 
 .. autoclass:: mh_utils.worklist_parser.classes.Worklist
-	:undoc-members:

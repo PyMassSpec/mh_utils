@@ -3,4 +3,3 @@
 ===========================
 
 .. automodule:: mh_utils.utils
-	:undoc-members:

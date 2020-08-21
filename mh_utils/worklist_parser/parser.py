@@ -33,6 +33,7 @@ from mh_utils.worklist_parser.columns import Column, columns
 
 __all__ = ["sample_info_tags", "parse_datetime", "parse_sample_info", "parse_params"]
 
+#: Mapping of XML tag names to attribute names.
 sample_info_tags: Dict[str, str] = {
 		# Tag Name: Attribute
 		"Identifier": 'Sample ID',

@@ -1,0 +1,28 @@
+                   Sample Name                                   Method                                      Data File   Drying Gas   Gas Temp   Nebulizer
+0           Methanol Blank +ve        Maitre Gunshot Residue Positive.m          Methanol_Blank_+ve_191121-0001-r001.d
+1           Propellant 1mg +ve        Maitre Gunshot Residue Positive.m          Propellant_1mg_+ve_191121-0002-r001.d
+2           Propellant 1ug +ve        Maitre Gunshot Residue Positive.m          Propellant_1ug_+ve_191121-0003-r001.d
+3           Methanol Blank -ve        Maitre Gunshot Residue Negative.m          Methanol_Blank_-ve_191121-0004-r001.d
+4           Propellant 1mg -ve        Maitre Gunshot Residue Negative.m          Propellant_1mg_-ve_191121-0005-r001.d
+5           Propellant 1ug -ve        Maitre Gunshot Residue Negative.m          Propellant_1ug_-ve_191121-0006-r001.d
+6       Methanol Blank +ve 5ul    Maitre Gunshot Residue Positive 5ul.m      Methanol_Blank_+ve_5ul_191121-0007-r001.d
+7       Propellant 1mg +ve 5ul    Maitre Gunshot Residue Positive 5ul.m      Propellant_1mg_+ve_5ul_191121-0008-r001.d
+8       Propellant 1ug +ve 5ul    Maitre Gunshot Residue Positive 5ul.m      Propellant_1ug_+ve_5ul_191121-0009-r001.d
+9               Methanol Blank    Maitre Gunshot Residue Positive 5ul.m              Methanol_Blank_191121-0010-r001.d
+10      Propellant 1mg gas 200    Maitre Gunshot Residue Positive 5ul.m      Propellant_1mg_gas_200_191121-0011-r001.d                   200
+11      Propellant 1ug gas 200    Maitre Gunshot Residue Positive 5ul.m      Propellant_1ug_gas_200_191121-0012-r001.d                   200
+12      Propellant 1mg gas 280    Maitre Gunshot Residue Positive 5ul.m      Propellant_1mg_gas_280_191121-0013-r001.d                   280
+13      Propellant 1ug gas 280    Maitre Gunshot Residue Positive 5ul.m      Propellant_1ug_gas_280_191121-0014-r001.d                   280
+14    Propellant 1mg drying 14    Maitre Gunshot Residue Positive 5ul.m    Propellant_1mg_drying_14_191121-0015-r001.d           14
+15    Propellant 1ug drying 14    Maitre Gunshot Residue Positive 5ul.m    Propellant_1ug_drying_14_191121-0016-r001.d           14
+16    Propellant 1mg drying 16    Maitre Gunshot Residue Positive 5ul.m    Propellant_1mg_drying_16_191121-0017-r001.d           16
+17    Propellant 1ug drying 16    Maitre Gunshot Residue Positive 5ul.m    Propellant_1ug_drying_16_191121-0018-r001.d           16
+18    Propellant 1mg drying 18    Maitre Gunshot Residue Positive 5ul.m    Propellant_1mg_drying_18_191121-0019-r001.d           18
+19    Propellant 1ug drying 18    Maitre Gunshot Residue Positive 5ul.m    Propellant_1ug_drying_18_191121-0020-r001.d           18
+20     Propellant 1mg nebul 40    Maitre Gunshot Residue Positive 5ul.m     Propellant_1mg_nebul_40_191121-0021-r001.d                                40
+21     Propellant 1ug nebul 40    Maitre Gunshot Residue Positive 5ul.m     Propellant_1ug_nebul_40_191121-0022-r001.d                                40
+22     Propellant 1mg nebul 50    Maitre Gunshot Residue Positive 5ul.m     Propellant_1mg_nebul_50_191121-0023-r001.d                                50
+23     Propellant 1ug nebul 50    Maitre Gunshot Residue Positive 5ul.m     Propellant_1ug_nebul_50_191121-0024-r001.d                                50
+24     Propellant 1mg nebul 60    Maitre Gunshot Residue Positive 5ul.m     Propellant_1mg_nebul_60_191121-0025-r001.d                                60
+25     Propellant 1ug nebul 60    Maitre Gunshot Residue Positive 5ul.m     Propellant_1ug_nebul_60_191121-0026-r001.d                                60
+...

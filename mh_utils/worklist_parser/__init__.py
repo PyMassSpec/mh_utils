@@ -28,6 +28,9 @@ The other functions and classes must be imported from submodules of this package
 #  MA 02110-1301, USA.
 #
 
+# stdlib
+import os
+
 # 3rd party
 from domdf_python_tools.typing import PathLike
 
@@ -43,5 +46,8 @@ def read_worklist(filename: PathLike) -> Worklist:
 
 	:param filename: The filename of the worklist.
 	"""
+
+	if not os.path.isfile(filename):
+		raise FileNotFoundError(f"'{filename}' does not exist.")
 
 	return Worklist.from_xml_file(filename)

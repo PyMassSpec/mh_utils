@@ -25,6 +25,7 @@ Functions and classes for handling XML files.
 #
 
 # stdlib
+import pathlib
 from abc import ABC, abstractmethod
 from typing import Optional
 
@@ -32,24 +33,41 @@ from typing import Optional
 import lxml
 from domdf_python_tools.typing import PathLike
 from lxml import etree, objectify
+from lxml.etree import _ElementTree
 
 __all__ = ["get_validated_tree", "XMLFileMixin"]
 
 
-def get_validated_tree(xml_file: PathLike, schema_file: Optional[PathLike] = None):  # TODO: rtype
+def get_validated_tree(xml_file: PathLike, schema_file: Optional[PathLike] = None) -> _ElementTree:
 	"""
 	Returns a validated lxml objectify from the given XML file, validated against the schema file.
 
 	:param xml_file: The XML file to validate.
 	:param schema_file: The schema file to validate against.
+
+
 	"""
 
-	schema = None
-	if schema_file:
+	if not isinstance(xml_file, pathlib.Path):
+		xml_file = pathlib.Path(xml_file)
+
+	if not xml_file.is_file():
+		raise FileNotFoundError(f"XML file '{xml_file}' not found.")
+
+	schema: Optional[etree.XMLSchema] = None
+
+	if schema_file is not None:
+
+		if not isinstance(schema_file, pathlib.Path):
+			schema_file = pathlib.Path(schema_file)
+
+		if not schema_file.is_file():
+			raise FileNotFoundError(f"XML schema '{schema_file}' not found.")
+
 		schema = etree.XMLSchema(etree.parse(str(schema_file)))
 
 	parser = objectify.makeparser(schema=schema)
-	tree = objectify.parse(str(xml_file), parser=parser)
+	tree: _ElementTree = objectify.parse(str(xml_file), parser=parser)
 
 	if schema:
 		assert schema.validate(tree)

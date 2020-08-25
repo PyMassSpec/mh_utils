@@ -34,6 +34,7 @@ import lxml
 from domdf_python_tools.typing import PathLike
 from lxml import etree, objectify
 from lxml.etree import _ElementTree
+from lxml.objectify import ObjectifiedElement
 
 __all__ = ["get_validated_tree", "XMLFileMixin"]
 
@@ -45,7 +46,8 @@ def get_validated_tree(xml_file: PathLike, schema_file: Optional[PathLike] = Non
 	:param xml_file: The XML file to validate.
 	:param schema_file: The schema file to validate against.
 
-
+	:returns: An lxml ElementTree object. When .getroot() us called on the tree the root will be an instance of
+		:class:`lxml.objectify.ObjectifiedElement`.
 	"""
 
 	if not isinstance(xml_file, pathlib.Path):
@@ -70,7 +72,7 @@ def get_validated_tree(xml_file: PathLike, schema_file: Optional[PathLike] = Non
 	tree: _ElementTree = objectify.parse(str(xml_file), parser=parser)
 
 	if schema:
-		assert schema.validate(tree)
+		assert schema.validate(tree)  # type: ignore
 
 	return tree
 
@@ -91,7 +93,7 @@ class XMLFileMixin(ABC):
 		"""
 
 		tree = get_validated_tree(filename, cls._schema)
-		root = tree.getroot()
+		root: ObjectifiedElement = tree.getroot()
 		return cls.from_xml(root)
 
 	@classmethod

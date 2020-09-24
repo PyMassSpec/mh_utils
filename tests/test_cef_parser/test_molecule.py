@@ -1,5 +1,5 @@
 # 3rd party
-import lxml.objectify
+import lxml.objectify  # type: ignore
 import pytest
 from chemistry_tools.formulae import Formula
 

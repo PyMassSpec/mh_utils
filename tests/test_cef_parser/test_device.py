@@ -2,7 +2,7 @@
 from datetime import timedelta
 
 # 3rd party
-import lxml.objectify
+import lxml.objectify  # type: ignore
 import pytest
 
 # this package

@@ -8,7 +8,7 @@ import pytest
 from domdf_python_tools.paths import PathPlus
 from domdf_python_tools.typing import PathLike
 from importlib_resources import as_file, files
-from lxml.etree import XMLSyntaxError, _ElementTree
+from lxml.etree import XMLSyntaxError, _ElementTree  # type: ignore
 
 # this package
 import tests.test_xml

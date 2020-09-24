@@ -2,7 +2,7 @@
 import pathlib
 
 # 3rd party
-import lxml.objectify
+import lxml.objectify  # type: ignore
 import pytest
 from chemistry_tools.formulae import Formula
 from domdf_python_tools.paths import PathPlus

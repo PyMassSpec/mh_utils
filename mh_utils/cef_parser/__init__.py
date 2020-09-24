@@ -68,7 +68,7 @@ from typing import Dict, Iterable, List, Optional, Sequence, Type, Union
 
 # 3rd party
 import attr
-import lxml.objectify
+import lxml.objectify  # type: ignore
 from attr_utils.docstrings import add_attrs_doc
 from chemistry_tools.formulae import Formula
 from domdf_python_tools.bases import Dictable, NamedList

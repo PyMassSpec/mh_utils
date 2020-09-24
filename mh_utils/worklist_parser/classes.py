@@ -30,7 +30,7 @@ from uuid import UUID
 
 # 3rd party
 import attr
-import lxml.etree
+import lxml.etree  # type: ignore
 import pandas
 from attr_utils.docstrings import add_attrs_doc
 from domdf_python_tools.bases import Dictable

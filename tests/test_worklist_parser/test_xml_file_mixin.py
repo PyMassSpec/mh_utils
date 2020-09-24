@@ -1,6 +1,6 @@
 # 3rd party
-import lxml.etree
-import lxml.objectify
+import lxml.etree  # type: ignore
+import lxml.objectify  # type: ignore
 
 # this package
 from mh_utils.xml import XMLFileMixin

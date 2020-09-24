@@ -30,11 +30,11 @@ from abc import ABC, abstractmethod
 from typing import Optional
 
 # 3rd party
-import lxml
+import lxml  # type: ignore
 from domdf_python_tools.typing import PathLike
-from lxml import etree, objectify
-from lxml.etree import _ElementTree
-from lxml.objectify import ObjectifiedElement
+from lxml import etree, objectify  # type: ignore
+from lxml.etree import _ElementTree  # type: ignore
+from lxml.objectify import ObjectifiedElement  # type: ignore
 
 __all__ = ["get_validated_tree", "XMLFileMixin"]
 

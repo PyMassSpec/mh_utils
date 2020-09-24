@@ -28,7 +28,7 @@ mh_utils
 
 .. |docs| image:: https://img.shields.io/readthedocs/mh_utils/latest?logo=read-the-docs
 	:target: https://mh_utils.readthedocs.io/en/latest/?badge=latest
-	:alt: Documentation Status
+	:alt: Documentation Build Status
 
 .. |docs_check| image:: https://github.com/domdfcoding/mh_utils/workflows/Docs%20Check/badge.svg
 	:target: https://github.com/domdfcoding/mh_utils/actions?query=workflow%3A%22Docs+Check%22

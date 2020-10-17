@@ -19,7 +19,7 @@ install:
   - pip install coveralls coverage_pyver_pragma
 
 script:
-  - tox
+  - tox -vv
 after_success:
   - coveralls
 
@@ -39,7 +39,6 @@ jobs:
       arch: arm64
     - python: '3.8'
       arch: arm64
-
 
   include:
     - stage: test

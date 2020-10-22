@@ -31,23 +31,28 @@ class TestCreation:
 	def test_ionisation(self):
 		assert Spectrum(ionisation="Esi").ionisation == "Esi"
 
-	def test_polarity(self):
-		assert Spectrum(polarity="+").polarity == 1
-		assert Spectrum(polarity="positive").polarity == 1
-		assert Spectrum(polarity=1).polarity == 1
-		assert Spectrum(polarity="-").polarity == -1
-		assert Spectrum(polarity="negative").polarity == -1
-		assert Spectrum(polarity=-1).polarity == -1
-		assert Spectrum(polarity=0).polarity == 0
-		assert Spectrum(polarity=22).polarity == 22
+	@pytest.mark.parametrize(
+			"polarity, expected", [
+					("+", 1),
+					("positive", 1),
+					(1, 1),
+					("-", -1),
+					("negative", -1),
+					(-1, -1),
+					(0, 0),
+					(22, 22),
+					]
+			)
+	def test_polarity(self, polarity, expected):
+		assert Spectrum(polarity=polarity).polarity == expected
 
 	def test_peaks(self):
 		assert Spectrum().peaks == []
 		assert Spectrum(peaks=[]).peaks == []
 		assert Spectrum(peaks=()).peaks == []
-		assert Spectrum(
-				peaks=[Peak(170.0965, 172.1028, 890559.25, 1, "M+H")],
-				).peaks == [Peak(170.0965, 172.1028, 890559.25, 1, "M+H")]
+
+		spectrum = Spectrum(peaks=[Peak(170.0965, 172.1028, 890559.25, 1, "M+H")])
+		assert spectrum.peaks == [Peak(170.0965, 172.1028, 890559.25, 1, "M+H")]
 
 	def test_rt_ranges(self):
 		assert Spectrum().rt_ranges == []
@@ -55,42 +60,47 @@ class TestCreation:
 		assert Spectrum(rt_ranges=()).rt_ranges == []
 		assert Spectrum(rt_ranges=[RTRange(12, 34)], ).rt_ranges == [RTRange(12, 34)]
 
-	def test_voltage(self):
-		assert Spectrum(voltage="1234V").voltage == 1234.0
-		assert Spectrum(voltage="1234").voltage == 1234.0
-		assert Spectrum(voltage="1234.0V").voltage == 1234.0
-		assert Spectrum(voltage="1234.0").voltage == 1234.0
-		assert Spectrum(voltage=1234.0).voltage == 1234.0
-		assert Spectrum(voltage=1234).voltage == 1234.0
-		assert Spectrum(voltage="ABCDEFG").voltage == 0
+	@pytest.mark.parametrize(
+			"voltage, expected",
+			[
+					("1234V", 1234.0),
+					("1234", 1234.0),
+					("1234.0V", 1234.0),
+					("1234.0", 1234.0),
+					(1234.0, 1234.0),
+					(1234, 1234.0),
+					("ABCDEFG", 0),
+					]
+			)
+	def test_voltage(self, voltage, expected):
+		assert Spectrum(voltage=voltage).voltage == expected
 
 
 def test_dict():
-	assert dict(
-			Spectrum(
-					spectrum_type="FbF",
-					algorithm="FindByFormula",
-					saturation_limit=10000,
-					scans=1,
-					scan_type="Scan",
-					ionisation="Esi",
-					polarity="+",
-					peaks=[Peak(170.0965, 172.1028, 890559.25, 1, "M+H")],
-					rt_ranges=[RTRange(12, 34)],
-					)
-			) == {
-					"spectrum_type": "FbF",
-					"algorithm": "FindByFormula",
-					"saturation_limit": 10000,
-					"scans": 1,
-					"scan_type": "Scan",
-					"ionisation": "Esi",
-					"polarity": 1,
-					"peaks": [Peak(170.0965, 172.1028, 890559.25, 1, "M+H")],
-					"rt_ranges": [RTRange(12, 34)],
-					"voltage": 0.0,
-					"device": None,
-					}
+	spectrum = Spectrum(
+			spectrum_type="FbF",
+			algorithm="FindByFormula",
+			saturation_limit=10000,
+			scans=1,
+			scan_type="Scan",
+			ionisation="Esi",
+			polarity="+",
+			peaks=[Peak(170.0965, 172.1028, 890559.25, 1, "M+H")],
+			rt_ranges=[RTRange(12, 34)],
+			)
+	assert dict(spectrum) == {
+			"spectrum_type": "FbF",
+			"algorithm": "FindByFormula",
+			"saturation_limit": 10000,
+			"scans": 1,
+			"scan_type": "Scan",
+			"ionisation": "Esi",
+			"polarity": 1,
+			"peaks": [Peak(170.0965, 172.1028, 890559.25, 1, "M+H")],
+			"rt_ranges": [RTRange(12, 34)],
+			"voltage": 0.0,
+			"device": None,
+			}
 
 
 def test_repr():
@@ -106,19 +116,6 @@ def test_repr():
 			rt_ranges=[RTRange(12, 34)],
 			)
 	assert (str(spectrum) == "<Spectrum([Peak(x=170.0965, rx=172.1028, y=890559.25, charge=1, label='M+H')])>")
-
-	spectrum = Spectrum(
-			spectrum_type="FbF",
-			algorithm="FindByFormula",
-			saturation_limit=10000,
-			scans=1,
-			scan_type="Scan",
-			ionisation="Esi",
-			polarity="+",
-			peaks=[Peak(170.0965, 172.1028, 890559.25, 1, "M+H")],
-			rt_ranges=[RTRange(12, 34)],
-			)
-
 	assert (repr(spectrum) == "<Spectrum([Peak(x=170.0965, rx=172.1028, y=890559.25, charge=1, label='M+H')])>")
 
 

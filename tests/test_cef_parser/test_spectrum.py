@@ -76,8 +76,9 @@ class TestCreation:
 		assert Spectrum(voltage=voltage).voltage == expected
 
 
-def test_dict():
-	spectrum = Spectrum(
+@pytest.fixture()
+def spectrum() -> Spectrum:
+	return Spectrum(
 			spectrum_type="FbF",
 			algorithm="FindByFormula",
 			saturation_limit=10000,
@@ -88,6 +89,9 @@ def test_dict():
 			peaks=[Peak(170.0965, 172.1028, 890559.25, 1, "M+H")],
 			rt_ranges=[RTRange(12, 34)],
 			)
+
+
+def test_dict(spectrum):
 	assert dict(spectrum) == {
 			"spectrum_type": "FbF",
 			"algorithm": "FindByFormula",
@@ -103,18 +107,7 @@ def test_dict():
 			}
 
 
-def test_repr():
-	spectrum = Spectrum(
-			spectrum_type="FbF",
-			algorithm="FindByFormula",
-			saturation_limit=10000,
-			scans=1,
-			scan_type="Scan",
-			ionisation="Esi",
-			polarity="+",
-			peaks=[Peak(170.0965, 172.1028, 890559.25, 1, "M+H")],
-			rt_ranges=[RTRange(12, 34)],
-			)
+def test_repr(spectrum):
 	assert (str(spectrum) == "<Spectrum([Peak(x=170.0965, rx=172.1028, y=890559.25, charge=1, label='M+H')])>")
 	assert (repr(spectrum) == "<Spectrum([Peak(x=170.0965, rx=172.1028, y=890559.25, charge=1, label='M+H')])>")
 

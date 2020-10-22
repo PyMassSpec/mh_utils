@@ -22,16 +22,17 @@ class TestCreation:
 		assert Molecule(name="Dimethyl Phthalate").formula == Formula()
 
 	def test_matches(self):
-		assert Molecule(
+		molecule = Molecule(
 				name="Dimethyl Phthalate",
 				matches={
 						"overall": Score(62.90),
 						"tgt": Score(62.90, flag_string="low score", flag_severity=2),
-						}
-				).matches == {
-						"overall": Score(62.90),
-						"tgt": Score(62.90, flag_string="low score", flag_severity=2),
-						}
+						},
+				)
+		assert molecule.matches == {
+				"overall": Score(62.90),
+				"tgt": Score(62.90, flag_string="low score", flag_severity=2),
+				}
 
 		with pytest.raises(TypeError, match="'matches' must be a dictionary, not"):
 			Molecule(name="Dimethyl Phthalate", matches="Hello World")  # type: ignore
@@ -58,28 +59,27 @@ def test_dict():
 
 
 def test_repr():
-	assert str(
-			Molecule(
-					name="Dimethyl Phthalate",
-					formula="C10 H10 O4",
-					matches={
-							"overall": Score(62.90),
-							"tgt": Score(62.90, flag_string="low score", flag_severity=2),
-							},
-					)
-			) == "<Molecule(Dimethyl Phthalate, Formula({'C': 10, 'H': 10, 'O': 4}))>"
+	molecule = Molecule(
+			name="Dimethyl Phthalate",
+			formula="C10 H10 O4",
+			matches={
+					"overall": Score(62.90),
+					"tgt": Score(62.90, flag_string="low score", flag_severity=2),
+					},
+			)
+	assert str(molecule) == "<Molecule(Dimethyl Phthalate, Formula({'C': 10, 'H': 10, 'O': 4}))>"
 	# TODO: once fixed in chemistry tools)) == "<Molecule(Dimethyl Phthalate, C10H10O4)>"
 
-	assert repr(
-			Molecule(
-					name="Dimethyl Phthalate",
-					formula="C10 H10 O4",
-					matches={
-							"overall": Score(62.90),
-							"tgt": Score(62.90, flag_string="low score", flag_severity=2),
-							},
-					)
-			) == "<Molecule(Dimethyl Phthalate, Formula({'C': 10, 'H': 10, 'O': 4}))>"
+	molecule = Molecule(
+			name="Dimethyl Phthalate",
+			formula="C10 H10 O4",
+			matches={
+					"overall": Score(62.90),
+					"tgt": Score(62.90, flag_string="low score", flag_severity=2),
+					},
+			)
+
+	assert repr(molecule) == "<Molecule(Dimethyl Phthalate, Formula({'C': 10, 'H': 10, 'O': 4}))>"
 
 
 raw_xml = """
@@ -138,7 +138,7 @@ raw_xml_multiline = """
 						raw_xml_multiline,
 						{"fbf": Score(62.90, flag_string="low score", flag_severity=2), "abc": Score(12.34)}
 						),
-				]
+				],
 		)
 def test_parse_match_scores(raw_xml, expects):
 	tree = lxml.objectify.fromstring(raw_xml)

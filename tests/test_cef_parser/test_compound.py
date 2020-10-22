@@ -1,5 +1,5 @@
 # stdlib
-import pathlib
+import copy
 
 # 3rd party
 import lxml.objectify  # type: ignore
@@ -38,43 +38,30 @@ class TestCreation:
 		assert Compound(
 				algo="FindByFormula", location={"m": 169.0893, "rt": 13.649, "a": 29388223, "y": 3377289}
 				).location == {"m": 169.0893, "rt": 13.649, "a": 29388223, "y": 3377289}
-		assert Compound(algo="FindByFormula").location == Formula()
+		assert Compound(algo="FindByFormula").location == {}
 
-	def test_compound_scores(self):
-		assert Compound(
-				algo="FindByFormula",
-				compound_scores={
-						"fbf": Score(56.24, flag_string="low score; No H adduct", flag_severity=2),
-						}
-				).compound_scores == {"fbf": Score(56.24, flag_string="low score; No H adduct", flag_severity=2)}
-		assert Compound(
-				algo="FindByFormula",
-				compound_scores={
-						"fbf": Score(82.53, flag_string="No H adduct", flag_severity=2),
-						}
-				).compound_scores == {"fbf": Score(82.53, flag_string="No H adduct", flag_severity=2)}
-		assert Compound(
-				algo="FindByFormula",
-				compound_scores={
-						"fbf": Score(60.62, flag_string="low score", flag_severity=2),
-						}
-				).compound_scores == {"fbf": Score(60.62, flag_string="low score", flag_severity=2)}
-		assert Compound(
-				algo="FindByFormula",
-				compound_scores={
-						"fbf": Score(62.90, flag_string="low score", flag_severity=2),
-						}
-				).compound_scores == {"fbf": Score(62.90, flag_string="low score", flag_severity=2)}
-
+	@pytest.mark.parametrize(
+			"scores",
+			[
+					{"fbf": Score(56.24, flag_string="low score; No H adduct", flag_severity=2)},
+					{"fbf": Score(82.53, flag_string="No H adduct", flag_severity=2)},
+					{"fbf": Score(60.62, flag_string="low score", flag_severity=2)},
+					{"fbf": Score(62.90, flag_string="low score", flag_severity=2)},
+					]
+			)
+	def test_compound_scores(self, scores):
+		assert Compound(algo="FindByFormula", compound_scores=scores).compound_scores == copy.deepcopy(scores)
 		assert Compound(algo="FindByFormula").compound_scores == {}
 
-	def test_results(self):
-		assert Compound(
-				algo="FindByFormula", results=[Molecule(name="Dimethyl Phthalate", formula="C10 H10 O4")]
-				).results == [Molecule(name="Dimethyl Phthalate", formula="C10 H10 O4")]
-		assert Compound(
-				algo="FindByFormula", results=(Molecule(name="Dimethyl Phthalate", formula="C10 H10 O4"), )
-				).results == [Molecule(name="Dimethyl Phthalate", formula="C10 H10 O4")]
+	@pytest.mark.parametrize(
+			"results",
+			[
+					[Molecule(name="Dimethyl Phthalate", formula="C10 H10 O4")],
+					[Molecule(name="Dimethyl Phthalate", formula="C10 H10 O4")],
+					]
+			)
+	def test_results(self, results):
+		assert Compound(algo="FindByFormula", results=results).results == copy.deepcopy(results)
 		assert Compound(algo="FindByFormula", results=()).results == []
 		assert Compound(algo="FindByFormula", results=[]).results == []
 		assert Compound(algo="FindByFormula").results == []
@@ -88,44 +75,38 @@ class TestCreation:
 
 
 def test_dict(spectrum):
-	assert dict(
-			Compound(
-					algo="FindByFormula",
-					location={"m": 169.0893, "rt": 13.649, "a": 29388223, "y": 3377289},
-					results=[Molecule(name="Dimethyl Phthalate", formula="C10 H10 O4")],
-					spectra=[spectrum],
-					compound_scores={"fbf": Score(62.90, flag_string="low score", flag_severity=2)}
-					)
-			) == {
-					"algo": "FindByFormula",
-					"location": {"m": 169.0893, "rt": 13.649, "a": 29388223, "y": 3377289},
-					"results": [Molecule(name="Dimethyl Phthalate", formula="C10 H10 O4")],
-					"spectra": [spectrum],
-					"compound_scores": {"fbf": Score(62.90, flag_string="low score", flag_severity=2)}
-					}
+	compound = Compound(
+			algo="FindByFormula",
+			location={"m": 169.0893, "rt": 13.649, "a": 29388223, "y": 3377289},
+			results=[Molecule(name="Dimethyl Phthalate", formula="C10 H10 O4")],
+			spectra=[spectrum],
+			compound_scores={"fbf": Score(62.90, flag_string="low score", flag_severity=2)},
+			)
+
+	as_dict = {
+			"algo": "FindByFormula",
+			"location": {"m": 169.0893, "rt": 13.649, "a": 29388223, "y": 3377289},
+			"results": [Molecule(name="Dimethyl Phthalate", formula="C10 H10 O4")],
+			"spectra": [spectrum],
+			"compound_scores": {"fbf": Score(62.90, flag_string="low score", flag_severity=2)},
+			}
+
+	assert dict(compound) == as_dict
 
 
 def test_repr(spectrum):
-	assert str(
-			Compound(
-					algo="FindByFormula",
-					location={"m": 169.0893, "rt": 13.649, "a": 29388223, "y": 3377289},
-					results=[Molecule(name="Dimethyl Phthalate", formula="C10 H10 O4")],
-					spectra=[spectrum],
-					compound_scores={"fbf": Score(62.90, flag_string="low score", flag_severity=2)}
-					)
-			) == "<Compound([<Molecule(Dimethyl Phthalate, Formula({'C': 10, 'H': 10, 'O': 4}))>])>"
+	compound = Compound(
+			algo="FindByFormula",
+			location={"m": 169.0893, "rt": 13.649, "a": 29388223, "y": 3377289},
+			results=[Molecule(name="Dimethyl Phthalate", formula="C10 H10 O4")],
+			spectra=[spectrum],
+			compound_scores={"fbf": Score(62.90, flag_string="low score", flag_severity=2)},
+			)
+	assert str(compound) == "<Compound([<Molecule(Dimethyl Phthalate, Formula({'C': 10, 'H': 10, 'O': 4}))>])>"
+
 	# TODO: once fixed in chemistry tools)) == "<Compound(Dimethyl Phthalate, C10H10O4)>"
 
-	assert repr(
-			Compound(
-					algo="FindByFormula",
-					location={"m": 169.0893, "rt": 13.649, "a": 29388223, "y": 3377289},
-					results=[Molecule(name="Dimethyl Phthalate", formula="C10 H10 O4")],
-					spectra=[spectrum],
-					compound_scores={"fbf": Score(62.90, flag_string="low score", flag_severity=2)}
-					)
-			) == "<Compound([<Molecule(Dimethyl Phthalate, Formula({'C': 10, 'H': 10, 'O': 4}))>])>"
+	assert repr(compound) == "<Compound([<Molecule(Dimethyl Phthalate, Formula({'C': 10, 'H': 10, 'O': 4}))>])>"
 
 
 raw_xml = """

@@ -94,33 +94,32 @@ def test_dict():
 
 
 def test_repr():
-	assert str(
-			Spectrum(
-					spectrum_type="FbF",
-					algorithm="FindByFormula",
-					saturation_limit=10000,
-					scans=1,
-					scan_type="Scan",
-					ionisation="Esi",
-					polarity="+",
-					peaks=[Peak(170.0965, 172.1028, 890559.25, 1, "M+H")],
-					rt_ranges=[RTRange(12, 34)],
-					)
-			) == "<Spectrum([Peak(x=170.0965, rx=172.1028, y=890559.25, charge=1, label='M+H')])>"
+	spectrum = Spectrum(
+			spectrum_type="FbF",
+			algorithm="FindByFormula",
+			saturation_limit=10000,
+			scans=1,
+			scan_type="Scan",
+			ionisation="Esi",
+			polarity="+",
+			peaks=[Peak(170.0965, 172.1028, 890559.25, 1, "M+H")],
+			rt_ranges=[RTRange(12, 34)],
+			)
+	assert (str(spectrum) == "<Spectrum([Peak(x=170.0965, rx=172.1028, y=890559.25, charge=1, label='M+H')])>")
 
-	assert repr(
-			Spectrum(
-					spectrum_type="FbF",
-					algorithm="FindByFormula",
-					saturation_limit=10000,
-					scans=1,
-					scan_type="Scan",
-					ionisation="Esi",
-					polarity="+",
-					peaks=[Peak(170.0965, 172.1028, 890559.25, 1, "M+H")],
-					rt_ranges=[RTRange(12, 34)],
-					)
-			) == "<Spectrum([Peak(x=170.0965, rx=172.1028, y=890559.25, charge=1, label='M+H')])>"
+	spectrum = Spectrum(
+			spectrum_type="FbF",
+			algorithm="FindByFormula",
+			saturation_limit=10000,
+			scans=1,
+			scan_type="Scan",
+			ionisation="Esi",
+			polarity="+",
+			peaks=[Peak(170.0965, 172.1028, 890559.25, 1, "M+H")],
+			rt_ranges=[RTRange(12, 34)],
+			)
+
+	assert (repr(spectrum) == "<Spectrum([Peak(x=170.0965, rx=172.1028, y=890559.25, charge=1, label='M+H')])>")
 
 
 raw_xml_fbf = """

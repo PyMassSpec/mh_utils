@@ -70,12 +70,16 @@ from typing import Dict, Iterable, List, Optional, Sequence, Type, Union
 import attr
 import lxml.objectify  # type: ignore
 from attr_utils.docstrings import add_attrs_doc
+from attr_utils.serialise import serde
 from chemistry_tools.formulae import Formula
 from domdf_python_tools.bases import Dictable, NamedList
 from domdf_python_tools.doctools import prettify_docstrings
 from domdf_python_tools.typing import PathLike
 from lxml import objectify
 from typing_extensions import TypedDict
+
+# this package
+from mh_utils.utils import make_timedelta
 
 __all__ = [
 		"Molecule",
@@ -160,6 +164,7 @@ class Molecule(Dictable):
 		return f"<Molecule({self.name}, {str(self.formula)})>"
 
 
+@serde
 @add_attrs_doc
 @attr.s(slots=True)
 class Device:
@@ -349,19 +354,7 @@ class Spectrum(Dictable):
 		return f"<Spectrum({pformat(self.peaks)})>"
 
 
-def make_timedelta(minutes: Union[float, datetime.timedelta]):
-	"""
-	Construct a timedelta from a value in minutes.
-
-	:param minutes:
-	"""
-
-	if not isinstance(minutes, datetime.timedelta):
-		minutes = datetime.timedelta(minutes=float(minutes))
-
-	return minutes
-
-
+@serde
 @add_attrs_doc
 @attr.s(slots=True)
 class RTRange:
@@ -389,6 +382,7 @@ class RTRange:
 		return cls(start, end)
 
 
+@prettify_docstrings
 class Flag(str):
 	"""
 	Represents a flag in a score, to warn that the identification of a compound is poor.

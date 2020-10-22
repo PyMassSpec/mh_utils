@@ -26,14 +26,21 @@ General utility functions.
 #  CC BY-SA 4.0
 
 # stdlib
+import datetime
 import pathlib
 import re
-from typing import Any, Callable, Dict, Optional, Union
+from typing import Any, Optional, Union
 
 # 3rd party
 from domdf_python_tools.utils import strtobool
 
-__all__ = ["as_path", "element_to_bool", "camel_to_snake", "strip_string"]
+__all__ = [
+		"as_path",
+		"element_to_bool",
+		"camel_to_snake",
+		"strip_string",
+		"make_timedelta",
+		]
 
 
 def as_path(val: Any) -> Optional[pathlib.PureWindowsPath]:
@@ -95,3 +102,22 @@ def strip_string(val: str) -> str:
 	"""
 
 	return str(val).strip()
+
+
+def make_timedelta(minutes: Union[float, datetime.timedelta]) -> datetime.timedelta:
+	"""
+	Construct a timedelta from a value in minutes.
+
+	:param minutes:
+
+	:rtype:
+
+	.. versionchanged:: 0.1.0
+
+		Moved from :mod:`mh_utils.cef_parser`.
+	"""
+
+	if not isinstance(minutes, datetime.timedelta):
+		minutes = datetime.timedelta(minutes=float(minutes))
+
+	return minutes

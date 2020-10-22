@@ -12,13 +12,12 @@
 .. autoclass:: mh_utils.cef_parser.CompoundList
 	:inherited-members: UserList
 
-.. autoclass:: mh_utils.cef_parser.Device
+.. autoattrs:: mh_utils.cef_parser.Device
+	:no-special-members:
 
 .. autoclass:: mh_utils.cef_parser.Flag
 
-.. autoclass:: mh_utils.cef_parser.LocationDict()
-
-.. autofunction:: mh_utils.cef_parser.make_timedelta
+.. autotypeddict:: mh_utils.cef_parser.LocationDict()
 
 .. autoclass:: mh_utils.cef_parser.Molecule
 
@@ -28,10 +27,13 @@
 
 .. autofunction:: mh_utils.cef_parser.parse_match_scores
 
-.. autoclass:: mh_utils.cef_parser.Peak
+.. autoattrs:: mh_utils.cef_parser.Peak
+	:no-special-members:
 
-.. autoclass:: mh_utils.cef_parser.RTRange
+.. autoattrs:: mh_utils.cef_parser.RTRange
+	:no-special-members:
 
 .. autoclass:: mh_utils.cef_parser.Score
+	:no-special-members:
 
 .. autoclass:: mh_utils.cef_parser.Spectrum

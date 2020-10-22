@@ -212,7 +212,7 @@ class Worklist(XMLFileMixin, Dictable):
 				checksum=checksum,
 				)
 
-	def __repr__(self):
+	def __repr__(self) -> str:
 		return f"{self.__class__.__name__}({pformat(dict(self))})"
 
 	def as_dataframe(self) -> pandas.DataFrame:
@@ -243,10 +243,6 @@ class Checksum:
 	Represents a checksum for a worklist.
 
 	The format of the checksum is unknown.
-
-	:param SchemaVersion:
-	:param ALGO_VERSION:
-	:param HASHCODE:
 	"""
 
 	SchemaVersion: int = attr.ib(converter=int)
@@ -271,13 +267,6 @@ class Checksum:
 class Macro:
 	"""
 	Represents a macro in a worklist.
-
-	:param project_name:
-	:param procedure_name:
-	:param input_parameter:
-	:param output_data_type:
-	:param output_parameter:
-	:param display_string:
 	"""
 
 	project_name: str = attr.ib(converter=strip_string)
@@ -319,7 +308,7 @@ class Macro:
 				self.display_string == '',
 				])
 
-	def __repr__(self):
+	def __repr__(self) -> str:
 		if self.undefined:
 			return f"{self.__class__.__name__}(Undefined)"
 		else:
@@ -331,26 +320,22 @@ class Macro:
 @attr.s(slots=True)
 class Attribute:
 	"""
-	Represents an Attribute
-
-	:param attribute_id:
-	:param attribute_type: can be System Defined (``0``), System Used (``1``), or User Added (``2``).
-	:param field_type: Each of the system defined columns have a field type starting from
-		sampleid = 0 to reserved6 = 24. The system used column can be 'compound param' = 35,
-		'optim param' = 36, 'mass param' = 37 and 'protein param' = 38.
-		The User added columns start from 45.
-	:param system_name:
-	:param header_name:
-	:param data_type:
-	:param default_data_value:
-	:param reorder_id:
-	:param show_hide_status:
-	:param column_width:
+	Represents an Attribute.
 	"""
 
 	attribute_id: int = attr.ib(converter=int)
+
+	#: Can be System Defined (``0``), System Used (``1``), or User Added (``2``).
 	attribute_type: AttributeType = attr.ib(converter=AttributeType)
+
 	field_type: int = attr.ib(converter=int)
+	"""
+	Each of the system defined columns have a field type starting from
+	sampleid = 0 to reserved6 = 24. The system used column can be 'compound param' = 35,
+	'optim param' = 36, 'mass param' = 37 and 'protein param' = 38.
+	The User added columns start from 45.
+	"""
+
 	system_name: str = attr.ib(converter=strip_string)
 	header_name: str = attr.ib(converter=strip_string)
 

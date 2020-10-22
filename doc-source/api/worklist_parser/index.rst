@@ -38,6 +38,3 @@ Output
 ^^^^^^^^
 
 :download:`worklist.csv <../../worklist.csv>` |nbsp| |nbsp| :download:`worklist.json <../../worklist.json>`
-
-.. |nbsp| unicode:: 0xA0
-	:trim:

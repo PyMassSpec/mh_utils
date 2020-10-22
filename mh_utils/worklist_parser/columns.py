@@ -2,7 +2,7 @@
 #
 #  columns.py
 """
-Properties for columns in a Worklist
+Properties for columns in a Worklist.
 """
 #
 #  Copyright © 2020 Dominic Davis-Foster <dominic@davis-foster.co.uk>
@@ -63,17 +63,6 @@ def injection_volume(val: Union[float, str]) -> Union[int, str]:
 class Column:
 	"""
 	Represents a column in a worklist.
-
-	:param name: The name of the column
-	:param attribute_id:
-	:param attribute_type: can be System Defined = 0, System Used = 1, User Added = 2
-	:param field_type: Each of the system defined columns have a field type starting from
-		sampleid = 0 to reserved6 = 24. The system used column can be 'compound param' = 35,
-		'optim param' = 36, 'mass param' = 37 and 'protein param' = 38.
-		The User added columns start from 45.
-	:param dtype:
-	:param default_value:
-	:param reorder_id:
 	"""
 
 	def __field_type_validator(self, the_attr: attr.Attribute, the_value):
@@ -86,12 +75,25 @@ class Column:
 		if self.dtype is not Any:
 			self.default_value = self.dtype(self.default_value)
 
+	#: The name of the column
 	name: str = attr.ib(converter=strip_string)
+
 	attribute_id: int = attr.ib(converter=int)
+
+	#: can be System Defined = 0, System Used = 1, User Added = 2
 	attribute_type: AttributeType = attr.ib(converter=AttributeType)
+
 	dtype: Callable = attr.ib()
 	default_value: Any = attr.ib(validator=__default_value_validator)
+
 	field_type: Optional[int] = attr.ib(default=None, validator=__field_type_validator)
+	"""
+	Each of the system defined columns have a field type starting from
+	sampleid = 0 to reserved6 = 24. The system used column can be 'compound param' = 35,
+	'optim param' = 36, 'mass param' = 37 and 'protein param' = 38.
+	The User added columns start from 45.
+	"""
+
 	reorder_id: Optional[int] = attr.ib(default=None)
 
 	def cast_value(self, value: Any):

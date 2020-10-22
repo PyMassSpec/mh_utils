@@ -72,6 +72,7 @@ import lxml.objectify  # type: ignore
 from attr_utils.docstrings import add_attrs_doc
 from chemistry_tools.formulae import Formula
 from domdf_python_tools.bases import Dictable, NamedList
+from domdf_python_tools.doctools import prettify_docstrings
 from domdf_python_tools.typing import PathLike
 from lxml import objectify
 from typing_extensions import TypedDict
@@ -151,9 +152,9 @@ class Molecule(Dictable):
 				matches=parse_match_scores(element.MatchScores),
 				)
 
-	def __repr__(self):
+	def __repr__(self) -> str:
 		"""
-		Returns a string representation of the :class:`~mh_utils.cef_parser.Molecule`
+		Returns a string representation of the :class:`~mh_utils.cef_parser.Molecule`.
 		"""
 
 		return f"<Molecule({self.name}, {str(self.formula)})>"
@@ -164,11 +165,9 @@ class Molecule(Dictable):
 class Device:
 	"""
 	Represents the device that acquired a :class:`~.Spectrum`.
-
-	:param device_type: String identifying the type of device.
-	:param number:
 	"""
 
+	#: String identifying the type of device.
 	device_type: str = attr.ib(converter=str)
 	number: int = attr.ib(converter=int)
 
@@ -185,24 +184,19 @@ class Device:
 		return cls(device_type=device_type, number=number)
 
 
+@serde
 @add_attrs_doc
 @attr.s(slots=True)
 class Peak:
 	"""
-	A peak in a Mass Spectrum
-
-	:param x:
-	:param rx:
-	:param y:
-	:param charge:
-	:param label:
+	A peak in a Mass Spectrum.
 	"""
 
 	x: float = attr.ib(converter=float)
 	rx: float = attr.ib(converter=float)
 	y: float = attr.ib(converter=float)
 	charge: int = attr.ib(converter=int, default=0)  #: The charge on the peak.
-	label: str = attr.ib(converter=str, default='')  #: The label of the peak, e.g. "M+H"
+	label: str = attr.ib(converter=str, default='')  #: The label of the peak. e.g. "M+H"
 
 	@classmethod
 	def from_xml(cls, element: lxml.objectify.ObjectifiedElement) -> "Peak":
@@ -220,18 +214,18 @@ class Peak:
 
 class Spectrum(Dictable):
 	"""
-	Agilent cef Spectrum
+	Agilent CEF Spectrum.
 
-	:param spectrum_type: The type of spectrum e.g. "FbF"
-	:param algorithm: The algorithm used to identify the compound
+	:param spectrum_type: The type of spectrum e.g. ``'FbF'``.
+	:param algorithm: The algorithm used to identify the compound.
 	:param saturation_limit: Unknown. Might mean saturation limit?
 	:param scans: Unknown. Presumably the number of scans that make up the spectrum?
 	:param scan_type:
-	:param ionisation: The type of ionisation e.g. ESI
-	:param polarity: The polarity of the ionisation
-	:param device: The device that acquired the data
-	:param peaks: A list of identified peaks in the mass spectrum
-	:param rt_ranges: A list of retention time ranges for the mass spectrum
+	:param ionisation: The type of ionisation e.g. ESI.
+	:param polarity: The polarity of the ionisation.
+	:param device: The device that acquired the data.
+	:param peaks: A list of identified peaks in the mass spectrum.
+	:param rt_ranges: A list of retention time ranges for the mass spectrum.
 	"""
 
 	def __init__(
@@ -347,9 +341,9 @@ class Spectrum(Dictable):
 
 		return cls(**data)
 
-	def __repr__(self):
+	def __repr__(self) -> str:
 		"""
-		Returns a string representation of the :class:`~mh_utils.cef_parser.Spectrum`
+		Returns a string representation of the :class:`~mh_utils.cef_parser.Spectrum`.
 		"""
 
 		return f"<Spectrum({pformat(self.peaks)})>"
@@ -373,12 +367,12 @@ def make_timedelta(minutes: Union[float, datetime.timedelta]):
 class RTRange:
 	"""
 	Represents an ``<RTRange>`` element from a CEF file.
-
-	:param start: start time in minutes
-	:param end: end time in minutes
 	"""
 
+	#: The start time in minutes
 	start: datetime.timedelta = attr.ib(converter=make_timedelta, default=0.0)  # type: ignore
+
+	#: The end time in minutes
 	end: datetime.timedelta = attr.ib(converter=make_timedelta, default=0.0)  # type: ignore
 
 	@classmethod
@@ -412,37 +406,30 @@ class Flag(str):
 		return obj
 
 	def __eq__(self, other) -> bool:
-		"""
-		Return ``self == other``
-		"""
-
 		if isinstance(other, Flag):
 			return str(self) == str(other) and self.severity == other.severity
 		else:
 			return super().__eq__(other)
 
 	def __ne__(self, other) -> bool:
-		"""
-		Return ``self != other``
-		"""
-
 		return NotImplemented
 
 	def __repr__(self) -> str:
 		"""
-		Returns a string representation of the :class:`~mh_utils.cef_parser.Flag`
+		Returns a string representation of the :class:`~mh_utils.cef_parser.Flag`.
 		"""
 
 		return f"{self.__class__.__name__}({str(self)!r}, severity={self.severity})"
 
 	def __bool__(self) -> bool:
 		"""
-		Returns a boolean representation of the :class:`~mh_utils.cef_parser.Flag`
+		Returns a boolean representation of the :class:`~mh_utils.cef_parser.Flag`.
 		"""
 
 		return bool(str(self)) and bool(self.severity)
 
 
+@prettify_docstrings
 class Score(float):
 	"""
 	A score indicating how well the compound matches the observed spectrum.
@@ -465,7 +452,7 @@ class Score(float):
 
 	def __repr__(self) -> str:
 		"""
-		Returns a string representation of the :class:`~mh_utils.cef_parser.Score`
+		Returns a string representation of the :class:`~mh_utils.cef_parser.Score`.
 		"""
 
 		if self.flag:
@@ -481,20 +468,12 @@ class Score(float):
 		return str(float(self))
 
 	def __eq__(self, other) -> bool:
-		"""
-		Return ``self == other``
-		"""
-
 		if isinstance(other, Score):
 			return float(self) == float(other) and self.flag == other.flag
 		else:
 			return super().__eq__(other)
 
 	def __ne__(self, other) -> bool:
-		"""
-		Return ``self != other``
-		"""
-
 		return NotImplemented
 
 
@@ -644,9 +623,9 @@ class Compound(Dictable):
 				spectra=spectra,
 				)
 
-	def __repr__(self):
+	def __repr__(self) -> str:
 		"""
-		Returns a string representation of the :class:`~mh_utils.cef_parser.Compound`
+		Returns a string representation of the :class:`~mh_utils.cef_parser.Compound`.
 		"""
 
 		return f"<Compound({pformat(self.results)})>"

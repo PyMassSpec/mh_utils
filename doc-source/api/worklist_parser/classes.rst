@@ -7,15 +7,15 @@
 	:no-members:
 	:autosummary-members:
 
-.. autoclass:: mh_utils.worklist_parser.classes.Attribute
-	:inherited-members:
+.. autoattrs:: mh_utils.worklist_parser.classes.Attribute
+	:no-special-members:
 
-.. autoclass:: mh_utils.worklist_parser.classes.Checksum
-	:inherited-members:
+.. autoattrs:: mh_utils.worklist_parser.classes.Checksum
+	:no-special-members:
 
 .. autoclass:: mh_utils.worklist_parser.classes.JobData
 
-.. autoclass:: mh_utils.worklist_parser.classes.Macro
-	:inherited-members:
+.. autoattrs:: mh_utils.worklist_parser.classes.Macro
+	:no-special-members:
 
 .. autoclass:: mh_utils.worklist_parser.classes.Worklist

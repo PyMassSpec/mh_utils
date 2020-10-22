@@ -393,6 +393,12 @@ class Flag(str):
 
 	severity: int
 
+	def __copy__(self):
+		return Flag(str(self), self.severity)
+
+	def __deepcopy__(self, memodict={}):
+		return Flag(str(self), int(self.severity))
+
 	def __new__(cls: Type["Flag"], string: str, severity: int) -> "Flag":
 		obj = super().__new__(cls, str(string))  # type: ignore
 		obj.severity = int(severity)
@@ -434,6 +440,12 @@ class Score(float):
 	"""
 
 	flag: Flag
+
+	def __copy__(self):
+		return Score(float(self), str(self.flag), self.flag.severity)
+
+	def __deepcopy__(self, memodict={}):
+		return Score(float(self), str(self.flag), int(self.flag.severity))
 
 	def __init__(self, score, flag_string: str = '', flag_severity: int = 0):
 		float.__init__(float(score))

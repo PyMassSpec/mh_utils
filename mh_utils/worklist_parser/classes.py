@@ -33,6 +33,7 @@ import attr
 import lxml.etree  # type: ignore
 import pandas
 from attr_utils.docstrings import add_attrs_doc
+from attr_utils.serialise import serde
 from domdf_python_tools.bases import Dictable
 
 # this package
@@ -57,7 +58,7 @@ class JobData(Dictable):
 
 	def __init__(
 			self,
-			id: Union[str, UUID],
+			id: Union[str, UUID],  # noqa: A002
 			job_type: int,
 			run_status: int,
 			sample_info: Optional[dict] = None,
@@ -236,6 +237,7 @@ class Worklist(XMLFileMixin, Dictable):
 		return pandas.DataFrame(data, columns=headers)
 
 
+@serde
 @add_attrs_doc
 @attr.s(slots=True)
 class Checksum:
@@ -262,6 +264,7 @@ class Checksum:
 				)
 
 
+@serde
 @add_attrs_doc
 @attr.s(slots=True, repr=False)
 class Macro:
@@ -316,6 +319,7 @@ class Macro:
 			return f"{self.__class__.__name__}({values})"
 
 
+@serde
 @add_attrs_doc
 @attr.s(slots=True)
 class Attribute:

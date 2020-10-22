@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Callable, Dict, Optional, Type, Union
 # 3rd party
 import attr
 from attr_utils.docstrings import add_attrs_doc
+from attr_utils.serialise import serde
 
 # this package
 from mh_utils.utils import as_path, strip_string
@@ -58,6 +59,7 @@ def injection_volume(val: Union[float, str]) -> Union[int, str]:
 		return int(val)
 
 
+@serde
 @add_attrs_doc
 @attr.s(slots=True)
 class Column:

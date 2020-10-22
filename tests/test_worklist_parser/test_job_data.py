@@ -35,6 +35,8 @@ def test_creation(id, job_type, run_status):  # noqa: A002
 		"id, job_type, run_status, sample_info",
 		[
 				("{B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C}", 7, 1, {"foo": "a string"}),
+				("{B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C}", "7", "1", {"foo": "a string"}),
+				(UUID("{B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C}"), 7, 1, {"foo": "a string"}),
 				(UUID("{B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C}"), "7", "1", {"foo": "a string"}),
 				]
 		)

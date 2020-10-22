@@ -17,7 +17,7 @@ class TestAsPath:
 					("foo/bar", PureWindowsPath("foo/bar")),
 					("foo/bar/file.txt", PureWindowsPath("foo/bar/file.txt")),
 					("C:/foo/bar/file.txt", PureWindowsPath("C:/foo/bar/file.txt")),
-					]
+					],
 			)
 
 	@whitespace_perms()
@@ -97,7 +97,7 @@ class TestElementToBool:
 				("biz_baz_bar", "biz_baz_bar"),
 				("HELLOWORLD", "helloworld"),  # not h_e_l_l_o_w_o_r_l_d
 				("HELLOWorld", "hello_world"),
-				]
+				],
 		)
 def test_camel_to_snake(value, expects):
 	assert camel_to_snake(value) == expects

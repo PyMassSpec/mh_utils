@@ -30,7 +30,7 @@ def test_integration():
 				pathlib.Path("/home/user/directory/missing.xml"),
 				pathlib.PurePosixPath("/home/user/directory/missing.xml"),
 				PathPlus("/home/user/directory/missing.xml"),
-				]
+				],
 		)
 def test_read_worklist_missing_file(xml_file):
 	with pytest.raises(FileNotFoundError, match="'.*' does not exist."):

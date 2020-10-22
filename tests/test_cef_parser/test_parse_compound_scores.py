@@ -35,7 +35,7 @@ raw_xml_multiline = """
 						raw_xml_multiline,
 						{"fbf": Score(62.90, flag_string="low score", flag_severity=2), "abc": Score(12.34)}
 						),
-				]
+				],
 		)
 def test_parse_compound_scores(raw_xml, expects):
 	tree = lxml.objectify.fromstring(raw_xml)

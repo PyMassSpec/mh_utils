@@ -148,7 +148,7 @@ class __TestParseParams_path:
 					("foo/bar", PureWindowsPath("foo/bar")),
 					("foo/bar/file.txt", PureWindowsPath("foo/bar/file.txt")),
 					("C:/foo/bar/file.txt", PureWindowsPath("C:/foo/bar/file.txt")),
-					]
+					],
 			)
 	def test_parse_params(self, value, expects):
 		e = FakeParamsElement()
@@ -414,7 +414,7 @@ class TestParseDatetime:
 							'',
 							datetime(year=1970, month=1, day=1, hour=0, minute=0, second=0, tzinfo=timezone.utc),
 							),
-					]
+					],
 			)
 
 	@whitespace_perms()

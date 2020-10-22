@@ -212,7 +212,7 @@ the_worklist = pytest.mark.parametrize(
 								HASHCODE="abcdefg",
 								),
 						)
-				]
+				],
 		)
 
 

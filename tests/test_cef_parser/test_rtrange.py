@@ -16,7 +16,7 @@ from mh_utils.cef_parser import RTRange, make_timedelta
 				(2, timedelta(minutes=2)),
 				(20, timedelta(minutes=20)),
 				(60, timedelta(hours=1)),
-				]
+				],
 		)
 @pytest.mark.parametrize(
 		"start_time, start_expects",
@@ -25,7 +25,7 @@ from mh_utils.cef_parser import RTRange, make_timedelta
 				(2, timedelta(minutes=2)),
 				(20, timedelta(minutes=20)),
 				(60, timedelta(hours=1)),
-				]
+				],
 		)
 def test_creation(start_time, start_expects, end_time, end_expects):
 	rt = RTRange(start_time, end_time)
@@ -38,7 +38,7 @@ def test_creation(start_time, start_expects, end_time, end_expects):
 		[
 				('<RTRange min="13.561" max="13.808" />', 13.561, 13.808),
 				('<RTRange min="0.123" max="12.345" />', 0.123, 12.345),
-				]
+				],
 		)
 def test_from_xml(raw_xml, start_expects, end_expects):
 	tree = lxml.objectify.fromstring(raw_xml)
@@ -74,7 +74,7 @@ def test_from_xml(raw_xml, start_expects, end_expects):
 				(timedelta(minutes=2), timedelta(minutes=2)),
 				(timedelta(minutes=20), timedelta(minutes=20)),
 				(timedelta(minutes=60), timedelta(minutes=60)),
-				]
+				],
 		)
 def test_make_timedelta(value, expects):
 	assert make_timedelta(value) == expects

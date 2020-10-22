@@ -33,7 +33,7 @@ from mh_utils.cef_parser import Device, RTRange, make_timedelta
 				("10", 10),
 				("50", 50),
 				("100", 100),
-				]
+				],
 		)
 def test_creation(number, number_expects, device_type, device_type_expects):
 	rt = Device(device_type, number)
@@ -46,7 +46,7 @@ def test_creation(number, number_expects, device_type, device_type_expects):
 		[
 				('<Device type="QuadrupoleTimeOfFlight" num="1" />', "QuadrupoleTimeOfFlight", 1),
 				('<Device type="Hello World" num="20" />', "Hello World", 20),
-				]
+				],
 		)
 def test_from_xml(raw_xml, device_type_expects, number_expects):
 	tree = lxml.objectify.fromstring(raw_xml)

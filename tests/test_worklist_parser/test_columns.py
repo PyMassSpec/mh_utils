@@ -74,7 +74,7 @@ class TestColumn:
 				attribute_id=1,
 				attribute_type=AttributeType.SystemUsed,
 				dtype=str,
-				default_value="The Default"
+				default_value="The Default",
 				)
 
 		assert c.cast_value(value) == expects
@@ -86,7 +86,7 @@ class TestColumn:
 				attribute_id=1,
 				attribute_type=AttributeType.SystemUsed,
 				dtype=Any,  # type: ignore
-				default_value="The Default"
+				default_value="The Default",
 				)
 
 		assert c.cast_value(value) == expects
@@ -99,7 +99,7 @@ class TestColumn:
 					(5, float, "12  ", 12.0),
 					(1, Any, "the default_data_value", "the default_data_value"),
 					(1, Any, "12.34  ", "12.34"),
-					]
+					],
 			)
 	def test_from_attribute(self, data_type, dtype, default, default_expects):
 		attribute = Attribute(

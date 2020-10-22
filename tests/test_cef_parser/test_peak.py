@@ -18,7 +18,7 @@ from mh_utils.cef_parser import Device, Peak, RTRange, make_timedelta
 				(171.0998, 171.0998),
 				("171.0998", 171.0998),
 				(171, 171.0),
-				]
+				],
 		)
 @pytest.mark.parametrize(
 		"rx, rx_expects",
@@ -29,7 +29,7 @@ from mh_utils.cef_parser import Device, Peak, RTRange, make_timedelta
 				(192.0784, 192.0784),
 				("192.0784", 192.0784),
 				(192, 192.0),
-				]
+				],
 		)
 @pytest.mark.parametrize(
 		"y, y_expects",
@@ -43,7 +43,7 @@ from mh_utils.cef_parser import Device, Peak, RTRange, make_timedelta
 				(490.62, 490.62),
 				("490.62", 490.62),
 				(490, 490.0),
-				]
+				],
 		)
 @pytest.mark.parametrize(
 		"charge, charge_expects",
@@ -65,7 +65,7 @@ from mh_utils.cef_parser import Device, Peak, RTRange, make_timedelta
 				("3", 3),
 				("4", 4),
 				("6", 6),
-				]
+				],
 		)
 @pytest.mark.parametrize("label", ["M+H", "M+H+1", "M+H+2", "M+Na"])
 def test_creation(
@@ -104,7 +104,7 @@ def test_creation(
 						171.0996,
 						114286.09,
 						1,
-						"M+H+1"
+						"M+H+1",
 						),
 				(
 						'<p x="172.1033" rx="172.1028" y="7151.12" z="1" s="M+H+2" />',
@@ -122,7 +122,7 @@ def test_creation(
 						1,
 						"M+Na"
 						),
-				]
+				],
 		)
 def test_from_xml(raw_xml, x, rx, y, charge, label):
 	tree = lxml.objectify.fromstring(raw_xml)

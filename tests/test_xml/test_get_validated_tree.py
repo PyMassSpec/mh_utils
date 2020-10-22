@@ -38,7 +38,7 @@ xml_files = pytest.mark.parametrize(
 				pathlib.Path(str(shiporder_filename)),
 				pathlib.PurePosixPath(str(shiporder_filename)),
 				PathPlus(str(shiporder_filename)),
-				]
+				],
 		)
 
 schema_files = pytest.mark.parametrize(
@@ -49,7 +49,7 @@ schema_files = pytest.mark.parametrize(
 				pathlib.Path(str(schema_filename)),
 				pathlib.PurePosixPath(str(schema_filename)),
 				PathPlus(str(schema_filename)),
-				]
+				],
 		)
 
 

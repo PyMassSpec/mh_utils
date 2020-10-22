@@ -20,4 +20,9 @@ travis_pypi_secure: "e9Fu6cCQ38a1amKo9u4JZqREcHmseNhy383bQsq7gLCLpB515DP8WI3TOM2
 
 extra_sphinx_extensions:
   - enum_tools.autoenum
-  - attr_utils.autodoc_typehints
+  - attr_utils.autoattrs
+
+mypy_plugins:
+  - attr_utils.mypy_plugin
+
+pre_commit_exclude: ^tests/test_xml/.*\.xml$

@@ -75,12 +75,12 @@ def test_undefined_and_repr(sample_macro):
 			)
 
 	macro = Macro(
-			project_name="",
-			procedure_name="",
-			input_parameter="",
+			project_name='',
+			procedure_name='',
+			input_parameter='',
 			output_data_type=0,
-			output_parameter="",
-			display_string="",
+			output_parameter='',
+			display_string='',
 			)
 	assert macro.undefined
 

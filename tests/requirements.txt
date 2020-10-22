@@ -1,6 +1,6 @@
 coverage>=5.1
-coverage_pyver_pragma>=0.0.6
-importlib_resources>=3.0.0
+coverage-pyver-pragma>=0.0.6
+importlib-resources>=3.0.0
 iniconfig!=1.1.0,>=1.0.1
 pytest>=6.0.0
 pytest-cov>=2.8.1

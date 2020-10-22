@@ -42,7 +42,7 @@ def as_path(val: Any) -> Optional[pathlib.PureWindowsPath]:
 	or :py:obj:`None` if the value is empty/:py:obj:`None`/:py:obj:`False`.
 
 	:param val: The value to convert to a path
-	"""
+	"""  # noqa: D400
 
 	if not val:
 		return None
@@ -82,8 +82,8 @@ def camel_to_snake(name: str) -> str:
 	:param name: The ``CamelCase`` string to convert to ``snake_case``.
 	"""
 
-	name = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', name)
-	name = re.sub('([a-z0-9])([A-Z])', r'\1_\2', name)
+	name = re.sub("(.)([A-Z][a-z]+)", r"\1_\2", name)
+	name = re.sub("([a-z0-9])([A-Z])", r"\1_\2", name)
 	return name.lower()
 
 

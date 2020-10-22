@@ -17,7 +17,7 @@ whitespace = " \t\n\r"
 @lru_cache(1)
 def whitespace_perms_list() -> List[str]:
 	chain = itertools.chain.from_iterable(permutations(whitespace, n) for n in Len(whitespace))
-	return list("".join(x) for x in chain)
+	return list(''.join(x) for x in chain)
 
 
 def whitespace_perms(ratio: float = 0.5) -> MarkDecorator:

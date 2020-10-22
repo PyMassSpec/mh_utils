@@ -214,14 +214,14 @@ columns: Dict[str, Column] = {
 						attribute_id=10,
 						attribute_type=AttributeType.SystemDefined,
 						dtype=str,
-						default_value='Unknown',
+						default_value="Unknown",
 						),
 				Column(
 						name="Method Type",
 						attribute_id=11,
 						attribute_type=AttributeType.SystemDefined,
 						dtype=str,
-						default_value='Method No Override',
+						default_value="Method No Override",
 						reorder_id=12,
 						),
 				Column(
@@ -229,7 +229,7 @@ columns: Dict[str, Column] = {
 						attribute_id=12,
 						attribute_type=AttributeType.SystemDefined,
 						dtype=str,
-						default_value='No Override',
+						default_value="No Override",
 						reorder_id=13,
 						),
 				Column(

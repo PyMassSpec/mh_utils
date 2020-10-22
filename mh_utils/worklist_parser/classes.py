@@ -117,7 +117,7 @@ class JobData(Dictable):
 		return data
 
 	def __repr__(self) -> str:
-		values = ', '.join(f'{key}={val!r}' for key, val in iter(self) if key != 'sample_info')
+		values = ", ".join(f"{key}={val!r}" for key, val in iter(self) if key != "sample_info")
 		return f"{self.__class__.__name__}({values})"
 
 

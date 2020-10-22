@@ -60,8 +60,8 @@ class TestScore:
 		assert Score(7, flag_string="Hello") != Score(7, flag_string="World")
 		assert Score(7, flag_string="Hello", flag_severity=2) != Score(7, flag_string="Hello", flag_severity=3)
 
-		assert Score(56.24, Flag('low score; No H adduct',
-									severity=2)) == Score(56.24, Flag('low score; No H adduct', severity=2))
+		score = Score(56.24, Flag("low score; No H adduct", severity=2))
+		assert score == Score(56.24, Flag("low score; No H adduct", severity=2))
 
 	def test_str(self):
 		assert str(Score(7)) == "7.0"

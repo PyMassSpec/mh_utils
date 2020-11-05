@@ -1,5 +1,4 @@
 #  !/usr/bin/env python
-#   -*- coding: utf-8 -*-
 #
 #  xml.py
 """
@@ -32,7 +31,7 @@ from typing import Optional
 # 3rd party
 import lxml  # type: ignore
 from domdf_python_tools.typing import PathLike
-from lxml import etree, objectify  # type: ignore
+from lxml import etree, objectify
 from lxml.etree import _ElementTree  # type: ignore
 from lxml.objectify import ObjectifiedElement  # type: ignore
 
@@ -72,7 +71,7 @@ def get_validated_tree(xml_file: PathLike, schema_file: Optional[PathLike] = Non
 	tree: _ElementTree = objectify.parse(str(xml_file), parser=parser)
 
 	if schema:
-		assert schema.validate(tree)  # type: ignore
+		assert schema.validate(tree)
 
 	return tree
 

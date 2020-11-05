@@ -83,7 +83,7 @@ class __TestParseParams_str:
 	def test_parse_params(self, value, expects):
 		e = FakeParamsElement()
 		setattr(e, self.param_under_test, value)
-		params = parse_params(e)  # type: ignore
+		params = parse_params(e)
 		assert params[self.param_dict_name] == expects
 		assert isinstance(params[self.param_dict_name], self.param_type)
 
@@ -187,7 +187,7 @@ class __TestParseParams_bool:
 	def test_parse_params(self, value, expects):
 		e = FakeParamsElement()
 		setattr(e, self.param_under_test, value)
-		params = parse_params(e)  # type: ignore
+		params = parse_params(e)
 		assert params[self.param_dict_name] == expects
 		assert isinstance(params[self.param_dict_name], self.param_type)
 
@@ -261,7 +261,7 @@ class __TestParseParams_macro:
 	def test_parse_params(self, value, expects):
 		e = FakeParamsElement()
 		setattr(e, self.param_under_test, value)
-		params = parse_params(e)  # type: ignore
+		params = parse_params(e)
 		assert params[self.param_dict_name] == expects
 		assert isinstance(params[self.param_dict_name], self.param_type)
 
@@ -342,7 +342,7 @@ class __TestParseSampleInfo_bool:
 	def test_parse_params(self, value, expects):
 		e = FakeSampleElement()
 		setattr(e, self.param_under_test, value)
-		sample_info = parse_sample_info(e)  # type: ignore
+		sample_info = parse_sample_info(e)
 		assert sample_info[self.param_dict_name] == expects
 		assert isinstance(sample_info[self.param_dict_name], self.param_type)
 
@@ -356,7 +356,7 @@ class __TestParseSampleInfo_str:
 	def test_parse_params(self, value, expects):
 		e = FakeSampleElement()
 		setattr(e, self.param_under_test, value)
-		sample_info = parse_sample_info(e)  # type: ignore
+		sample_info = parse_sample_info(e)
 		assert sample_info[self.param_dict_name] == expects
 		assert isinstance(sample_info[self.param_dict_name], self.param_type)
 

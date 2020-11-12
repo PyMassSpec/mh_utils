@@ -23,7 +23,7 @@ class TestCreation:
 
 	def test_scans(self):
 		assert Spectrum(scans=1).scans == 1
-		assert Spectrum(scans="1").scans == 1  # type: ignore
+		assert Spectrum(scans='1').scans == 1  # type: ignore
 
 	def test_scan_type(self):
 		assert Spectrum(scan_type="Scan").scan_type == "Scan"
@@ -33,10 +33,10 @@ class TestCreation:
 
 	@pytest.mark.parametrize(
 			"polarity, expected", [
-					("+", 1),
+					('+', 1),
 					("positive", 1),
 					(1, 1),
-					("-", -1),
+					('-', -1),
 					("negative", -1),
 					(-1, -1),
 					(0, 0),
@@ -85,7 +85,7 @@ def spectrum() -> Spectrum:
 			scans=1,
 			scan_type="Scan",
 			ionisation="Esi",
-			polarity="+",
+			polarity='+',
 			peaks=[Peak(170.0965, 172.1028, 890559.25, 1, "M+H")],
 			rt_ranges=[RTRange(12, 34)],
 			)
@@ -131,7 +131,7 @@ fbf_expects = Spectrum(
 		scans=0,
 		scan_type="Scan",
 		ionisation="Esi",
-		polarity="+",
+		polarity='+',
 		peaks=[
 				Peak(x=195.0612, rx=195.0652, y=690.56, charge=1, label="M+H"),
 				Peak(x=196.0679, rx=196.0686, y=22.97, charge=1, label="M+H+1"),
@@ -184,7 +184,7 @@ tof_expects = Spectrum(
 		scans=28,
 		scan_type="Scan",
 		ionisation="Esi",
-		polarity="+",
+		polarity='+',
 		rt_ranges=[RTRange(12.158, 12.461)],
 		peaks=[
 				Peak(x=195.0612, rx=195.0652, y=690.56, charge=1, label="M+H"),

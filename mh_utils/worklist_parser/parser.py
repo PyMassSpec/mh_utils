@@ -81,7 +81,7 @@ def parse_datetime(the_date: str) -> datetime.datetime:
 	the_date = strip_string(the_date)
 
 	if the_date:
-		if ":" == the_date[-3]:
+		if ':' == the_date[-3]:
 			the_date = the_date[:-3] + the_date[-2:]
 		the_date = the_date[:19] + the_date[-5:]
 

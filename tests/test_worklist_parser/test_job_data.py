@@ -13,9 +13,9 @@ from tests.test_worklist_parser.test_parser import FakeSampleElement
 		"id, job_type, run_status",
 		[
 				("{B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C}", 7, 1),
-				("{B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C}", "7", "1"),
+				("{B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C}", '7', '1'),
 				(UUID("{B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C}"), 7, 1),
-				(UUID("{B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C}"), "7", "1"),
+				(UUID("{B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C}"), '7', '1'),
 				],
 		)
 def test_creation(id, job_type, run_status):  # noqa: A002
@@ -35,9 +35,9 @@ def test_creation(id, job_type, run_status):  # noqa: A002
 		"id, job_type, run_status, sample_info",
 		[
 				("{B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C}", 7, 1, {"foo": "a string"}),
-				("{B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C}", "7", "1", {"foo": "a string"}),
+				("{B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C}", '7', '1', {"foo": "a string"}),
 				(UUID("{B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C}"), 7, 1, {"foo": "a string"}),
-				(UUID("{B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C}"), "7", "1", {"foo": "a string"}),
+				(UUID("{B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C}"), '7', '1', {"foo": "a string"}),
 				],
 		)
 def test_creation_sample_info(id, job_type, run_status, sample_info):  # noqa: A002
@@ -58,8 +58,8 @@ class FakeJobDataElement:
 
 	def __init__(self):
 		self.ID = "{B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C}"
-		self.JobType = "7"
-		self.RunStatus = "1"
+		self.JobType = '7'
+		self.RunStatus = '1'
 		self.SampleInfo = FakeSampleElement()
 
 	def iterchildren(self, *args, **kwargs):
@@ -97,14 +97,14 @@ def test_dict(sample_jobdata):
 
 def test_repr(sample_jobdata):
 	assert str(sample_jobdata).startswith("JobData(")
-	assert str(sample_jobdata).endswith(")")
+	assert str(sample_jobdata).endswith(')')
 	assert str(sample_jobdata) == (
 			"JobData("
 			f"id='{'B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C'.lower()}', "
 			"job_type=7, run_status=1)"
 			)
 	assert repr(sample_jobdata).startswith("JobData(")
-	assert repr(sample_jobdata).endswith(")")
+	assert repr(sample_jobdata).endswith(')')
 	assert repr(sample_jobdata) == (
 			"JobData("
 			f"id='{'B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C'.lower()}', "

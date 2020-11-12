@@ -11,10 +11,10 @@ class FakeXMLElement:
 	def __init__(self):
 		self.AttributeID = "42"
 		self.AttributeType = AttributeType.SystemDefined
-		self.FieldType = "7"
+		self.FieldType = '7'
 		self.SystemName = "the system_name"
 		self.HeaderName = "the header_name"
-		self.DataType = "1"
+		self.DataType = '1'
 		self.DefaultDataValue = "the default_data_value"
 		self.ReorderID = "22"
 		self.ShowHideStatus = "False"

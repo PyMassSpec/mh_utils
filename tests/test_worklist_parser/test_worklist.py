@@ -5,7 +5,7 @@ from typing import List
 from uuid import UUID
 
 # 3rd party
-import pandas
+import pandas  # type: ignore
 import pytest
 
 # this package
@@ -239,10 +239,10 @@ def test_dict(data: Worklist):
 @the_worklist
 def test_repr(data: Worklist):
 	assert str(data).startswith("Worklist(")
-	assert str(data).endswith(")")
+	assert str(data).endswith(')')
 	assert str(data) == f"Worklist({pformat(dict(data))})"
 	assert repr(data).startswith("Worklist(")
-	assert repr(data).endswith(")")
+	assert repr(data).endswith(')')
 	assert repr(data) == f"Worklist({pformat(dict(data))})"
 
 

@@ -60,11 +60,11 @@ from mh_utils.cef_parser import Device, Peak, RTRange, make_timedelta
 				(4.0, 4),
 				(5.0, 5),
 				(6.0, 6),
-				("1", 1),
-				("2", 2),
-				("3", 3),
-				("4", 4),
-				("6", 6),
+				('1', 1),
+				('2', 2),
+				('3', 3),
+				('4', 4),
+				('6', 6),
 				],
 		)
 @pytest.mark.parametrize("label", ["M+H", "M+H+1", "M+H+2", "M+Na"])

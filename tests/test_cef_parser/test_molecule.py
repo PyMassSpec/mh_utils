@@ -15,10 +15,10 @@ class TestCreation:
 	def test_formula(self):
 		assert Molecule(
 				name="Dimethyl Phthalate", formula="C10 H10 O4"
-				).formula == Formula({"C": 10, "H": 10, "O": 4})
+				).formula == Formula({'C': 10, 'H': 10, 'O': 4})
 		assert Molecule(
-				name="Dimethyl Phthalate", formula=Formula({"C": 10, "H": 10, "O": 4})
-				).formula == Formula({"C": 10, "H": 10, "O": 4})
+				name="Dimethyl Phthalate", formula=Formula({'C': 10, 'H': 10, 'O': 4})
+				).formula == Formula({'C': 10, 'H': 10, 'O': 4})
 		assert Molecule(name="Dimethyl Phthalate").formula == Formula()
 
 	def test_matches(self):
@@ -50,7 +50,7 @@ def test_dict():
 					)
 			) == {
 					"name": "Dimethyl Phthalate",
-					"formula": Formula({"C": 10, "H": 10, "O": 4}),
+					"formula": Formula({'C': 10, 'H': 10, 'O': 4}),
 					"matches": {
 							"overall": Score(62.90),
 							"tgt": Score(62.90, flag_string="low score", flag_severity=2),

@@ -31,7 +31,7 @@ from uuid import UUID
 # 3rd party
 import attr
 import lxml.etree  # type: ignore
-import pandas
+import pandas  # type: ignore
 from attr_utils.docstrings import add_attrs_doc
 from attr_utils.serialise import serde
 from domdf_python_tools.bases import Dictable
@@ -44,6 +44,8 @@ from mh_utils.worklist_parser.parser import parse_params, parse_sample_info
 from mh_utils.xml import XMLFileMixin
 
 __all__ = ["JobData", "Worklist", "Checksum", "Macro", "Attribute"]
+
+pandas.DataFrame.__module__ = "pandas"
 
 
 class JobData(Dictable):

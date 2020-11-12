@@ -20,7 +20,7 @@ def spectrum():
 			scans=1,
 			scan_type="Scan",
 			ionisation="Esi",
-			polarity="+",
+			polarity='+',
 			peaks=[Peak(170.0965, 172.1028, 890559.25, 1, "M+H")],
 			rt_ranges=[RTRange(12, 34)],
 			)
@@ -33,11 +33,11 @@ class TestCreation:
 
 	def test_location(self):
 		assert Compound(
-				algo="FindByFormula", location={"m": 169.0893, "rt": 13.649, "a": 29388223, "y": 3377289}
-				).location == {"m": 169.0893, "rt": 13.649, "a": 29388223, "y": 3377289}
+				algo="FindByFormula", location={'m': 169.0893, "rt": 13.649, 'a': 29388223, 'y': 3377289}
+				).location == {'m': 169.0893, "rt": 13.649, 'a': 29388223, 'y': 3377289}
 		assert Compound(
-				algo="FindByFormula", location={"m": 169.0893, "rt": 13.649, "a": 29388223, "y": 3377289}
-				).location == {"m": 169.0893, "rt": 13.649, "a": 29388223, "y": 3377289}
+				algo="FindByFormula", location={'m': 169.0893, "rt": 13.649, 'a': 29388223, 'y': 3377289}
+				).location == {'m': 169.0893, "rt": 13.649, 'a': 29388223, 'y': 3377289}
 		assert Compound(algo="FindByFormula").location == {}
 
 	@pytest.mark.parametrize(
@@ -77,7 +77,7 @@ class TestCreation:
 def test_dict(spectrum):
 	compound = Compound(
 			algo="FindByFormula",
-			location={"m": 169.0893, "rt": 13.649, "a": 29388223, "y": 3377289},
+			location={'m': 169.0893, "rt": 13.649, 'a': 29388223, 'y': 3377289},
 			results=[Molecule(name="Dimethyl Phthalate", formula="C10 H10 O4")],
 			spectra=[spectrum],
 			compound_scores={"fbf": Score(62.90, flag_string="low score", flag_severity=2)},
@@ -85,7 +85,7 @@ def test_dict(spectrum):
 
 	as_dict = {
 			"algo": "FindByFormula",
-			"location": {"m": 169.0893, "rt": 13.649, "a": 29388223, "y": 3377289},
+			"location": {'m': 169.0893, "rt": 13.649, 'a': 29388223, 'y': 3377289},
 			"results": [Molecule(name="Dimethyl Phthalate", formula="C10 H10 O4")],
 			"spectra": [spectrum],
 			"compound_scores": {"fbf": Score(62.90, flag_string="low score", flag_severity=2)},
@@ -97,7 +97,7 @@ def test_dict(spectrum):
 def test_repr(spectrum):
 	compound = Compound(
 			algo="FindByFormula",
-			location={"m": 169.0893, "rt": 13.649, "a": 29388223, "y": 3377289},
+			location={'m': 169.0893, "rt": 13.649, 'a': 29388223, 'y': 3377289},
 			results=[Molecule(name="Dimethyl Phthalate", formula="C10 H10 O4")],
 			spectra=[spectrum],
 			compound_scores={"fbf": Score(62.90, flag_string="low score", flag_severity=2)},
@@ -176,7 +176,7 @@ def fbf_spectrum():
 			algorithm="FindByFormula",
 			scan_type="Scan",
 			ionisation="Esi",
-			polarity="+",
+			polarity='+',
 			device=Device(device_type="QuadrupoleTimeOfFlight", number=1),
 			peaks=[
 					Peak(170.0965, 170.0964, 890559.25, charge=1, label="M+H"),
@@ -196,7 +196,7 @@ def tof_spectrum():
 			scans=12,
 			scan_type="Scan",
 			ionisation="Esi",
-			polarity="+",
+			polarity='+',
 			voltage="380V",
 			device=Device(device_type="QuadrupoleTimeOfFlight", number=1),
 			peaks=[
@@ -215,7 +215,7 @@ def expected_compound(fbf_spectrum, tof_spectrum):
 
 	return Compound(
 			algo="FindByFormula",
-			location={"m": 169.0893, "rt": 13.649, "a": 29388223, "y": 3377289},
+			location={'m': 169.0893, "rt": 13.649, 'a': 29388223, 'y': 3377289},
 			compound_scores={"fbf": score},
 			results=[
 					Molecule(

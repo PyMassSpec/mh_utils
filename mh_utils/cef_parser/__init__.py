@@ -212,8 +212,8 @@ class Peak:
 		"""
 
 		data = dict(element.attrib)
-		data["charge"] = data.pop("z", 0)
-		data["label"] = data.pop("s", '')
+		data["charge"] = data.pop('z', 0)
+		data["label"] = data.pop('s', '')
 		return cls(**data)
 
 
@@ -267,9 +267,9 @@ class Spectrum(Dictable):
 
 		self.polarity: int
 
-		if polarity in {"+", 1, "1"}:
+		if polarity in {'+', 1, '1'}:
 			self.polarity = 1
-		elif polarity in {"-", -1, "-1"}:
+		elif polarity in {'-', -1, "-1"}:
 			self.polarity = -1
 		elif isinstance(polarity, str) and polarity.lower() == "positive":
 			self.polarity = 1
@@ -332,12 +332,12 @@ class Spectrum(Dictable):
 
 		data["scan_type"] = element.MSDetails.attrib["scanType"]
 		data["ionisation"] = element.MSDetails.attrib["is"]
-		data["polarity"] = element.MSDetails.attrib["p"]
+		data["polarity"] = element.MSDetails.attrib['p']
 		if "fv" in element.MSDetails.attrib:
 			data["voltage"] = element.MSDetails.attrib["fv"]
 
 		data["device"] = Device.from_xml(element.Device)
-		data["peaks"] = [Peak.from_xml(p) for p in element.MSPeaks.findall("p")]
+		data["peaks"] = [Peak.from_xml(p) for p in element.MSPeaks.findall('p')]
 
 		if element.findall("RTRanges"):
 			data["rt_ranges"] = [RTRange.from_xml(r) for r in element.RTRanges.findall("RTRange")]
@@ -604,14 +604,14 @@ class Compound(Dictable):
 		"""
 
 		location: LocationDict = {}
-		if "m" in element.Location.attrib:
-			location["m"] = float(element.Location.attrib["m"])
+		if 'm' in element.Location.attrib:
+			location['m'] = float(element.Location.attrib['m'])
 		if "rt" in element.Location.attrib:
 			location["rt"] = float(element.Location.attrib["rt"])
-		if "a" in element.Location.attrib:
-			location["a"] = int(element.Location.attrib["a"])
-		if "y" in element.Location.attrib:
-			location["y"] = int(element.Location.attrib["y"])
+		if 'a' in element.Location.attrib:
+			location['a'] = int(element.Location.attrib['a'])
+		if 'y' in element.Location.attrib:
+			location['y'] = int(element.Location.attrib['y'])
 
 		results: List[Molecule] = []
 		for molecule in element.Results.findall("Molecule"):

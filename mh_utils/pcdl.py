@@ -99,7 +99,7 @@ class PCDLCompound:
 			formula = properties["MolecularFormula"]
 			exact_mass = formula.monoisotopic_mass
 		except NotFoundError:
-			print(compound[0])
+			# print(compound[0])
 			iupac_name = name
 			formula = None
 			exact_mass = None

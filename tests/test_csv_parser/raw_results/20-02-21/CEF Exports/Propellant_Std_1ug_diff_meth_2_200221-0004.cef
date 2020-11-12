@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<CEF version="1.0.0.0">
+  <CompoundList instrumentConfiguration="LCQTOF">
+    <Compound algo="FindByFormula">
+      <Location m="169.0896" rt="13.631" a="2454292" y="269243" />
+      <CompoundScores>
+        <CpdScore algo="fbf" score="86.96" />
+      </CompoundScores>
+      <Results>
+        <Molecule name="Diphenylamine" formula="C12 H11 N">
+          <MatchScores>
+            <Match algo="overall" score="86.96" />
+            <Match algo="tgt" score="86.96" />
+          </MatchScores>
+        </Molecule>
+      </Results>
+      <Spectrum type="FbF" cpdAlgo="FindByFormula">
+        <MSDetails scanType="Scan" is="Esi" p="+" />
+        <Device type="QuadrupoleTimeOfFlight" num="1" />
+        <MSPeaks>
+          <p x="170.0965" rx="170.0964" y="151749.88" z="1" s="M+H" />
+          <p x="171.1017" rx="171.0996" y="28101.67" z="1" s="M+H+1" />
+          <p x="172.1019" rx="172.1028" y="3899.06" z="1" s="M+H+2" />
+        </MSPeaks>
+      </Spectrum>
+      <Spectrum type="TOF-MS1" satLimit="12180480" scans="24" cpdAlgo="FindByFormula">
+        <MSDetails scanType="Scan" is="Esi" p="+" fv="380.0V" />
+        <RTRanges>
+          <RTRange min="13.543" max="13.796" />
+        </RTRanges>
+        <Device type="QuadrupoleTimeOfFlight" num="1" />
+        <MassCalibration>
+          <CalStep form="Traditional">
+            <Count>2</Count>
+            <C_0>0.00034578914549764751</C_0>
+            <C_1>1006.5908810736863</C_1>
+          </CalStep>
+          <CalStep form="Polynomial">
+            <CoefficientUse>504</CoefficientUse>
+            <Count>8</Count>
+            <C_0>32432.382624505368</C_0>
+            <C_1>151883.79004554346</C_1>
+            <C_2>-1.2618918950698891E-16</C_2>
+            <C_3>6.1549629091496195E-21</C_3>
+            <C_4>-1.1989449035049344E-25</C_4>
+            <C_5>1.1596234046890204E-30</C_5>
+            <C_6>-5.5374563733418054E-36</C_6>
+            <C_7>1.0403558883281843E-41</C_7>
+          </CalStep>
+        </MassCalibration>
+        <MSPeaks>
+          <p x="170.0965" rx="170.0964" y="151749.88" z="1" s="M+H" />
+          <p x="171.1017" rx="171.0996" y="28101.67" z="1" s="M+H+1" />
+          <p x="172.1019" rx="172.1028" y="3899.06" z="1" s="M+H+2" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByFormula">
+      <Location m="268.1581" rt="13.962" a="143998323" y="10744549" />
+      <CompoundScores>
+        <CpdScore algo="fbf" score="85.30" />
+      </CompoundScores>
+      <Results>
+        <Molecule name="Ethyl Centralite" formula="C17 H20 N2 O">
+          <MatchScores>
+            <Match algo="overall" score="85.30" />
+            <Match algo="tgt" score="85.30" />
+          </MatchScores>
+        </Molecule>
+      </Results>
+      <Spectrum type="FbF" cpdAlgo="FindByFormula">
+        <MSDetails scanType="Scan" is="Esi" p="+" />
+        <Device type="QuadrupoleTimeOfFlight" num="1" />
+        <MSPeaks>
+          <p x="269.1653" rx="269.1648" y="201292.50" z="1" s="M+H" />
+          <p x="270.1689" rx="270.1680" y="38627.18" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+      <Spectrum type="TOF-MS1" satLimit="12180480" scans="34" cpdAlgo="FindByFormula">
+        <MSDetails scanType="Scan" is="Esi" p="+" fv="380.0V" />
+        <RTRanges>
+          <RTRange min="13.818" max="14.524" />
+        </RTRanges>
+        <Device type="QuadrupoleTimeOfFlight" num="1" />
+        <MassCalibration>
+          <CalStep form="Traditional">
+            <Count>2</Count>
+            <C_0>0.00034578910581194882</C_0>
+            <C_1>1006.5746807678213</C_1>
+          </CalStep>
+          <CalStep form="Polynomial">
+            <CoefficientUse>504</CoefficientUse>
+            <Count>8</Count>
+            <C_0>32432.382624505368</C_0>
+            <C_1>151883.79004554346</C_1>
+            <C_2>-1.2618918950698891E-16</C_2>
+            <C_3>6.1549629091496195E-21</C_3>
+            <C_4>-1.1989449035049344E-25</C_4>
+            <C_5>1.1596234046890204E-30</C_5>
+            <C_6>-5.5374563733418054E-36</C_6>
+            <C_7>1.0403558883281843E-41</C_7>
+          </CalStep>
+        </MassCalibration>
+        <MSPeaks>
+          <p x="269.1653" rx="269.1648" y="201292.50" z="1" s="M+H" />
+          <p x="270.1689" rx="270.1680" y="38627.18" z="1" s="M+H+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByFormula">
+      <Location m="222.0876" rt="8.876" a="864828" y="52980" />
+      <CompoundScores>
+        <CpdScore algo="fbf" score="68.36" tgtFlagsString="low score" tgtFlagsSeverity="2" />
+      </CompoundScores>
+      <Results>
+        <Molecule name="Diethyl Phthalate" formula="C12 H14 O4">
+          <MatchScores>
+            <Match algo="overall" score="68.36" />
+            <Match algo="tgt" score="68.36" tgtFlagsString="low score" tgtFlagsSeverity="2" />
+          </MatchScores>
+        </Molecule>
+      </Results>
+      <Spectrum type="FbF" cpdAlgo="FindByFormula">
+        <MSDetails scanType="Scan" is="Esi" p="+" />
+        <Device type="QuadrupoleTimeOfFlight" num="1" />
+        <MSPeaks>
+          <p x="223.0949" rx="223.0965" y="45346.89" z="1" s="M+H" />
+          <p x="224.0974" rx="224.0999" y="8102.83" z="1" s="M+H+1" />
+          <p x="245.0776" rx="245.0784" y="7003.04" z="1" s="M+Na" />
+          <p x="246.0796" rx="246.0818" y="200.81" z="1" s="M+Na+1" />
+        </MSPeaks>
+      </Spectrum>
+      <Spectrum type="TOF-MS1" satLimit="12180480" scans="52" cpdAlgo="FindByFormula">
+        <MSDetails scanType="Scan" is="Esi" p="+" fv="380.0V" />
+        <RTRanges>
+          <RTRange min="8.633" max="9.196" />
+        </RTRanges>
+        <Device type="QuadrupoleTimeOfFlight" num="1" />
+        <MassCalibration>
+          <CalStep form="Traditional">
+            <Count>2</Count>
+            <C_0>0.00034578906106776564</C_0>
+            <C_1>1006.5796502763834</C_1>
+          </CalStep>
+          <CalStep form="Polynomial">
+            <CoefficientUse>504</CoefficientUse>
+            <Count>8</Count>
+            <C_0>32432.382624505368</C_0>
+            <C_1>151883.79004554346</C_1>
+            <C_2>-1.2618918950698891E-16</C_2>
+            <C_3>6.1549629091496195E-21</C_3>
+            <C_4>-1.1989449035049344E-25</C_4>
+            <C_5>1.1596234046890204E-30</C_5>
+            <C_6>-5.5374563733418054E-36</C_6>
+            <C_7>1.0403558883281843E-41</C_7>
+          </CalStep>
+        </MassCalibration>
+        <MSPeaks>
+          <p x="223.0949" rx="223.0965" y="45346.89" z="1" s="M+H" />
+          <p x="224.0974" rx="224.0999" y="8102.83" z="1" s="M+H+1" />
+          <p x="245.0776" rx="245.0784" y="7003.04" z="1" s="M+Na" />
+          <p x="246.0796" rx="246.0818" y="200.81" z="1" s="M+Na+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+    <Compound algo="FindByFormula">
+      <Location m="123.0321" rt="2.477" a="8351177" y="264948" />
+      <CompoundScores>
+        <CpdScore algo="fbf" score="99.66" />
+      </CompoundScores>
+      <Results>
+        <Molecule name="Nitrobenzene" formula="C6 H5 N O2">
+          <MatchScores>
+            <Match algo="overall" score="99.66" />
+            <Match algo="tgt" score="99.66" />
+          </MatchScores>
+        </Molecule>
+      </Results>
+      <Spectrum type="FbF" cpdAlgo="FindByFormula">
+        <MSDetails scanType="Scan" is="Esi" p="+" />
+        <Device type="QuadrupoleTimeOfFlight" num="1" />
+        <MSPeaks>
+          <p x="124.0392" rx="124.0393" y="355894.50" z="1" s="M+H" />
+          <p x="125.0426" rx="125.0424" y="24195.12" z="1" s="M+H+1" />
+          <p x="126.0436" rx="126.0442" y="97.55" z="1" s="M+H+2" />
+          <p x="141.0692" rx="141.0659" y="15325.40" z="1" s="M+NH4" />
+          <p x="142.0695" rx="142.0686" y="83.00" z="1" s="M+NH4+1" />
+        </MSPeaks>
+      </Spectrum>
+      <Spectrum type="TOF-MS1" satLimit="12180480" scans="72" cpdAlgo="FindByFormula">
+        <MSDetails scanType="Scan" is="Esi" p="+" fv="380.0V" />
+        <RTRanges>
+          <RTRange min="2.014" max="2.797" />
+        </RTRanges>
+        <Device type="QuadrupoleTimeOfFlight" num="1" />
+        <MassCalibration>
+          <CalStep form="Traditional">
+            <Count>2</Count>
+            <C_0>0.0003457892612381625</C_0>
+            <C_1>1006.5732530873281</C_1>
+          </CalStep>
+          <CalStep form="Polynomial">
+            <CoefficientUse>504</CoefficientUse>
+            <Count>8</Count>
+            <C_0>32432.382624505368</C_0>
+            <C_1>151883.79004554346</C_1>
+            <C_2>-1.2618918950698891E-16</C_2>
+            <C_3>6.1549629091496195E-21</C_3>
+            <C_4>-1.1989449035049344E-25</C_4>
+            <C_5>1.1596234046890204E-30</C_5>
+            <C_6>-5.5374563733418054E-36</C_6>
+            <C_7>1.0403558883281843E-41</C_7>
+          </CalStep>
+        </MassCalibration>
+        <MSPeaks>
+          <p x="124.0392" rx="124.0393" y="355894.50" z="1" s="M+H" />
+          <p x="125.0426" rx="125.0424" y="24195.12" z="1" s="M+H+1" />
+          <p x="126.0436" rx="126.0442" y="97.55" z="1" s="M+H+2" />
+          <p x="141.0692" rx="141.0659" y="15325.40" z="1" s="M+NH4" />
+          <p x="142.0695" rx="142.0686" y="83.00" z="1" s="M+NH4+1" />
+        </MSPeaks>
+      </Spectrum>
+    </Compound>
+  </CompoundList>
+</CEF>

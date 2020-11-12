@@ -429,6 +429,10 @@ class Result(Dictable):
 
 
 class SampleList(List[Sample]):
+	"""
+
+	.. versionadded:: 0.2.0
+	"""
 
 	@doctools.append_docstring_from(Sample.__init__)
 	def add_new_sample(self, *args, **kwargs):
@@ -727,7 +731,10 @@ class SampleList(List[Sample]):
 class BaseSamplePropertyDict(OrderedDict):
 	"""
 	OrderedDict to store a single property of a set of samples.
+
 	Keys are the sample names and the values are dictionaries mapping compound names to property values.
+
+	.. versionadded:: 0.2.0
 	"""
 
 	@property
@@ -746,6 +753,10 @@ class BaseSamplePropertyDict(OrderedDict):
 
 
 class SamplesAreaDict(BaseSamplePropertyDict):
+	"""
+
+	.. versionadded:: 0.2.0
+	"""
 
 	def get_compound_areas(self, compound_name: str) -> List[float]:
 		"""
@@ -768,6 +779,10 @@ class SamplesAreaDict(BaseSamplePropertyDict):
 
 
 class SamplesScoresDict(BaseSamplePropertyDict):
+	"""
+
+	.. versionadded:: 0.2.0
+	"""
 
 	def get_compound_scores(self, compound_name: str) -> List[float]:
 		"""

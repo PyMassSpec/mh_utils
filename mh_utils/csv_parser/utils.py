@@ -23,10 +23,18 @@ CSV utility functions.
 #  MA 02110-1301, USA.
 #
 
+# stdlib
+from typing import Optional
+
 # 3rd party
 import pandas  # type: ignore
+import sdjson
+from domdf_python_tools.typing import PathLike
 
-__all__ = ["drop_columns", "reorder_columns"]
+# this package
+from mh_utils.csv_parser import Sample, SampleList
+
+__all__ = ["drop_columns", "reorder_columns", "concatenate_json"]
 
 pandas.DataFrame.__module__ = "pandas"
 
@@ -39,6 +47,8 @@ def drop_columns(df: pandas.DataFrame, *, axis: int = 1, inplace: bool = True, *
 	:param axis: Which axis to drop columns on.
 	:param inplace: Whether to modify the :class:`pandas.DataFrame` in place.
 	:param kwargs: Additional keyword arguments passed to :meth:`pandas.DataFrame.drop`.
+
+	.. versionadded:: 0.2.0
 	"""
 
 	# Columns where I have no idea what they represent
@@ -117,6 +127,8 @@ def reorder_columns(df: pandas.DataFrame) -> pandas.DataFrame:
 	Reorder columns from the MassHunter CSV file.
 
 	:param df: The :class:`pandas.DataFrame` to reorder columns in.
+
+	.. versionadded:: 0.2.0
 	"""
 
 	# Make sure to remove columns that got deleted above
@@ -171,3 +183,30 @@ def reorder_columns(df: pandas.DataFrame) -> pandas.DataFrame:
 	# "MS/MS Count",		because blank
 
 	return df[output_col_order]
+
+
+def concatenate_json(*files: PathLike, outfile: Optional[PathLike] = None) -> SampleList:
+	r"""
+	Concatenate multiple JSON files together and return a list of :class:`Sample`
+	objects in the concatenated json output.
+
+	:param \*files: The files to concatenate.
+	:param outfile: The file to save the output as. If :py:obj:`None` no file will be saved.
+
+	.. versionadded:: 0.2.0
+	"""  # noqa: D400
+
+	all_samples = SampleList()
+
+	for json_file in files:
+		with open(json_file) as fp:
+			samples = sdjson.load(fp)
+
+		for sample in samples:
+			all_samples.append(Sample(**sample))
+
+	if outfile is not None:
+		with open(outfile, 'w') as fp:
+			sdjson.dump(all_samples, fp, indent=2)
+
+	return all_samples

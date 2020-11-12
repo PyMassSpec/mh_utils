@@ -1,5 +1,5 @@
 # 3rd party
-from pytest_regressions.dataframe_regression import DataFrameRegressionFixture
+from pytest_regressions.dataframe_regression import DataFrameRegressionFixture  # type: ignore
 from pytest_regressions.file_regression import FileRegressionFixture
 
 # this package

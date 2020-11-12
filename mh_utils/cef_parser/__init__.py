@@ -568,10 +568,10 @@ class Compound(Dictable):
 	"""
 
 	algo: str  #: The algorithm used to identify the compound.
-	location: Optional[LocationDict]  #: A dictionary of information to locate the compound in the spectral data
-	compound_scores: Optional[Dict[str, "Score"]]  #: A dictionary of compound scores
-	results: Optional[List[Molecule]]  #: A list of molecules that match the spectrum.
-	spectra: Optional[List[Spectrum]]  #: A list of spectra for the compound.
+	location: LocationDict  #: A dictionary of information to locate the compound in the spectral data
+	compound_scores: Dict[str, "Score"]  #: A dictionary of compound scores
+	results: List[Molecule]  #: A list of molecules that match the spectrum.
+	spectra: List[Spectrum]  #: A list of spectra for the compound.
 
 	def __init__(
 			self,
@@ -674,7 +674,7 @@ class Compound(Dictable):
 		if results_length > 78:
 			results_str = _CompoundStrPPrinter(indent=4, width=80, depth=None, compact=False).pformat(self.results)
 		else:
-			results_str = f"[{DelimitedList(self.results):, }]"
+			results_str = f"[{DelimitedList(self.results):, }]"  # type: ignore
 
 		return f"Compound({results_str})"
 

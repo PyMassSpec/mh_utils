@@ -1,4 +1,5 @@
 # 3rd party
+import pytest
 from pytest_regressions.dataframe_regression import DataFrameRegressionFixture  # type: ignore
 from pytest_regressions.file_regression import FileRegressionFixture
 
@@ -177,10 +178,7 @@ target_compounds = [
 		("Benzo[a]pyrene", "50-32-8"),
 		("Pyrene", "129-00-0"),
 		("2-ethylquinoline", "1613-34-9"),
-		(
-				"2,2’-biquinoline",
-				"119-91-5",
-				),
+		("2,2’-biquinoline", "119-91-5"),
 		("Isoquinoline", "119-65-3"),
 		("Quinoline", "91-22-5"),
 		("Gum Arabic", ' '),
@@ -233,6 +231,7 @@ target_compounds = [
 		]
 
 
+@pytest.mark.flaky(reruns=2, reruns_delay=10)
 def test_make_pcdl_csv(
 		tmp_pathplus,
 		file_regression: FileRegressionFixture,

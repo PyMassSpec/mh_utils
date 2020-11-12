@@ -231,7 +231,7 @@ target_compounds = [
 		]
 
 
-@pytest.mark.flaky(reruns=2, reruns_delay=10)
+@pytest.mark.flaky(reruns=2, reruns_delay=60)
 def test_make_pcdl_csv(
 		tmp_pathplus,
 		file_regression: FileRegressionFixture,

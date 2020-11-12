@@ -4,8 +4,8 @@ import copy
 # 3rd party
 import lxml.objectify  # type: ignore
 import pytest
-from chemistry_tools.formulae import Formula
 from domdf_python_tools.paths import PathPlus
+from pytest_regressions.file_regression import FileRegressionFixture
 
 # this package
 from mh_utils.cef_parser import Compound, CompoundList, Device, Molecule, Peak, RTRange, Score, Spectrum, parse_cef
@@ -23,6 +23,22 @@ def spectrum():
 			polarity='+',
 			peaks=[Peak(170.0965, 172.1028, 890559.25, 1, "M+H")],
 			rt_ranges=[RTRange(12, 34)],
+			)
+
+
+@pytest.fixture()
+def molecule():
+	return Molecule(name="Dimethyl Phthalate", formula="C10 H10 O4")
+
+
+@pytest.fixture()
+def compound(spectrum, molecule):
+	return Compound(
+			algo="FindByFormula",
+			location={'m': 169.0893, "rt": 13.649, 'a': 29388223, 'y': 3377289},
+			results=[molecule],
+			spectra=[spectrum],
+			compound_scores={"fbf": Score(62.90, flag_string="low score", flag_severity=2)},
 			)
 
 
@@ -53,14 +69,8 @@ class TestCreation:
 		assert Compound(algo="FindByFormula", compound_scores=scores).compound_scores == copy.deepcopy(scores)
 		assert Compound(algo="FindByFormula").compound_scores == {}
 
-	@pytest.mark.parametrize(
-			"results",
-			[
-					[Molecule(name="Dimethyl Phthalate", formula="C10 H10 O4")],
-					[Molecule(name="Dimethyl Phthalate", formula="C10 H10 O4")],
-					]
-			)
-	def test_results(self, results):
+	def test_results(self, molecule):
+		results = [molecule, molecule]
 		assert Compound(algo="FindByFormula", results=results).results == copy.deepcopy(results)
 		assert Compound(algo="FindByFormula", results=()).results == []
 		assert Compound(algo="FindByFormula", results=[]).results == []
@@ -74,19 +84,12 @@ class TestCreation:
 		assert Compound(algo="FindByFormula").spectra == []
 
 
-def test_dict(spectrum):
-	compound = Compound(
-			algo="FindByFormula",
-			location={'m': 169.0893, "rt": 13.649, 'a': 29388223, 'y': 3377289},
-			results=[Molecule(name="Dimethyl Phthalate", formula="C10 H10 O4")],
-			spectra=[spectrum],
-			compound_scores={"fbf": Score(62.90, flag_string="low score", flag_severity=2)},
-			)
+def test_dict(spectrum, molecule, compound):
 
 	as_dict = {
 			"algo": "FindByFormula",
 			"location": {'m': 169.0893, "rt": 13.649, 'a': 29388223, 'y': 3377289},
-			"results": [Molecule(name="Dimethyl Phthalate", formula="C10 H10 O4")],
+			"results": [molecule],
 			"spectra": [spectrum],
 			"compound_scores": {"fbf": Score(62.90, flag_string="low score", flag_severity=2)},
 			}
@@ -94,19 +97,19 @@ def test_dict(spectrum):
 	assert dict(compound) == as_dict
 
 
-def test_repr(spectrum):
+def test_repr(compound, spectrum, molecule, file_regression: FileRegressionFixture):
+	assert str(compound) == "Compound([Molecule(Dimethyl Phthalate, C10H10O4)])"
+	assert repr(compound) == "<Compound([<Molecule(Dimethyl Phthalate, Formula({'C': 10, 'H': 10, 'O': 4}))>])>"
+
 	compound = Compound(
 			algo="FindByFormula",
 			location={'m': 169.0893, "rt": 13.649, 'a': 29388223, 'y': 3377289},
-			results=[Molecule(name="Dimethyl Phthalate", formula="C10 H10 O4")],
+			results=[molecule, molecule, molecule, molecule, molecule],
 			spectra=[spectrum],
 			compound_scores={"fbf": Score(62.90, flag_string="low score", flag_severity=2)},
 			)
-	assert str(compound) == "<Compound([<Molecule(Dimethyl Phthalate, Formula({'C': 10, 'H': 10, 'O': 4}))>])>"
-
-	# TODO: once fixed in chemistry tools)) == "<Compound(Dimethyl Phthalate, C10H10O4)>"
-
-	assert repr(compound) == "<Compound([<Molecule(Dimethyl Phthalate, Formula({'C': 10, 'H': 10, 'O': 4}))>])>"
+	file_regression.check(str(compound), encoding="UTF-8", extension="_str.txt")
+	file_regression.check(repr(compound), encoding="UTF-8", extension="_repr.txt")
 
 
 raw_xml = """

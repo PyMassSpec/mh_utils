@@ -1,0 +1,7 @@
+<Compound([
+    <Molecule(Dimethyl Phthalate, Formula({'C': 10, 'H': 10, 'O': 4}))>,
+    <Molecule(Dimethyl Phthalate, Formula({'C': 10, 'H': 10, 'O': 4}))>,
+    <Molecule(Dimethyl Phthalate, Formula({'C': 10, 'H': 10, 'O': 4}))>,
+    <Molecule(Dimethyl Phthalate, Formula({'C': 10, 'H': 10, 'O': 4}))>,
+    <Molecule(Dimethyl Phthalate, Formula({'C': 10, 'H': 10, 'O': 4}))>,
+    ])>

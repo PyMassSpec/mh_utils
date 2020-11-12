@@ -1,0 +1,7 @@
+Compound([
+    Molecule(Dimethyl Phthalate, C10H10O4),
+    Molecule(Dimethyl Phthalate, C10H10O4),
+    Molecule(Dimethyl Phthalate, C10H10O4),
+    Molecule(Dimethyl Phthalate, C10H10O4),
+    Molecule(Dimethyl Phthalate, C10H10O4),
+    ])

@@ -67,18 +67,8 @@ def test_repr():
 					"tgt": Score(62.90, flag_string="low score", flag_severity=2),
 					},
 			)
-	assert str(molecule) == "<Molecule(Dimethyl Phthalate, Formula({'C': 10, 'H': 10, 'O': 4}))>"
-	# TODO: once fixed in chemistry tools)) == "<Molecule(Dimethyl Phthalate, C10H10O4)>"
 
-	molecule = Molecule(
-			name="Dimethyl Phthalate",
-			formula="C10 H10 O4",
-			matches={
-					"overall": Score(62.90),
-					"tgt": Score(62.90, flag_string="low score", flag_severity=2),
-					},
-			)
-
+	assert str(molecule) == "Molecule(Dimethyl Phthalate, C10H10O4)"
 	assert repr(molecule) == "<Molecule(Dimethyl Phthalate, Formula({'C': 10, 'H': 10, 'O': 4}))>"
 
 

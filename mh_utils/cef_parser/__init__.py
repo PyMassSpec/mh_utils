@@ -74,6 +74,8 @@ from attr_utils.serialise import serde
 from chemistry_tools.formulae import Formula
 from domdf_python_tools.bases import Dictable, NamedList
 from domdf_python_tools.doctools import prettify_docstrings
+from domdf_python_tools.pretty_print import FancyPrinter
+from domdf_python_tools.stringlist import DelimitedList
 from domdf_python_tools.typing import PathLike
 from lxml import objectify
 from typing_extensions import TypedDict
@@ -161,7 +163,14 @@ class Molecule(Dictable):
 		Returns a string representation of the :class:`~mh_utils.cef_parser.Molecule`.
 		"""
 
-		return f"<Molecule({self.name}, {str(self.formula)})>"
+		return f"<Molecule({self.name}, {repr(self.formula)})>"
+
+	def __str__(self) -> str:
+		"""
+		Returns the molecule as a string.
+		"""
+
+		return f"Molecule({self.name}, {str(self.formula)})"
 
 
 @serde
@@ -536,6 +545,17 @@ class LocationDict(TypedDict, total=False):
 	y: float  #: The height of the peak in the EIC.
 
 
+class _CompoundStrPPrinter(FancyPrinter):
+
+	def _repr(self, object, context, level):
+		if isinstance(object, (Molecule, Formula)):
+			self._readable = True
+			self._recursive = False
+			return str(object)
+		else:
+			return super()._repr(object, context, level)
+
+
 class Compound(Dictable):
 	"""
 	Represents a compound identified in mass spectral data by MassHunter Qualitative.
@@ -634,7 +654,29 @@ class Compound(Dictable):
 		Returns a string representation of the :class:`~mh_utils.cef_parser.Compound`.
 		"""
 
-		return f"<Compound({pformat(self.results)})>"
+		results_repr = FancyPrinter(indent=4, width=80, depth=None, compact=False).pformat(self.results)
+
+		return f"<Compound({results_repr})>"
+
+	def __str__(self) -> str:
+		"""
+		Returns the :class:`~mh_utils.cef_parser.Compound` as a string.
+		"""
+
+		results_length = 0
+
+		for molecule in self.results:
+			results_length += (
+					7  # "Molecule()"
+					+ len(molecule.name) + len(str(molecule.formula))
+					)
+
+		if results_length > 78:
+			results_str = _CompoundStrPPrinter(indent=4, width=80, depth=None, compact=False).pformat(self.results)
+		else:
+			results_str = f"[{DelimitedList(self.results):, }]"
+
+		return f"Compound({results_str})"
 
 
 class CompoundList(NamedList):

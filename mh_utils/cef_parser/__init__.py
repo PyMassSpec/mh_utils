@@ -674,7 +674,7 @@ class Compound(Dictable):
 		if results_length > 78:
 			results_str = _CompoundStrPPrinter(indent=4, width=80, depth=None, compact=False).pformat(self.results)
 		else:
-			results_str = f"[{DelimitedList(self.results):, }]"  # type: ignore
+			results_str = f"[{DelimitedList(self.results):, }]"
 
 		return f"Compound({results_str})"
 

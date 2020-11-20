@@ -3,7 +3,7 @@ Downloading source code
 =========================
 
 The ``mh_utils`` source code is available on GitHub,
-and can be accessed from the following URL: https://github.com/domdfcoding/mh_utils"
+and can be accessed from the following URL: https://github.com/domdfcoding/mh_utils
 
 If you have ``git`` installed, you can clone the repository with the following command:
 

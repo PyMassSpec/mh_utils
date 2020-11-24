@@ -239,6 +239,8 @@ def test_make_pcdl_csv(
 		):
 
 	dataframe_regression.check(make_pcdl_csv(target_compounds, tmp_pathplus / "all_compounds_pcdl.csv"))
-	file_regression.check((tmp_pathplus / "all_compounds_pcdl.csv").read_text(),
-							encoding="UTF-8",
-							extension="_csv.csv")
+	file_regression.check(
+			(tmp_pathplus / "all_compounds_pcdl.csv").read_text(),
+			encoding="UTF-8",
+			extension="_csv.csv",
+			)

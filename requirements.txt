@@ -9,7 +9,7 @@ domdf-python-tools>=0.4.9
 enum-tools>=0.6.1
 lxml>=4.6.0
 numpy>=1.19.4; platform_system != "Windows"
-numpy==1.19.3; platform_system == "Windows"
+numpy==1.19.4; platform_system == "Windows"
 pandas>=1.1.3
 sdjson>=0.3.0
 typing-extensions>=3.7.4.3

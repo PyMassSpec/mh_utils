@@ -393,6 +393,7 @@ class RTRange:
 
 # TODO: Subclass these from UserString and UserFloat
 
+
 @prettify_docstrings
 class Flag(str):
 	"""

@@ -713,11 +713,11 @@ class SampleList(List[Sample]):
 		return self.get_areas_and_scores(compound_name, include_none)[1]
 
 	def filter(  # noqa: A003  # pylint: disable=redefined-builtin
-			self: _SL,
-			sample_names: Iterable[str],
-			key: str = "sample_name",
-			exclude: bool = False,
-			) -> _SL:
+		self: _SL,
+		sample_names: Iterable[str],
+		key: str = "sample_name",
+		exclude: bool = False,
+		) -> _SL:
 		"""
 		Filter the list to only contain sample_names whose name is in ``sample_names``.
 

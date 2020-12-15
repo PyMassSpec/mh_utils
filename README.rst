@@ -21,6 +21,8 @@ mh_utils
 	  - |actions_linux| |actions_windows| |actions_macos| |coveralls| |codefactor| |pre_commit_ci|
 	* - PyPI
 	  - |pypi-version| |supported-versions| |supported-implementations| |wheel|
+	* - Anaconda
+	  - |conda-version| |conda-platform|
 	* - Activity
 	  - |commits-latest| |commits-since| |maintained|
 	* - Other
@@ -74,6 +76,14 @@ mh_utils
 	:target: https://pypi.org/project/mh_utils/
 	:alt: PyPI - Wheel
 
+.. |conda-version| image:: https://img.shields.io/conda/v/domdfcoding/mh_utils?logo=anaconda
+	:target: https://anaconda.org/domdfcoding/mh_utils
+	:alt: Conda - Package Version
+
+.. |conda-platform| image:: https://img.shields.io/conda/pn/domdfcoding/mh_utils?label=conda%7Cplatform
+	:target: https://anaconda.org/domdfcoding/mh_utils
+	:alt: Conda - Platform
+
 .. |license| image:: https://img.shields.io/github/license/domdfcoding/mh_utils
 	:target: https://github.com/domdfcoding/mh_utils/blob/master/LICENSE
 	:alt: License
@@ -109,12 +119,27 @@ Installation
 
 .. start installation
 
-``mh_utils`` can be installed from PyPI.
+``mh_utils`` can be installed from PyPI or Anaconda.
 
 To install with ``pip``:
 
 .. code-block:: bash
 
 	$ python -m pip install mh_utils
+
+To install with ``conda``:
+
+	* First add the required channels
+
+	.. code-block:: bash
+
+		$ conda config --add channels http://conda.anaconda.org/conda-forge
+		$ conda config --add channels http://conda.anaconda.org/domdfcoding
+
+	* Then install
+
+	.. code-block:: bash
+
+		$ conda install mh_utils
 
 .. end installation

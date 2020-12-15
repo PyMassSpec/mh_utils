@@ -1,6 +1,9 @@
-#  !/usr/bin/env python
+#!/usr/bin/env python
 #
 #  parser.py
+"""
+MassHunter worklist parser.
+"""
 #
 #  Copyright © 2020 Dominic Davis-Foster <dominic@davis-foster.co.uk>
 #

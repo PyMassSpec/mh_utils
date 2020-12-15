@@ -391,6 +391,8 @@ class RTRange:
 		return cls(start, end)
 
 
+# TODO: Subclass these from UserString and UserFloat
+
 @prettify_docstrings
 class Flag(str):
 	"""
@@ -408,7 +410,7 @@ class Flag(str):
 	def __deepcopy__(self, memodict={}):
 		return Flag(str(self), int(self.severity))
 
-	def __new__(cls: Type["Flag"], string: str, severity: int) -> "Flag":
+	def __new__(cls: Type["Flag"], string: str, severity: int) -> "Flag":  # noqa: D102
 		obj = super().__new__(cls, str(string))  # type: ignore
 		obj.severity = int(severity)
 
@@ -459,7 +461,7 @@ class Score(float):
 	def __init__(self, score, flag_string: str = '', flag_severity: int = 0):
 		float.__init__(float(score))
 
-	def __new__(cls, score, flag_string: str = '', flag_severity: int = 0) -> "Score":
+	def __new__(cls, score, flag_string: str = '', flag_severity: int = 0) -> "Score":  # noqa: D102
 		obj = super().__new__(cls, float(score))  # type: ignore
 		obj.flag = Flag(flag_string, flag_severity)
 
@@ -547,7 +549,7 @@ class LocationDict(TypedDict, total=False):
 
 class _CompoundStrPPrinter(FancyPrinter):
 
-	def _repr(self, object, context, level):
+	def _repr(self, object, context, level):  # noqa: A002  # pylint: disable=redefined-builtin
 		if isinstance(object, (Molecule, Formula)):
 			self._readable = True
 			self._recursive = False

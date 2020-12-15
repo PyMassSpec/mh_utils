@@ -196,7 +196,7 @@ def make_pcdl_csv(
 	:returns: A :class:`pandas.DataFrame` representing the content of the CSV output file.
 
 	.. versionadded:: 0.2.0
-	"""
+	"""  # noqa: D400
 
 	compound_list: List[PCDLCompound] = []
 

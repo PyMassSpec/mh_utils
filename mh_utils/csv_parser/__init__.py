@@ -64,7 +64,7 @@ class ResultParser:
 
 	def parse_for_directory(self, directory: PathLike):
 		"""
-		Convert the "CSV Results.csv" file in the given directory to CSV and JSON
+		Convert the "CSV Results.csv" file in the given directory to CSV and JSON.
 
 		:param directory:
 		"""
@@ -82,9 +82,9 @@ class ResultParser:
 
 	def parse_directory_list(self, directory_list: Iterable[PathLike]):
 		"""
-		Runs :meth:`.~ResultsParser.parse_for_directory` for each directory in ``directory_list``
+		Runs :meth:`.~ResultsParser.parse_for_directory` for each directory in ``directory_list``.
 
-		:param directory_list: A list of directories to process
+		:param directory_list: A list of directories to process.
 		"""
 
 		for directory in directory_list:
@@ -94,6 +94,7 @@ class ResultParser:
 
 def parse_masshunter_csv(csv_file: PathLike, csv_outfile: PathLike, json_outfile: PathLike):
 	"""
+	Parse CSV results files created by MassHunter.
 
 	:param csv_file:
 	:param csv_outfile:
@@ -101,6 +102,7 @@ def parse_masshunter_csv(csv_file: PathLike, csv_outfile: PathLike, json_outfile
 
 	.. versionadded:: 0.2.0
 	"""
+
 	# Read CSV file to data frame
 	results_df = pandas.read_csv(csv_file, header=1, index_col=False, dtype=str)
 

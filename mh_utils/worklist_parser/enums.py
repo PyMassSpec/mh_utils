@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 #
 #  enums.py
+"""
+Enumerations of values.
+"""
 #
 #  Copyright © 2020 Dominic Davis-Foster <dominic@davis-foster.co.uk>
 #

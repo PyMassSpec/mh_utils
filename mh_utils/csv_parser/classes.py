@@ -28,7 +28,7 @@ Classes to model parts of MassHunter CSV files.
 # stdlib
 from collections import OrderedDict
 from decimal import Decimal
-from typing import Dict, Iterable, List, Optional, Tuple
+from typing import Dict, Iterable, List, Optional, Tuple, Type, TypeVar
 
 # 3rd party
 import numpy  # type: ignore
@@ -37,6 +37,7 @@ import sdjson
 from cawdrey import AlphaDict
 from domdf_python_tools import doctools
 from domdf_python_tools.bases import Dictable
+from domdf_python_tools.doctools import prettify_docstrings
 from domdf_python_tools.paths import PathPlus
 from domdf_python_tools.typing import PathLike
 
@@ -49,12 +50,20 @@ __all__ = [
 		"SamplesScoresDict",
 		"encode_result_or_sample",
 		"encode_set",
-		"encode_decimal"
+		"encode_decimal",
+		"_S",
+		"_SL",
+		"_R",
 		]
 
 pandas.Series.__module_ = "pandas"
 
+_S = TypeVar("_S", bound="Sample")
+_SL = TypeVar("_SL", bound="SampleList")
+_R = TypeVar("_R", bound="Result")
 
+
+@prettify_docstrings
 class Sample(Dictable):
 	"""
 	Represents a sample in a MassHunter CSV file.
@@ -124,16 +133,22 @@ class Sample(Dictable):
 			raise TypeError(f"Unknown type for `results`: {type(results)}")
 
 	def add_result(self, result):
+		"""
+		Add a result to the sample.
+
+		:param result:
+		"""
+
 		self._results[result.index] = result
 
 	@property
-	def results_list(self):
+	def results_list(self) -> List["Result"]:
 		"""
-		Returns a list of results in the order in which they were identified
-		(i.e. sorted by the Cpd value from the csv export)
+		Returns a list of results in the order in which they were identified.
+
+		I.e. sorted by the ``Cpd`` value from the csv export.
 
 		:return:
-		:rtype:
 		"""
 
 		results_list = []
@@ -151,7 +166,14 @@ class Sample(Dictable):
 					)
 
 	@classmethod
-	def from_series(cls, series):
+	def from_series(cls: Type[_S], series) -> _S:
+		"""
+		Constuct a :class:`~.Sample` from a :class:`pandas.Series`.
+
+		:param series:
+		:return:
+		"""
+
 		sample_name = series["Sample Name"]
 		sample_type = series["Sample Type"]
 		filename = series["File"]
@@ -193,6 +215,7 @@ class Sample(Dictable):
 				)
 
 
+@prettify_docstrings
 class Result(Dictable):
 	"""
 	Represents a Result in a MassHunter CSV file.
@@ -309,7 +332,13 @@ class Result(Dictable):
 
 	# "Score (Tgt)",
 	@classmethod
-	def from_series(cls, series):
+	def from_series(cls: Type[_R], series: pandas.Series) -> _R:
+		"""
+		Consruct a :class:`~.classes.Result` from a :class:`pandas.Series`.
+
+		:param series:
+		"""
+
 		cas = series["CAS"]
 		name = series["Name"]
 		index = series["Cpd"]
@@ -430,6 +459,7 @@ class Result(Dictable):
 
 class SampleList(List[Sample]):
 	"""
+	A list of :class:`mh_utils.csv_parser.classes.Sample` objects.
 
 	.. versionadded:: 0.2.0
 	"""
@@ -440,7 +470,7 @@ class SampleList(List[Sample]):
 		Add a new sample to the list and return the
 		:class:`~classes.Sample` object representing it.
 
-		"""
+		"""  # noqa: D400
 
 		tmp_sample = Sample(*args, **kwargs)
 		return self.add_sample(tmp_sample)
@@ -466,9 +496,9 @@ class SampleList(List[Sample]):
 
 	def add_sample_from_series(self, series: pandas.Series) -> Sample:
 		"""
-		Create a new sample object from a :class:`pandas.series` and
-		add it to the list. The newly created :class:`~classes.Sample`
-		object is returned.
+		Create a new sample object from a :class:`pandas.series` and add it to the list.
+
+		:returns: The newly created :class:`~classes.Sample` object.
 
 		:param series:
 		"""
@@ -512,7 +542,8 @@ class SampleList(List[Sample]):
 		Rename the samples in the list.
 
 		:param rename_mapping: A mapping between current sample names and their new names.
-		Use ``None`` or omit the sample from the dictionary entirely to leave the name unchanged.
+
+		Use :py:obj:`None` or omit the sample from the dictionary entirely to leave the name unchanged.
 
 			For example:
 
@@ -543,10 +574,10 @@ class SampleList(List[Sample]):
 		:param compound_name:
 		:param include_none: Whether samples where the compound was not found
 			should be included in the results.
-		"""
+		"""  # noqa: D400
 
-		peak_areas = OrderedDict()
-		scores = OrderedDict()
+		peak_areas: "OrderedDict[str, Optional[float]]" = OrderedDict()
+		scores: "OrderedDict[str, Optional[Decimal]]" = OrderedDict()
 
 		for sample in self:
 			for result in sample.results_list:
@@ -569,7 +600,7 @@ class SampleList(List[Sample]):
 		:param compound_name:
 		:param include_none: Whether samples where the compound was not found
 			should be included in the results.
-		"""
+		"""  # noqa: D400
 
 		times = OrderedDict()
 
@@ -592,7 +623,7 @@ class SampleList(List[Sample]):
 		:param compound_name:
 		:param include_none: Whether samples where the compound was not found
 			should be included in the results.
-		"""
+		"""  # noqa: D400
 
 		return self.get_areas_and_scores(compound_name, include_none)[0]
 
@@ -608,7 +639,7 @@ class SampleList(List[Sample]):
 		:param compound_names:
 		:param include_none: Whether samples where none of the specified compounds
 			were found should be included in the results.
-		"""
+		"""  # noqa: D400
 
 		all_areas, all_scores = self.get_areas_and_scores_for_compounds(compound_names, include_none)
 		return all_areas
@@ -625,7 +656,7 @@ class SampleList(List[Sample]):
 		:param compound_names:
 		:param include_none: Whether samples where none of the specified compounds
 			were found should be included in the results.
-		"""
+		"""  # noqa: D400
 
 		tmp_all_areas = SamplesAreaDict()
 		tmp_all_scores = SamplesScoresDict()
@@ -677,21 +708,26 @@ class SampleList(List[Sample]):
 		:param compound_name:
 		:param include_none: Whether samples where the compound was not found
 			should be included in the results.
-		"""
+		"""  # noqa: D400
 
 		return self.get_areas_and_scores(compound_name, include_none)[1]
 
-	def filter(self, sample_names: Iterable[str], key: str = "sample_name", exclude: bool = False) -> "SampleList":
+	def filter(  # noqa: A003  # pylint: disable=redefined-builtin
+			self: _SL,
+			sample_names: Iterable[str],
+			key: str = "sample_name",
+			exclude: bool = False,
+			) -> _SL:
 		"""
 		Filter the list to only contain sample_names whose name is in ``sample_names``.
 
 		:param sample_names: A list of sample names to include
 		:param key: The name of the property in the sample to sort by.
-		:param exclude: If ``True``, any sample whose name is in ``sample_names``
+		:param exclude: If :py:obj:`True`, any sample whose name is in ``sample_names``
 			will be excluded from the output, rather than included.
 		"""
 
-		new_sample_list = SampleList()
+		new_sample_list = self.__class__()
 
 		for sample in self:
 			if exclude:
@@ -706,14 +742,19 @@ class SampleList(List[Sample]):
 		return new_sample_list
 
 	@property
-	def sample_names(self):
+	def sample_names(self) -> List[str]:
+		"""
+		Returns a list of sample names in the :class:`~.classes.SampleList`.
+		"""
+
 		return [sample.sample_name for sample in self]
 
 	@classmethod
-	def from_json_file(cls, filename: PathLike, **kwargs):
+	def from_json_file(cls: Type[_SL], filename: PathLike, **kwargs) -> _SL:
 		r"""
+		Construct a :class:`~.classes.SampleList` from JSON file.
 
-		:param filename:
+		:param filename: The filename of the JSON file.
 		:param \*\*kwargs: Keyword arguments passed to :meth:`domdf_python_tools.paths.PathPlus.load_json`.
 		"""
 
@@ -739,14 +780,26 @@ class BaseSamplePropertyDict(OrderedDict):
 
 	@property
 	def sample_names(self) -> List[str]:
+		"""
+		Returns a list of sample names in the :class:`~.BaseSamplePropertyDict`.
+		"""
+
 		return list(self.keys())
 
 	@property
 	def n_samples(self) -> int:
+		"""
+		Returns the number of samples in the :class:`~.BaseSamplePropertyDict`.
+		"""
+
 		return len(self.keys())
 
 	@property
 	def n_compounds(self) -> int:
+		"""
+		Returns the number of compounds in the :class:`~.BaseSamplePropertyDict`.
+		"""
+
 		for val in self.values():
 			return len(val)
 		return 0
@@ -754,13 +807,14 @@ class BaseSamplePropertyDict(OrderedDict):
 
 class SamplesAreaDict(BaseSamplePropertyDict):
 	"""
+	OrderedDict to store area information parsed from MassHunter results CSV files.
 
 	.. versionadded:: 0.2.0
 	"""
 
 	def get_compound_areas(self, compound_name: str) -> List[float]:
 		"""
-		Get the peak areas for the given compound in every sample
+		Get the peak areas for the given compound in every sample.
 
 		:param compound_name:
 		"""
@@ -780,13 +834,14 @@ class SamplesAreaDict(BaseSamplePropertyDict):
 
 class SamplesScoresDict(BaseSamplePropertyDict):
 	"""
+	OrderedDict to store score information parsed from MassHunter results CSV files.
 
 	.. versionadded:: 0.2.0
 	"""
 
 	def get_compound_scores(self, compound_name: str) -> List[float]:
 		"""
-		Get the peak scores for the given compound in every sample
+		Get the peak scores for the given compound in every sample.
 
 		:param compound_name:
 		"""
@@ -806,15 +861,15 @@ class SamplesScoresDict(BaseSamplePropertyDict):
 
 @sdjson.encoders.register(Sample)
 @sdjson.encoders.register(Result)
-def encode_result_or_sample(obj):
+def encode_result_or_sample(obj):  # noqa: D103
 	return dict(obj)
 
 
 @sdjson.encoders.register(set)
-def encode_set(obj):
+def encode_set(obj):  # noqa: D103
 	return list(obj)
 
 
 @sdjson.encoders.register(Decimal)
-def encode_decimal(obj):
+def encode_decimal(obj):  # noqa: D103
 	return str(obj)

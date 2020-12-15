@@ -30,6 +30,3 @@ pre_commit_exclude: ^tests/test_xml/.*\.xml$
 classifiers:
  - 'Intended Audience :: Developers'
  - 'Topic :: Software Development :: Libraries :: Python Modules'
-
-tox_unmanaged:
- - tox

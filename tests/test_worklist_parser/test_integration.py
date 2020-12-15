@@ -6,7 +6,8 @@ import pytest
 from domdf_python_tools.paths import PathPlus
 
 # this package
-from mh_utils.worklist_parser import Worklist, read_worklist
+from mh_utils.worklist_parser import read_worklist
+from mh_utils.worklist_parser.classes import Worklist
 
 worklist_file = pathlib.Path(__file__).parent / "test_worklist.wkl"
 

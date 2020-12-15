@@ -1,6 +1,5 @@
 # stdlib
 import pathlib
-import zipfile
 from zipimport import zipimporter
 
 # 3rd party

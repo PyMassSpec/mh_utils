@@ -1,5 +1,6 @@
 # 3rd party
 import pytest
+from domdf_python_tools.testing import check_file_regression
 from pytest_regressions.dataframe_regression import DataFrameRegressionFixture  # type: ignore
 from pytest_regressions.file_regression import FileRegressionFixture
 
@@ -238,9 +239,11 @@ def test_make_pcdl_csv(
 		dataframe_regression: DataFrameRegressionFixture,
 		):
 
-	dataframe_regression.check(make_pcdl_csv(target_compounds, tmp_pathplus / "all_compounds_pcdl.csv"))
-	file_regression.check(
+	df = make_pcdl_csv(target_compounds, tmp_pathplus / "all_compounds_pcdl.csv")
+
+	check_file_regression(
 			(tmp_pathplus / "all_compounds_pcdl.csv").read_text(),
-			encoding="UTF-8",
+			file_regression,
 			extension="_csv.csv",
 			)
+	dataframe_regression.check(df)

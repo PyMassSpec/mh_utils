@@ -16,7 +16,7 @@ python_versions:
   - 3.7
   - 3.8
   - 3.9
-
+  - 3.10-dev
 
 extra_sphinx_extensions:
   - enum_tools.autoenum
@@ -30,3 +30,6 @@ pre_commit_exclude: ^tests/test_xml/.*\.xml$
 classifiers:
  - 'Intended Audience :: Developers'
  - 'Topic :: Software Development :: Libraries :: Python Modules'
+
+tox_unmanaged:
+ - tox

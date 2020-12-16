@@ -35,3 +35,8 @@ classifiers:
 
 tox_requirements:
   - "tox-pip-version>=0.0.7"
+
+keywords:
+ - chemistry
+ - mass-spectrometry
+ - chromatography

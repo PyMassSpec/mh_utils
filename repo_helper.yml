@@ -9,7 +9,9 @@ version: '0.2.0'
 license: 'LGPLv3+'
 short_desc: 'Utilities for handing ancillary files produced by MassHunter.'
 
-enable_conda: False
+conda_channels:
+ - conda-forge
+ - domdfcoding
 
 python_versions:
   - 3.6

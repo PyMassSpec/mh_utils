@@ -20,6 +20,8 @@ mh_utils
 	  - |actions_linux| |actions_windows| |actions_macos| |coveralls| |codefactor| |pre_commit_ci|
 	* - PyPI
 	  - |pypi-version| |supported-versions| |supported-implementations| |wheel|
+	* - Anaconda
+	  - |conda-version| |conda-platform|
 	* - Activity
 	  - |commits-latest| |commits-since| |maintained|
 	* - Other
@@ -74,6 +76,14 @@ mh_utils
 	:wheel:
 	:alt: PyPI - Wheel
 
+.. |conda-version| image:: https://img.shields.io/conda/v/domdfcoding/mh_utils?logo=anaconda
+	:target: https://anaconda.org/domdfcoding/mh_utils
+	:alt: Conda - Package Version
+
+.. |conda-platform| image:: https://img.shields.io/conda/pn/domdfcoding/mh_utils?label=conda%7Cplatform
+	:target: https://anaconda.org/domdfcoding/mh_utils
+	:alt: Conda - Platform
+
 .. |license| github-shield::
 	:license:
 	:alt: License
@@ -114,6 +124,8 @@ Installation
 .. installation:: mh_utils
 	:pypi:
 	:github:
+	:anaconda:
+	:conda-channels: conda-forge, domdfcoding
 
 .. end installation
 

@@ -5,7 +5,7 @@ attr-utils>=0.5.4
 attrs>=20.2.0
 cawdrey>=0.2.0
 chemistry-tools[formulae]>=0.4.0
-domdf-python-tools>=0.4.9
+domdf-python-tools>=2.0.1
 enum-tools>=0.6.1
 lxml>=4.6.0
 numpy>=1.19.4; platform_system != "Windows"

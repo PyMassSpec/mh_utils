@@ -1,5 +1,5 @@
 # 3rd party
-from betamax import Betamax
+from betamax import Betamax  # type: ignore
 from domdf_python_tools.paths import PathPlus
 
 pytest_plugins = ("domdf_python_tools.testing", )

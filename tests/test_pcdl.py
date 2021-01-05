@@ -1,11 +1,31 @@
 # 3rd party
 import pytest
+from _pytest.fixtures import FixtureRequest
+from betamax import Betamax  # type: ignore
+from chemistry_tools import cached_requests
 from domdf_python_tools.testing import check_file_regression
-from pytest_regressions.dataframe_regression import DataFrameRegressionFixture  # type: ignore
+from pytest_regressions.dataframe_regression import DataFrameRegressionFixture
 from pytest_regressions.file_regression import FileRegressionFixture
 
 # this package
 from mh_utils.pcdl import make_pcdl_csv
+
+
+@pytest.fixture()
+def pcdl_cassette(request: FixtureRequest):
+	"""
+	Provides a Betamax cassette scoped to the test module
+	which record and plays back interactions with the PubChem API.
+	"""  # noqa: D400
+
+	cassette_name = request.module.__name__.split('.')[-1]
+
+	with Betamax(cached_requests) as vcr:
+		# print(f"Using cassette {cassette_name!r}")
+		vcr.use_cassette(cassette_name, record="none")
+
+		yield cached_requests
+
 
 target_compounds = [
 		# ("Compound", "CAS"),
@@ -232,11 +252,11 @@ target_compounds = [
 		]
 
 
-@pytest.mark.flaky(reruns=5, reruns_delay=120)
 def test_make_pcdl_csv(
 		tmp_pathplus,
 		file_regression: FileRegressionFixture,
 		dataframe_regression: DataFrameRegressionFixture,
+		pcdl_cassette,
 		):
 
 	df = make_pcdl_csv(target_compounds, tmp_pathplus / "all_compounds_pcdl.csv")

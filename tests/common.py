@@ -8,8 +8,8 @@ from typing import List
 # 3rd party
 import pytest
 from _pytest.mark import MarkDecorator
+from domdf_python_tools.iterative import Len
 from domdf_python_tools.testing import testing_boolean_values
-from domdf_python_tools.utils import Len
 
 whitespace = " \t\n\r"
 

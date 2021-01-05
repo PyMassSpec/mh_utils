@@ -1,7 +1,8 @@
 git+https://github.com/ESSS/pytest-regressions
+betamax>=0.8.1
 coverage>=5.1
 coverage-pyver-pragma>=0.0.6
-domdf-python-tools[testing]>=1.6.0
+domdf-python-tools[testing]>=2.0.1
 importlib-resources>=3.0.0
 iniconfig!=1.1.0,>=1.0.1
 mathematical>=0.3.0

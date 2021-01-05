@@ -1,14 +1,8 @@
-# stdlib
-import os
-from pathlib import Path
-
 # 3rd party
-import pytest
+from betamax import Betamax
+from domdf_python_tools.paths import PathPlus
 
 pytest_plugins = ("domdf_python_tools.testing", )
 
-
-@pytest.fixture()
-def original_datadir(request) -> Path:
-	# Work around pycharm confusing datadir with test file.
-	return Path(os.path.splitext(request.module.__file__)[0] + '_')
+with Betamax.configure() as config:
+	config.cassette_library_dir = PathPlus(__file__).parent / "cassettes"

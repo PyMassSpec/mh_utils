@@ -77,7 +77,6 @@ from domdf_python_tools.doctools import prettify_docstrings
 from domdf_python_tools.pretty_print import FancyPrinter
 from domdf_python_tools.stringlist import DelimitedList
 from domdf_python_tools.typing import PathLike
-from lxml import objectify
 from typing_extensions import TypedDict
 
 # this package
@@ -726,7 +725,7 @@ def parse_cef(filename: PathLike) -> CompoundList:
 	:param filename: The filename of the CEF file to read.
 	"""
 
-	tree = objectify.parse(str(filename))
+	tree = lxml.objectify.parse(str(filename))
 	root = tree.getroot()
 	version = root.attrib["version"]
 	compounds = CompoundList.from_xml(root.CompoundList)

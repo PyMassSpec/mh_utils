@@ -60,7 +60,7 @@ class JobData(Dictable):
 
 	def __init__(
 			self,
-			id: Union[str, UUID],  # noqa: A002
+			id: Union[str, UUID],  # noqa: A002  # pylint: disable=redefined-builtin
 			job_type: int,
 			run_status: int,
 			sample_info: Optional[dict] = None,

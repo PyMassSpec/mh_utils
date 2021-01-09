@@ -18,7 +18,7 @@ from tests.test_worklist_parser.test_parser import FakeSampleElement
 				(UUID("{B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C}"), '7', '1'),
 				],
 		)
-def test_creation(id, job_type, run_status):  # noqa: A002
+def test_creation(id, job_type, run_status):  # noqa: A002  # pylint: disable=redefined-builtin
 	data = JobData(
 			id=id,
 			job_type=job_type,
@@ -40,7 +40,7 @@ def test_creation(id, job_type, run_status):  # noqa: A002
 				(UUID("{B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C}"), '7', '1', {"foo": "a string"}),
 				],
 		)
-def test_creation_sample_info(id, job_type, run_status, sample_info):  # noqa: A002
+def test_creation_sample_info(id, job_type, run_status, sample_info):  # noqa: A002  # pylint: disable=redefined-builtin
 	data = JobData(
 			id=id,
 			job_type=job_type,

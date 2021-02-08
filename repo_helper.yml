@@ -14,11 +14,12 @@ conda_channels:
  - domdfcoding
 
 python_versions:
-  - 3.6
-  - 3.7
-  - 3.8
-  - 3.9
-  - 3.10-dev
+ - '3.6'
+ - '3.7'
+ - '3.8'
+ - '3.9'
+ - 3.10-dev
+ - rustpython
 
 extra_sphinx_extensions:
   - enum_tools.autoenum

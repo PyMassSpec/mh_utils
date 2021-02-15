@@ -119,5 +119,10 @@ def parse_masshunter_csv(csv_file: PathLike, csv_outfile: PathLike, json_outfile
 		tmp_result = Result.from_series(result)
 		sample.add_result(tmp_result)
 
-	with open(json_outfile, 'w') as fp:
-		sdjson.dump(samples, fp, indent=2)
+	PathPlus(json_outfile).dump_json(
+			samples,
+			json_library=sdjson,  # type: ignore
+			indent=2,
+			)
+	# TODO: https://github.com/python/mypy/issues/5018
+	# If it ever gets fixed

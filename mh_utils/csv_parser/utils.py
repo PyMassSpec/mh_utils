@@ -29,6 +29,7 @@ from typing import Optional
 # 3rd party
 import pandas  # type: ignore
 import sdjson
+from domdf_python_tools.paths import PathPlus
 from domdf_python_tools.typing import PathLike
 
 # this package
@@ -199,14 +200,22 @@ def concatenate_json(*files: PathLike, outfile: Optional[PathLike] = None) -> Sa
 	all_samples = SampleList()
 
 	for json_file in files:
-		with open(json_file) as fp:
-			samples = sdjson.load(fp)
+		samples = PathPlus(json_file).load_json(
+				json_library=sdjson,  # type: ignore
+				)
+		# TODO: https://github.com/python/mypy/issues/5018
+		# If it ever gets fixed
 
 		for sample in samples:
 			all_samples.append(Sample(**sample))
 
 	if outfile is not None:
-		with open(outfile, 'w') as fp:
-			sdjson.dump(all_samples, fp, indent=2)
+		PathPlus(outfile).dump_json(
+				all_samples,
+				json_library=sdjson,  # type: ignore
+				indent=2,
+				)
+		# TODO: https://github.com/python/mypy/issues/5018
+		# If it ever gets fixed
 
 	return all_samples

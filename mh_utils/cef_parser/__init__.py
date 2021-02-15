@@ -411,7 +411,7 @@ class Flag(str):
 		return Flag(str(self), int(self.severity))
 
 	def __new__(cls: Type["Flag"], string: str, severity: int) -> "Flag":  # noqa: D102
-		obj = super().__new__(cls, str(string))  # type: ignore
+		obj = super().__new__(cls, str(string))
 		obj.severity = int(severity)
 
 		return obj
@@ -462,7 +462,7 @@ class Score(float):
 		float.__init__(float(score))
 
 	def __new__(cls, score, flag_string: str = '', flag_severity: int = 0) -> "Score":  # noqa: D102
-		obj = super().__new__(cls, float(score))  # type: ignore
+		obj = super().__new__(cls, float(score))
 		obj.flag = Flag(flag_string, flag_severity)
 
 		return obj

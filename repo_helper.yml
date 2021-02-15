@@ -1,4 +1,4 @@
-# Configuration for 'repo_helper' (https://github.com/domdfcoding/repo_helper
+# Configuration for 'repo_helper' (https://github.com/domdfcoding/repo_helper)
 ---
 modname: 'mh_utils'
 copyright_years: 2020-2021
@@ -11,7 +11,6 @@ short_desc: 'Utilities for handing ancillary files produced by MassHunter.'
 
 conda_channels:
  - conda-forge
- - domdfcoding
 
 python_versions:
  - '3.6'
@@ -21,11 +20,11 @@ python_versions:
  - 3.10-dev
 
 extra_sphinx_extensions:
-  - enum_tools.autoenum
-  - attr_utils.autoattrs
+ - enum_tools.autoenum
+ - attr_utils.autoattrs
 
 mypy_plugins:
-  - attr_utils.mypy_plugin
+ - attr_utils.mypy_plugin
 
 pre_commit_exclude: ^tests/test_xml/.*\.xml$
 
@@ -33,10 +32,9 @@ classifiers:
  - 'Intended Audience :: Developers'
  - 'Topic :: Software Development :: Libraries :: Python Modules'
 
-tox_requirements:
-  - "tox-pip-version>=0.0.7"
-
 keywords:
  - chemistry
  - mass-spectrometry
  - chromatography
+
+min_coverage: 85

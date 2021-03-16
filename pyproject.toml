@@ -1,6 +1,6 @@
 [build-system]
-requires = [ "setuptools>=40.6.0", "wheel>=0.34.2",]
-build-backend = "setuptools.build_meta"
+requires = [ "whey",]
+build-backend = "whey"
 
 [project]
 name = "mh_utils"
@@ -21,3 +21,14 @@ Homepage = "https://github.com/domdfcoding/mh_utils"
 "Issue Tracker" = "https://github.com/domdfcoding/mh_utils/issues"
 "Source Code" = "https://github.com/domdfcoding/mh_utils"
 Documentation = "https://mh_utils.readthedocs.io/en/latest"
+
+[tool.whey]
+base-classifiers = [
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
+]
+python-versions = [ "3.6", "3.7", "3.8", "3.9",]
+python-implementations = [ "CPython",]
+platforms = [ "Windows", "macOS", "Linux",]
+license-key = "LGPL-3.0-or-later"

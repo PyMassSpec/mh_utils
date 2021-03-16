@@ -9,6 +9,10 @@ version: '0.2.1'
 license: 'LGPLv3+'
 short_desc: 'Utilities for handing ancillary files produced by MassHunter.'
 
+use_whey: true
+min_coverage: 85
+pre_commit_exclude: ^tests/test_xml/.*\.xml$
+
 conda_channels:
  - conda-forge
 
@@ -26,8 +30,6 @@ extra_sphinx_extensions:
 mypy_plugins:
  - attr_utils.mypy_plugin
 
-pre_commit_exclude: ^tests/test_xml/.*\.xml$
-
 classifiers:
  - 'Intended Audience :: Developers'
  - 'Topic :: Software Development :: Libraries :: Python Modules'
@@ -36,5 +38,3 @@ keywords:
  - chemistry
  - mass-spectrometry
  - chromatography
-
-min_coverage: 85

@@ -1,3 +1,23 @@
 [build-system]
 requires = [ "setuptools>=40.6.0", "wheel>=0.34.2",]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "mh_utils"
+version = "0.2.1"
+description = "Utilities for handing ancillary files produced by MassHunter."
+readme = "README.rst"
+keywords = [ "chemistry", "mass-spectrometry", "chromatography",]
+dynamic = [ "requires-python", "classifiers", "dependencies",]
+[[project.authors]]
+email = "dominic@davis-foster.co.uk"
+name = "Dominic Davis-Foster"
+
+[project.license]
+file = "LICENSE"
+
+[project.urls]
+Homepage = "https://github.com/domdfcoding/mh_utils"
+"Issue Tracker" = "https://github.com/domdfcoding/mh_utils/issues"
+"Source Code" = "https://github.com/domdfcoding/mh_utils"
+Documentation = "https://mh_utils.readthedocs.io/en/latest"

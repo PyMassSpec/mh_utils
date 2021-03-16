@@ -402,6 +402,7 @@ class Flag(str):
 	:param severity: The severity of the flag
 	"""
 
+	__slots__ = ("severity", )
 	severity: int
 
 	def __copy__(self):

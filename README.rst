@@ -101,7 +101,7 @@ mh_utils
 .. |language| image:: https://img.shields.io/github/languages/top/domdfcoding/mh_utils
 	:alt: GitHub top language
 
-.. |commits-since| image:: https://img.shields.io/github/commits-since/domdfcoding/mh_utils/v0.2.1
+.. |commits-since| image:: https://img.shields.io/github/commits-since/domdfcoding/mh_utils/v0.2.2
 	:target: https://github.com/domdfcoding/mh_utils/pulse
 	:alt: GitHub commits since tagged version
 

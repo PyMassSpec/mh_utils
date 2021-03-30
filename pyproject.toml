@@ -9,17 +9,19 @@ description = "Utilities for handing ancillary files produced by MassHunter."
 readme = "README.rst"
 keywords = [ "chemistry", "mass-spectrometry", "chromatography",]
 dynamic = [ "requires-python", "classifiers", "dependencies",]
+
 [[project.authors]]
 email = "dominic@davis-foster.co.uk"
 name = "Dominic Davis-Foster"
+
 
 [project.license]
 file = "LICENSE"
 
 [project.urls]
-Homepage = "https://github.com/domdfcoding/mh_utils"
-"Issue Tracker" = "https://github.com/domdfcoding/mh_utils/issues"
-"Source Code" = "https://github.com/domdfcoding/mh_utils"
+Homepage = "https://github.com/PyMassSpec/mh_utils"
+"Issue Tracker" = "https://github.com/PyMassSpec/mh_utils/issues"
+"Source Code" = "https://github.com/PyMassSpec/mh_utils"
 Documentation = "https://mh_utils.readthedocs.io/en/latest"
 
 [tool.whey]

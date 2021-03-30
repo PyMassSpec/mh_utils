@@ -34,40 +34,40 @@ mh_utils
 	:target: https://mh_utils.readthedocs.io/en/latest
 	:alt: Documentation Build Status
 
-.. |docs_check| image:: https://github.com/domdfcoding/mh_utils/workflows/Docs%20Check/badge.svg
-	:target: https://github.com/domdfcoding/mh_utils/actions?query=workflow%3A%22Docs+Check%22
+.. |docs_check| image:: https://github.com/PyMassSpec/mh_utils/workflows/Docs%20Check/badge.svg
+	:target: https://github.com/PyMassSpec/mh_utils/actions?query=workflow%3A%22Docs+Check%22
 	:alt: Docs Check Status
 
-.. |actions_linux| image:: https://github.com/domdfcoding/mh_utils/workflows/Linux/badge.svg
-	:target: https://github.com/domdfcoding/mh_utils/actions?query=workflow%3A%22Linux%22
+.. |actions_linux| image:: https://github.com/PyMassSpec/mh_utils/workflows/Linux/badge.svg
+	:target: https://github.com/PyMassSpec/mh_utils/actions?query=workflow%3A%22Linux%22
 	:alt: Linux Test Status
 
-.. |actions_windows| image:: https://github.com/domdfcoding/mh_utils/workflows/Windows/badge.svg
-	:target: https://github.com/domdfcoding/mh_utils/actions?query=workflow%3A%22Windows%22
+.. |actions_windows| image:: https://github.com/PyMassSpec/mh_utils/workflows/Windows/badge.svg
+	:target: https://github.com/PyMassSpec/mh_utils/actions?query=workflow%3A%22Windows%22
 	:alt: Windows Test Status
 
-.. |actions_macos| image:: https://github.com/domdfcoding/mh_utils/workflows/macOS/badge.svg
-	:target: https://github.com/domdfcoding/mh_utils/actions?query=workflow%3A%22macOS%22
+.. |actions_macos| image:: https://github.com/PyMassSpec/mh_utils/workflows/macOS/badge.svg
+	:target: https://github.com/PyMassSpec/mh_utils/actions?query=workflow%3A%22macOS%22
 	:alt: macOS Test Status
 
-.. |actions_flake8| image:: https://github.com/domdfcoding/mh_utils/workflows/Flake8/badge.svg
-	:target: https://github.com/domdfcoding/mh_utils/actions?query=workflow%3A%22Flake8%22
+.. |actions_flake8| image:: https://github.com/PyMassSpec/mh_utils/workflows/Flake8/badge.svg
+	:target: https://github.com/PyMassSpec/mh_utils/actions?query=workflow%3A%22Flake8%22
 	:alt: Flake8 Status
 
-.. |actions_mypy| image:: https://github.com/domdfcoding/mh_utils/workflows/mypy/badge.svg
-	:target: https://github.com/domdfcoding/mh_utils/actions?query=workflow%3A%22mypy%22
+.. |actions_mypy| image:: https://github.com/PyMassSpec/mh_utils/workflows/mypy/badge.svg
+	:target: https://github.com/PyMassSpec/mh_utils/actions?query=workflow%3A%22mypy%22
 	:alt: mypy status
 
-.. |requires| image:: https://requires.io/github/domdfcoding/mh_utils/requirements.svg?branch=master
-	:target: https://requires.io/github/domdfcoding/mh_utils/requirements/?branch=master
+.. |requires| image:: https://requires.io/github/PyMassSpec/mh_utils/requirements.svg?branch=master
+	:target: https://requires.io/github/PyMassSpec/mh_utils/requirements/?branch=master
 	:alt: Requirements Status
 
-.. |coveralls| image:: https://img.shields.io/coveralls/github/domdfcoding/mh_utils/master?logo=coveralls
-	:target: https://coveralls.io/github/domdfcoding/mh_utils?branch=master
+.. |coveralls| image:: https://img.shields.io/coveralls/github/PyMassSpec/mh_utils/master?logo=coveralls
+	:target: https://coveralls.io/github/PyMassSpec/mh_utils?branch=master
 	:alt: Coverage
 
-.. |codefactor| image:: https://img.shields.io/codefactor/grade/github/domdfcoding/mh_utils?logo=codefactor
-	:target: https://www.codefactor.io/repository/github/domdfcoding/mh_utils
+.. |codefactor| image:: https://img.shields.io/codefactor/grade/github/PyMassSpec/mh_utils?logo=codefactor
+	:target: https://www.codefactor.io/repository/github/PyMassSpec/mh_utils
 	:alt: CodeFactor Grade
 
 .. |pypi-version| image:: https://img.shields.io/pypi/v/mh_utils
@@ -94,19 +94,19 @@ mh_utils
 	:target: https://anaconda.org/domdfcoding/mh_utils
 	:alt: Conda - Platform
 
-.. |license| image:: https://img.shields.io/github/license/domdfcoding/mh_utils
-	:target: https://github.com/domdfcoding/mh_utils/blob/master/LICENSE
+.. |license| image:: https://img.shields.io/github/license/PyMassSpec/mh_utils
+	:target: https://github.com/PyMassSpec/mh_utils/blob/master/LICENSE
 	:alt: License
 
-.. |language| image:: https://img.shields.io/github/languages/top/domdfcoding/mh_utils
+.. |language| image:: https://img.shields.io/github/languages/top/PyMassSpec/mh_utils
 	:alt: GitHub top language
 
-.. |commits-since| image:: https://img.shields.io/github/commits-since/domdfcoding/mh_utils/v0.2.2
-	:target: https://github.com/domdfcoding/mh_utils/pulse
+.. |commits-since| image:: https://img.shields.io/github/commits-since/PyMassSpec/mh_utils/v0.2.2
+	:target: https://github.com/PyMassSpec/mh_utils/pulse
 	:alt: GitHub commits since tagged version
 
-.. |commits-latest| image:: https://img.shields.io/github/last-commit/domdfcoding/mh_utils
-	:target: https://github.com/domdfcoding/mh_utils/commit/master
+.. |commits-latest| image:: https://img.shields.io/github/last-commit/PyMassSpec/mh_utils
+	:target: https://github.com/PyMassSpec/mh_utils/commit/master
 	:alt: GitHub last commit
 
 .. |maintained| image:: https://img.shields.io/maintenance/yes/2021
@@ -116,8 +116,8 @@ mh_utils
 	:target: https://pypi.org/project/mh_utils/
 	:alt: PyPI - Downloads
 
-.. |pre_commit_ci| image:: https://results.pre-commit.ci/badge/github/domdfcoding/mh_utils/master.svg
-	:target: https://results.pre-commit.ci/latest/github/domdfcoding/mh_utils/master
+.. |pre_commit_ci| image:: https://results.pre-commit.ci/badge/github/PyMassSpec/mh_utils/master.svg
+	:target: https://results.pre-commit.ci/latest/github/PyMassSpec/mh_utils/master
 	:alt: pre-commit.ci status
 
 .. end shields

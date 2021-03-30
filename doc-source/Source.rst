@@ -3,13 +3,13 @@ Downloading source code
 =========================
 
 The ``mh_utils`` source code is available on GitHub,
-and can be accessed from the following URL: https://github.com/domdfcoding/mh_utils
+and can be accessed from the following URL: https://github.com/PyMassSpec/mh_utils
 
 If you have ``git`` installed, you can clone the repository with the following command:
 
 .. code-block:: bash
 
-    $ git clone https://github.com/domdfcoding/mh_utils"
+    $ git clone https://github.com/PyMassSpec/mh_utils"
     > Cloning into 'mh_utils'...
     > remote: Enumerating objects: 47, done.
     > remote: Counting objects: 100% (47/47), done.

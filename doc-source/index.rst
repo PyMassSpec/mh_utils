@@ -4,7 +4,7 @@ mh_utils
 
 .. start short_desc
 
-**Utilities for handing ancillary files produced by MassHunter.**
+.. documentation-summary::
 
 .. end short_desc
 

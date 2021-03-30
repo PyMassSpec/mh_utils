@@ -9,9 +9,11 @@ description = "Utilities for handing ancillary files produced by MassHunter."
 readme = "README.rst"
 keywords = [ "chemistry", "mass-spectrometry", "chromatography",]
 dynamic = [ "requires-python", "classifiers", "dependencies",]
+
 [[project.authors]]
 email = "dominic@davis-foster.co.uk"
 name = "Dominic Davis-Foster"
+
 
 [project.license]
 file = "LICENSE"

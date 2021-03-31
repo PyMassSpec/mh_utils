@@ -2,6 +2,8 @@
 :mod:`mh_utils.cef_parser`
 ===========================
 
+.. module:: mh_utils.cef_parser
+
 .. automodule:: mh_utils.cef_parser
 	:noindex:
 	:no-members:

@@ -2,6 +2,8 @@
 :mod:`mh_utils.worklist_parser`
 ================================
 
+.. module:: mh_utils.worklist_parser
+
 .. automodule:: mh_utils.worklist_parser.__init__
 	:noindex:
 	:no-members:

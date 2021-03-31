@@ -26,8 +26,13 @@ Documentation = "https://mh_utils.readthedocs.io/en/latest"
 
 [tool.whey]
 base-classifiers = [
+    "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+    "Topic :: Scientific/Engineering :: Chemistry",
     "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Utilities",
     "Typing :: Typed",
 ]
 python-versions = [ "3.6", "3.7", "3.8", "3.9",]

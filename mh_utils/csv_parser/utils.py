@@ -3,6 +3,8 @@
 #  utils.py
 """
 CSV utility functions.
+
+.. versionadded:: 0.2.0
 """
 #
 #  Copyright (c) 2020 Dominic Davis-Foster <dominic@davis-foster.co.uk>
@@ -48,8 +50,6 @@ def drop_columns(df: pandas.DataFrame, *, axis: int = 1, inplace: bool = True, *
 	:param axis: Which axis to drop columns on.
 	:param inplace: Whether to modify the :class:`pandas.DataFrame` in place.
 	:param kwargs: Additional keyword arguments passed to :meth:`pandas.DataFrame.drop`.
-
-	.. versionadded:: 0.2.0
 	"""
 
 	# Columns where I have no idea what they represent
@@ -128,8 +128,6 @@ def reorder_columns(df: pandas.DataFrame) -> pandas.DataFrame:
 	Reorder columns from the MassHunter CSV file.
 
 	:param df: The :class:`pandas.DataFrame` to reorder columns in.
-
-	.. versionadded:: 0.2.0
 	"""
 
 	# Make sure to remove columns that got deleted above
@@ -193,8 +191,6 @@ def concatenate_json(*files: PathLike, outfile: Optional[PathLike] = None) -> Sa
 
 	:param \*files: The files to concatenate.
 	:param outfile: The file to save the output as. If :py:obj:`None` no file will be saved.
-
-	.. versionadded:: 0.2.0
 	"""  # noqa: D400
 
 	all_samples = SampleList()

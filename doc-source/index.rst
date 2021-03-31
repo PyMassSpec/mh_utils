@@ -127,8 +127,9 @@ mh_utils
 
 The current utilities are as follows:
 
-* :mod:`mh_utils.worklist_parser`: Parse Agilent MassHunter Worklists (``*.wkl`` files).
 * :mod:`mh_utils.cef_parser`: Parse Agilent MassHunter Compound Exchange Format files (``*.cef`` files).
+* :mod:`mh_utils.csv_parser`: Parser for CSV result files produced by MassHunter Qualitative.
+* :mod:`mh_utils.worklist_parser`: Parse Agilent MassHunter Worklists (``*.wkl`` files).
 
 Installation
 ---------------

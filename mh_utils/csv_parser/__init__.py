@@ -47,9 +47,7 @@ class ResultParser:
 
 	:param raw_results_dir: The directory in which the raw exports from MassHunter are stored.
 	:param json_results_dir: The directory to store the output json files in.
-	:param csv_results_dir: The directory to store the output csvfiles in.
-
-	.. versionadded:: 0.2.0
+	:param csv_results_dir: The directory to store the output csv files in.
 	"""
 
 	def __init__(self, raw_results_dir: PathLike, json_results_dir: PathLike, csv_results_dir: PathLike):
@@ -99,8 +97,6 @@ def parse_masshunter_csv(csv_file: PathLike, csv_outfile: PathLike, json_outfile
 	:param csv_file:
 	:param csv_outfile:
 	:param json_outfile:
-
-	.. versionadded:: 0.2.0
 	"""
 
 	# Read CSV file to data frame

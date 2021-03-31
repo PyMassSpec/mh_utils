@@ -78,8 +78,6 @@ class Sample(Dictable):
 	:param irm_cal_status:
 	:param filename:
 	:param results:
-
-	.. versionadded:: 0.2.0
 	"""
 
 	def __init__(
@@ -253,8 +251,6 @@ class Result(Dictable):
 	:param flags:
 	:param flag_severity:
 	:param flag_severity_code:
-
-	.. versionadded:: 0.2.0
 	"""
 
 	def __init__(
@@ -460,8 +456,6 @@ class Result(Dictable):
 class SampleList(List[Sample]):
 	"""
 	A list of :class:`mh_utils.csv_parser.classes.Sample` objects.
-
-	.. versionadded:: 0.2.0
 	"""
 
 	@doctools.append_docstring_from(Sample.__init__)
@@ -774,8 +768,6 @@ class BaseSamplePropertyDict(OrderedDict):
 	OrderedDict to store a single property of a set of samples.
 
 	Keys are the sample names and the values are dictionaries mapping compound names to property values.
-
-	.. versionadded:: 0.2.0
 	"""
 
 	@property
@@ -807,9 +799,7 @@ class BaseSamplePropertyDict(OrderedDict):
 
 class SamplesAreaDict(BaseSamplePropertyDict):
 	"""
-	OrderedDict to store area information parsed from MassHunter results CSV files.
-
-	.. versionadded:: 0.2.0
+	:class:`collections.OrderedDict` to store area information parsed from MassHunter results CSV files.
 	"""
 
 	def get_compound_areas(self, compound_name: str) -> List[float]:
@@ -834,9 +824,7 @@ class SamplesAreaDict(BaseSamplePropertyDict):
 
 class SamplesScoresDict(BaseSamplePropertyDict):
 	"""
-	OrderedDict to store score information parsed from MassHunter results CSV files.
-
-	.. versionadded:: 0.2.0
+	:class:`collections.OrderedDict` to store score information parsed from MassHunter results CSV files.
 	"""
 
 	def get_compound_scores(self, compound_name: str) -> List[float]:

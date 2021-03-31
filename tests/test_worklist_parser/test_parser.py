@@ -5,7 +5,7 @@ from pathlib import PureWindowsPath
 
 # 3rd party
 import pytest
-from domdf_python_tools.testing import count, whitespace_perms
+from coincidence.params import count, whitespace_perms
 
 # this package
 from mh_utils.utils import camel_to_snake

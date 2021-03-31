@@ -1,6 +1,6 @@
 # 3rd party
 import pytest
-from domdf_python_tools.testing import testing_boolean_values
+from coincidence.params import testing_boolean_values
 
 true_false_strings = testing_boolean_values(extra_truthy=[-1]).mark.args[1]
 

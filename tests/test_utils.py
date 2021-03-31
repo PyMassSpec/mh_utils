@@ -3,7 +3,7 @@ from pathlib import PureWindowsPath
 
 # 3rd party
 import pytest
-from domdf_python_tools.testing import count, testing_boolean_values, whitespace_perms
+from coincidence.params import count, testing_boolean_values, whitespace_perms
 
 # this package
 from mh_utils.utils import as_path, camel_to_snake, element_to_bool

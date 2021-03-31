@@ -3,9 +3,9 @@ import pytest
 from _pytest.fixtures import FixtureRequest
 from betamax import Betamax  # type: ignore
 from chemistry_tools import cached_requests
-from domdf_python_tools.testing import check_file_regression
+from coincidence.regressions import AdvancedFileRegressionFixture
+from domdf_python_tools.paths import PathPlus
 from pytest_regressions.dataframe_regression import DataFrameRegressionFixture
-from pytest_regressions.file_regression import FileRegressionFixture
 
 # this package
 from mh_utils.pcdl import make_pcdl_csv
@@ -253,17 +253,13 @@ target_compounds = [
 
 
 def test_make_pcdl_csv(
-		tmp_pathplus,
-		file_regression: FileRegressionFixture,
+		tmp_pathplus: PathPlus,
+		advanced_file_regression: AdvancedFileRegressionFixture,
 		dataframe_regression: DataFrameRegressionFixture,
 		pcdl_cassette,
 		):
 
 	df = make_pcdl_csv(target_compounds, tmp_pathplus / "all_compounds_pcdl.csv")
 
-	check_file_regression(
-			(tmp_pathplus / "all_compounds_pcdl.csv").read_text(),
-			file_regression,
-			extension="_csv.csv",
-			)
+	advanced_file_regression.check_file(tmp_pathplus / "all_compounds_pcdl.csv", extension="_csv.csv")
 	dataframe_regression.check(df)

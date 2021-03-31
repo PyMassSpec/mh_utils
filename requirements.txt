@@ -1,6 +1,3 @@
-# TODO: Numpy is broken in Windows 2004 except for 1.19.3+
-# A fix should be out by end of Jan 2021 🙈
-# https://developercommunity.visualstudio.com/content/problem/1207405/fmod-after-an-update-to-windows-2004-is-causing-a.html
 attr-utils>=0.5.4
 attrs>=20.2.0
 cawdrey>=0.2.0
@@ -9,7 +6,7 @@ domdf-python-tools>=2.0.1
 enum-tools>=0.6.1
 lxml>=4.6.0
 numpy>=1.19.4; platform_system != "Windows"
-numpy!=1.19.4,<1.20,>=1.19.3; platform_system == "Windows"
+numpy!=1.19.4,>=1.19.3; platform_system == "Windows"
 pandas>=1.1.3
 sdjson>=0.3.0
 typing-extensions>=3.7.4.3

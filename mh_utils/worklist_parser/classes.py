@@ -2,7 +2,7 @@
 #
 #  classes.py
 """
-Main classes for the worklist paser.
+Main classes for the worklist parser.
 """
 #
 #  Copyright © 2020 Dominic Davis-Foster <dominic@davis-foster.co.uk>

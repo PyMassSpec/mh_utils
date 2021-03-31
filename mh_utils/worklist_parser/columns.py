@@ -114,7 +114,9 @@ class Column:
 	@classmethod
 	def from_attribute(cls, attribute: "Attribute") -> "Column":
 		"""
-		Construct a column for an :class:`~mh_utils.worklist_parser.classes.Attribute`.
+		Construct a column for a :class:`mh_utils.worklist_parser.classes.Attribute`.
+
+		:param attribute: :class:`~mh_utils.worklist_parser.classes.Attribute`
 		"""
 
 		dtype: Union[Type, object]

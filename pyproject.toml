@@ -33,4 +33,4 @@ base-classifiers = [
 python-versions = [ "3.6", "3.7", "3.8", "3.9",]
 python-implementations = [ "CPython",]
 platforms = [ "Windows", "macOS", "Linux",]
-license-key = "LGPL-3.0-or-later"
+license-key = "MIT"

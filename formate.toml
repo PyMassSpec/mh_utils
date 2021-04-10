@@ -35,6 +35,7 @@ known_third_party = [
     "attr",
     "attr_utils",
     "attrs",
+    "backports_entry_points_selectable",
     "betamax",
     "cawdrey",
     "chemistry_tools",

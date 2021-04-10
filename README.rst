@@ -26,7 +26,7 @@ mh_utils
 	* - Activity
 	  - |commits-latest| |commits-since| |maintained| |pypi-downloads|
 	* - QA
-	  - |codefactor| |actions_flake8| |actions_mypy| |pre_commit_ci|
+	  - |codefactor| |actions_flake8| |actions_mypy|
 	* - Other
 	  - |license| |language| |requires|
 
@@ -115,10 +115,6 @@ mh_utils
 .. |pypi-downloads| image:: https://img.shields.io/pypi/dm/mh_utils
 	:target: https://pypi.org/project/mh_utils/
 	:alt: PyPI - Downloads
-
-.. |pre_commit_ci| image:: https://results.pre-commit.ci/badge/github/PyMassSpec/mh_utils/master.svg
-	:target: https://results.pre-commit.ci/latest/github/PyMassSpec/mh_utils/master
-	:alt: pre-commit.ci status
 
 .. end shields
 

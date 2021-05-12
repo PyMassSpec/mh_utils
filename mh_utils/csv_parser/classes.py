@@ -34,7 +34,7 @@ from decimal import Decimal
 from typing import Dict, Iterable, List, Optional, Tuple, Type, TypeVar
 
 # 3rd party
-import numpy  # type: ignore
+import numpy
 import pandas  # type: ignore
 import sdjson
 from cawdrey import AlphaDict

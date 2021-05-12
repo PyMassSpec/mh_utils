@@ -74,6 +74,7 @@ extensions = [
     "seed_intersphinx_mapping",
     "enum_tools.autoenum",
     "attr_utils.autoattrs",
+    "attr_utils.annotations",
     "html_section",
     "latex_unicode",
 ]

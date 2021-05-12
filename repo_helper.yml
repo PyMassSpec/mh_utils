@@ -30,6 +30,7 @@ python_versions:
 extra_sphinx_extensions:
  - enum_tools.autoenum
  - attr_utils.autoattrs
+ - attr_utils.annotations
  - html_section
  - latex_unicode
 

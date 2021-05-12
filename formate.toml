@@ -45,6 +45,7 @@ known_third_party = [
     "domdf_python_tools",
     "enum_tools",
     "github",
+    "importlib_metadata",
     "importlib_resources",
     "lxml",
     "mathematical",

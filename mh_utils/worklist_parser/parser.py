@@ -77,11 +77,7 @@ def parse_datetime(the_date: str) -> datetime.datetime:
 	"""
 	Parse a datetime from a worklist or contents file.
 
-	:param the_date: The date and time as a string in the following format:
-
-		::
-
-			%Y-%m-%dT%H:%M:%S%z
+	:param the_date: The date and time as a string in the format ``%Y-%m-%dT%H:%M:%S%z``.
 	"""
 
 	the_date = strip_string(the_date)

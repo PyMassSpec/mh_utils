@@ -21,8 +21,8 @@ The following diagram represents this structure:
 	+ :class:`Compound`
 
 		- :attr:`Compound.algo` ⇨ :class:`str`
-		- :attr:`Compound.location` ⇨ :class:`~typing.Optional` [:class:`LocationDict` ]
-		- :attr:`Compound.compound_scores` ⇨ :class:`~typing.Optional` [:class:`~typing.Dict` [:class:`str`, :class:`~.Score` ] ]
+		- :attr:`Compound.location` ⇨ :py:obj:`~typing.Optional` [:class:`LocationDict` ]
+		- :attr:`Compound.compound_scores` ⇨ :py:obj:`~typing.Optional` [:class:`~typing.Dict` [:class:`str`, :class:`~.Score` ] ]
 		- :attr:`Compound.results` ⇨ :class:`~typing.List`
 
 			- :class:`~.Molecule`
@@ -40,6 +40,8 @@ The following diagram represents this structure:
 	+ Another :class:`Compound`
 	+ ``...``
 
+
+.. clearpage::
 """
 #
 #  Copyright © 2020-2021 Dominic Davis-Foster <dominic@davis-foster.co.uk>
@@ -500,7 +502,7 @@ class Score(float):
 
 def parse_compound_scores(element: lxml.objectify.ObjectifiedElement) -> Dict[str, Score]:
 	"""
-	Parse a ``<CompoundScores>`` element into a dictionary mapping algorithms to scores.
+	Parse a ``<CompoundScores>`` element into a mapping of algorithms to scores.
 
 	:param element: a CompoundScores XML element.
 	"""
@@ -521,7 +523,7 @@ def parse_compound_scores(element: lxml.objectify.ObjectifiedElement) -> Dict[st
 
 def parse_match_scores(element: lxml.objectify.ObjectifiedElement) -> Dict[str, Score]:
 	"""
-	Parse a ``<MatchScores>`` element into a dictionary mapping algorithms to scores.
+	Parse a ``<MatchScores>`` element into a mapping of algorithms to scores.
 
 	:param element: a MatchScores XML element.
 	"""
@@ -567,15 +569,15 @@ class Compound(Dictable):
 	Represents a compound identified in mass spectral data by MassHunter Qualitative.
 
 	:param algo: The algorithm used to identify the compound.
-	:param location: A dictionary of information to locate the compound in the spectral data
-	:param compound_scores: A dictionary of compound scores
+	:param location: A dictionary of information to locate the compound in the spectral data.
+	:param compound_scores: A dictionary of compound scores.
 	:param results: A list of molecules that match the spectrum.
 	:param spectra: A list of spectra for the compound.
 	"""
 
 	algo: str  #: The algorithm used to identify the compound.
-	location: LocationDict  #: A dictionary of information to locate the compound in the spectral data
-	compound_scores: Dict[str, "Score"]  #: A dictionary of compound scores
+	location: LocationDict  #: A dictionary of information to locate the compound in the spectral data.
+	compound_scores: Dict[str, "Score"]  #: A dictionary of compound scores.
 	results: List[Molecule]  #: A list of molecules that match the spectrum.
 	spectra: List[Spectrum]  #: A list of spectra for the compound.
 

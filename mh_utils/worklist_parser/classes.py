@@ -38,6 +38,7 @@ import pandas  # type: ignore
 from attr_utils.docstrings import add_attrs_doc
 from attr_utils.serialise import serde
 from domdf_python_tools.bases import Dictable
+from domdf_python_tools.doctools import prettify_docstrings
 
 # this package
 from mh_utils.utils import element_to_bool, strip_string
@@ -53,7 +54,7 @@ pandas.DataFrame.__module__ = "pandas"
 
 class JobData(Dictable):
 	"""
-	Class that represents an entry in the worklist.
+	Represents an entry in the worklist.
 
 	:param id: The ID of the job.
 	:param job_type: The type of job. TODO: enum of values
@@ -127,6 +128,7 @@ class JobData(Dictable):
 		return f"{self.__class__.__name__}({values})"
 
 
+@prettify_docstrings
 class Worklist(XMLFileMixin, Dictable):
 	"""
 	Class that represents an Agilent MassHunter worklist.
@@ -224,6 +226,10 @@ class Worklist(XMLFileMixin, Dictable):
 	def as_dataframe(self) -> pandas.DataFrame:
 		"""
 		Returns the :class:`~.Worklist` as a :class:`pandas.DataFrame`.
+
+		:rtype:
+
+		.. clearpage::
 		"""
 
 		headers = [col for col in columns] + [col for col in self.user_columns]
@@ -275,6 +281,8 @@ class Checksum:
 class Macro:
 	"""
 	Represents a macro in a worklist.
+
+	:param output_parameter: .
 	"""
 
 	project_name: str = attr.ib(converter=strip_string)
@@ -282,6 +290,10 @@ class Macro:
 	input_parameter: str = attr.ib(converter=strip_string)
 	output_data_type: int = attr.ib(converter=int)
 	output_parameter: str = attr.ib(converter=strip_string)
+	"""
+	.. clearpage::
+	"""
+
 	display_string: str = attr.ib(converter=strip_string)
 
 	# TODO: enum for output_data_type
@@ -328,21 +340,45 @@ class Macro:
 @add_attrs_doc
 @attr.s(slots=True)
 class Attribute:
-	"""
+	r"""
 	Represents an Attribute.
+
+	.. raw:: latex
+
+		\begin{multicols}{2}
+
+	:param attribute_type: The attribute type identifier.
+	:param field_type: The field type identifier.
+
+	.. raw:: latex
+
+		\end{multicols}
+
+	.. clearpage::
+
 	"""
 
 	attribute_id: int = attr.ib(converter=int)
 
-	#: Can be System Defined (``0``), System Used (``1``), or User Added (``2``).
 	attribute_type: AttributeType = attr.ib(converter=AttributeType)
+	"""
+	The attribute type identifier.
+
+	Can be System Defined (``0``), System Used (``1``), or User Added (``2``).
+	"""
 
 	field_type: int = attr.ib(converter=int)
 	"""
-	Each of the system defined columns have a field type starting from
-	sampleid = 0 to reserved6 = 24. The system used column can be 'compound param' = 35,
-	'optim param' = 36, 'mass param' = 37 and 'protein param' = 38.
+	The field type identifier.
+
+	Each of the system defined columns have a field type starting from sampleid = 0 to reserved6 = 24.
+
+	The system used column can be 'compound param' = 35, 'optim param' = 36,
+	'mass param' = 37 and 'protein param' = 38.
+
 	The User added columns start from 45.
+
+	.. clearpage::
 	"""
 
 	system_name: str = attr.ib(converter=strip_string)

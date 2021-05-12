@@ -122,11 +122,14 @@ mh_utils
 
 .. end shields
 
-The current utilities are as follows:
+.. container:: bullet-less-space
 
-* :mod:`mh_utils.cef_parser`: Parse Agilent MassHunter Compound Exchange Format files (``*.cef`` files).
-* :mod:`mh_utils.csv_parser`: Parser for CSV result files produced by MassHunter Qualitative.
-* :mod:`mh_utils.worklist_parser`: Parse Agilent MassHunter Worklists (``*.wkl`` files).
+	The current utilities are as follows:
+
+	* :mod:`mh_utils.cef_parser`: Parse Agilent MassHunter Compound Exchange Format files (``*.cef`` files).
+	* :mod:`mh_utils.csv_parser`: Parser for CSV result files produced by MassHunter Qualitative.
+	* :mod:`mh_utils.worklist_parser`: Parse Agilent MassHunter Worklists (``*.wkl`` files).
+
 
 Installation
 ---------------
@@ -141,6 +144,12 @@ Installation
 
 .. end installation
 
+
+API Reference
+----------------
+
+.. html-section::
+
 .. toctree::
 	:hidden:
 
@@ -148,17 +157,17 @@ Installation
 
 .. toctree::
 	:maxdepth: 3
-	:caption: API Reference
 	:glob:
 
 	api/*
 	api/*/index
 
-.. toctree::
-	:maxdepth: 3
-	:caption: Documentation
+.. sidebar-links::
+	:caption: Links
+	:github:
+	:pypi: mh_utils
 
-	contributing
+	Contributing Guide<https://contributing-to-pyms.readthedocs.io/en/latest/>
 	Source
 
 .. start links
@@ -167,6 +176,6 @@ Installation
 
 	View the :ref:`Function Index <genindex>` or browse the `Source Code <_modules/index.html>`__.
 
-	`Browse the GitHub Repository <https://github.com/PyMassSpec/mh_utils>`__
+	:github:repo:`Browse the GitHub Repository <PyMassSpec/mh_utils>`
 
 .. end links

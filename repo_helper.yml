@@ -14,7 +14,8 @@ short_desc: 'Utilities for handing ancillary files produced by MassHunter.'
 use_whey: true
 min_coverage: 85
 pre_commit_exclude: ^tests/test_xml/.*\.xml$
-mypy_version: "0.812"
+preserve_custom_theme: true
+python_deploy_version: 3.7
 
 conda_channels:
  - conda-forge
@@ -29,6 +30,8 @@ python_versions:
 extra_sphinx_extensions:
  - enum_tools.autoenum
  - attr_utils.autoattrs
+ - html_section
+ - latex_unicode
 
 mypy_plugins:
  - attr_utils.mypy_plugin
@@ -46,3 +49,14 @@ keywords:
  - chemistry
  - mass-spectrometry
  - chromatography
+
+sphinx_conf_epilogue:
+ - latex_elements["preamble"] = r"\usepackage{multicol}"
+ - latex_elements["printindex"] = "\\begin{flushleft}\n\\printindex\n\\end{flushleft}"
+ - "import mh_utils.worklist_parser.columns"
+ - "import mh_utils.worklist_parser.classes"
+ - "mh_utils.worklist_parser.columns.__dict__['Attribute'] = mh_utils.worklist_parser.classes.Attribute"
+
+
+exclude_files:
+ - contributing

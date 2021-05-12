@@ -3,6 +3,13 @@
 #  columns.py
 """
 Properties for columns in a Worklist.
+
+.. autosummary::
+
+	~mh_utils.worklist_parser.columns.Column
+	~mh_utils.worklist_parser.columns.injection_volume
+	~mh_utils.worklist_parser.columns.columns
+
 """
 #
 #  Copyright © 2020-2021 Dominic Davis-Foster <dominic@davis-foster.co.uk>
@@ -68,6 +75,10 @@ def injection_volume(val: Union[float, str]) -> Union[int, str]:
 class Column:
 	"""
 	Represents a column in a worklist.
+
+	:param attribute_type: The attribute type identifier.
+	:param dtype: The field datatype.
+	:param field_type: The field type identifier.
 	"""
 
 	def __field_type_validator(self, the_attr: attr.Attribute, the_value):
@@ -85,17 +96,29 @@ class Column:
 
 	attribute_id: int = attr.ib(converter=int)
 
-	#: can be System Defined = 0, System Used = 1, User Added = 2
 	attribute_type: AttributeType = attr.ib(converter=AttributeType)
+	"""
+	The attribute type identifier.
+
+	Can be System Defined (``0``), System Used (``1``), or User Added (``2``).
+	"""
 
 	dtype: Callable = attr.ib()
+	"""
+	.. clearpage::
+	"""
+
 	default_value: Any = attr.ib(validator=__default_value_validator)
 
 	field_type: Optional[int] = attr.ib(default=None, validator=__field_type_validator)
 	"""
-	Each of the system defined columns have a field type starting from
-	sampleid = 0 to reserved6 = 24. The system used column can be 'compound param' = 35,
-	'optim param' = 36, 'mass param' = 37 and 'protein param' = 38.
+	The field type identifier.
+
+	Each of the system defined columns have a field type starting from sampleid = 0 to reserved6 = 24.
+
+	The system used column can be 'compound param' = 35, 'optim param' = 36,
+	'mass param' = 37 and 'protein param' = 38.
+
 	The User added columns start from 45.
 	"""
 

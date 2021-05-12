@@ -119,6 +119,8 @@ def make_timedelta(minutes: Union[float, datetime.timedelta]) -> datetime.timede
 	.. versionchanged:: 0.1.0
 
 		Moved from :mod:`mh_utils.cef_parser`.
+
+	.. clearpage::
 	"""
 
 	if not isinstance(minutes, datetime.timedelta):

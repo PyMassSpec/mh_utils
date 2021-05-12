@@ -4,10 +4,9 @@
 
 .. module:: mh_utils.worklist_parser
 
-.. automodule:: mh_utils.worklist_parser.__init__
+.. automodule:: mh_utils.worklist_parser
 	:noindex:
 	:no-members:
-	:autosummary-members:
 
 .. autofunction:: mh_utils.worklist_parser.read_worklist
 
@@ -20,23 +19,31 @@
 Example Usage
 --------------
 
-:download:`read_worklist.py <../../read_worklist.py>` |nbsp| |nbsp| :download:`worklist.xml <../../worklist.wkl>`
+.. only:: html
 
-.. literalinclude:: ../../read_worklist.py
+	:download:`read_worklist.py` |nbsp| |nbsp| :download:`worklist.wkl`
+
+.. literalinclude:: read_worklist.py
+	:caption: read_worklist.py
 	:language: python
 	:linenos:
-	:lines: 1-19
+	:lines: 1-20
 
-.. literalinclude:: ../../worklist_df_head.txt
+.. literalinclude:: worklist_df_head.txt
+	:caption: worklist_df_head.txt
 
-
-.. literalinclude:: ../../read_worklist.py
+.. literalinclude:: read_worklist.py
+	:caption: read_worklist.py
 	:language: python
 	:linenos:
-	:lineno-start: 20
-	:lines: 20-26
+	:lineno-start: 21
+	:lines: 21-26
 
 Output
 ^^^^^^^^
 
-:download:`worklist.csv <../../worklist.csv>` |nbsp| |nbsp| :download:`worklist.json <../../worklist.json>`
+.. html-section::
+
+.. only:: html
+
+	:download:`worklist.csv` |nbsp| |nbsp| :download:`worklist.json`

@@ -4,7 +4,7 @@
 """
 Parser for MassHunter worklists.
 
-Only one function is defined here: :class:`~.read_worklist`,
+Only one function is defined here: :func:`~.read_worklist`,
 which reads the reads the given worklist file and returns
 a :class:`mh_utils.worklist_parser.classes.Worklist` file representing it.
 The other functions and classes must be imported from submodules of this package.

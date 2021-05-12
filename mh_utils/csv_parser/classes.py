@@ -149,7 +149,9 @@ class Sample(Dictable):
 
 		I.e. sorted by the ``Cpd`` value from the csv export.
 
-		:return:
+		:rtype:
+
+		.. clearpage::
 		"""
 
 		results_list = []
@@ -218,8 +220,12 @@ class Sample(Dictable):
 
 @prettify_docstrings
 class Result(Dictable):
-	"""
+	r"""
 	Represents a Result in a MassHunter CSV file.
+
+	.. raw:: latex
+
+		\begin{multicols}{2}
 
 	:param cas:
 	:param name:
@@ -254,6 +260,10 @@ class Result(Dictable):
 	:param flags:
 	:param flag_severity:
 	:param flag_severity_code:
+
+	.. raw:: latex
+
+		\end{multicols}
 	"""
 
 	def __init__(
@@ -336,6 +346,10 @@ class Result(Dictable):
 		Consruct a :class:`~.classes.Result` from a :class:`pandas.Series`.
 
 		:param series:
+
+		:rtype:
+
+		.. clearpage::
 		"""
 
 		cas = series["CAS"]
@@ -477,6 +491,10 @@ class SampleList(List[Sample]):
 		Add a :class:`~.Sample` object to the list.
 
 		:param sample:
+
+		:rtype:
+
+		.. clearpage::
 		"""
 
 		if sample in self:
@@ -509,6 +527,10 @@ class SampleList(List[Sample]):
 
 		:param key: The name of the property in the sample to sort by.
 		:param reverse: Whether the list should be sorted in reverse order.
+
+		:rtype:
+
+		.. clearpage::
 		"""
 
 		self.sort(key=lambda samp: getattr(samp, key), reverse=reverse)
@@ -535,24 +557,24 @@ class SampleList(List[Sample]):
 		self.sort(key=lambda s: order_mapping[getattr(s, key)], reverse=True)
 
 	def rename_samples(self, rename_mapping: Dict, key: str = "sample_name"):
-		"""
+		r"""
 		Rename the samples in the list.
 
 		:param rename_mapping: A mapping between current sample names and their new names.
-
-		Use :py:obj:`None` or omit the sample from the dictionary entirely to leave the name unchanged.
-
-			For example:
-
-				.. code-block:: python
-
-					rename_mapping = {
-						"Propellant 1ug +ve": "Alliant Unique 1µg/L +ESI",
-						"Propellant 1mg +ve": "Alliant Unique 1mg/L +ESI",
-						"Propellant 1mg -ve": None,
-						}
-
 		:param key: The name of the property in the sample to sort by.
+
+		Use ``rename_mapping=``\:py:obj:`None` or omit the sample from the ``rename_mapping`` entirely
+		to leave the name unchanged.
+
+		For example:
+
+		.. code-block:: python
+
+			rename_mapping = {
+				"Propellant 1ug +ve": "Alliant Unique 1µg/L +ESI",
+				"Propellant 1mg +ve": "Alliant Unique 1mg/L +ESI",
+				"Propellant 1mg -ve": None,
+				}
 		"""
 
 		for sample in self:
@@ -653,6 +675,10 @@ class SampleList(List[Sample]):
 		:param compound_names:
 		:param include_none: Whether samples where none of the specified compounds
 			were found should be included in the results.
+
+		:rtype:
+
+		.. clearpage::
 		"""  # noqa: D400
 
 		tmp_all_areas = SamplesAreaDict()
@@ -705,6 +731,10 @@ class SampleList(List[Sample]):
 		:param compound_name:
 		:param include_none: Whether samples where the compound was not found
 			should be included in the results.
+
+		:rtype:
+
+		.. clearpage::
 		"""  # noqa: D400
 
 		return self.get_areas_and_scores(compound_name, include_none)[1]

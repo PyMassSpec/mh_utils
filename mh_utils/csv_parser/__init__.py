@@ -5,6 +5,11 @@
 Parser for CSV result files produced by MassHunter Qualitative.
 
 .. versionadded:: 0.2.0
+
+.. autosummary::
+
+	~mh_utils.csv_parser.ResultParser
+	~mh_utils.csv_parser.parse_masshunter_csv
 """
 #
 #  Copyright © 2020-2021 Dominic Davis-Foster <dominic@davis-foster.co.uk>

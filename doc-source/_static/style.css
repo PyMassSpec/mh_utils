@@ -1,3 +1,11 @@
 div.bullet-less-space p:first-child {
     margin-bottom: 5px;
 }
+
+div.structure-diagram p:first-child{
+    margin-bottom: 5px;
+}
+
+div.structure-diagram blockquote, div.structure-diagram ul p, div.structure-diagram ul.expanded li p:last-child {
+    margin-bottom: 0 !important;
+}

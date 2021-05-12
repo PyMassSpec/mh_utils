@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 #
 #  __init__.py
-"""
+r"""
 Parser for MassHunter Compound Exchange Format ``.cef`` files.
 
 A CEF file represents a file identified in LC-MS data by MassHunter Qualitative.
@@ -14,31 +14,33 @@ the scores indicating the confidence of the match (:attr:`~.Compound.compound_sc
 a list of possible matching compounds (:attr:`~.Compound.results`),
 and the matching mass spectrum extracted from the LC-MS data (:attr:`~.Compound.spectra`).
 
-The following diagram represents this structure:
+.. container:: structure-diagram
 
-* :class:`CompoundList`
+	The following diagram represents this structure:
 
-	+ :class:`Compound`
+	* :class:`CompoundList`
 
-		- :attr:`Compound.algo` ⇨ :class:`str`
-		- :attr:`Compound.location` ⇨ :py:obj:`~typing.Optional` [:class:`LocationDict` ]
-		- :attr:`Compound.compound_scores` ⇨ :py:obj:`~typing.Optional` [:class:`~typing.Dict` [:class:`str`, :class:`~.Score` ] ]
-		- :attr:`Compound.results` ⇨ :class:`~typing.List`
+		+ :class:`Compound`
 
-			- :class:`~.Molecule`
-			- Another :class:`~.Molecule`
-			- ``...``
+			- :attr:`Compound.algo` ⇨ :class:`str`
+			- :attr:`Compound.location` ⇨ :py:obj:`~typing.Optional` [:class:`LocationDict`\]
+			- :attr:`Compound.compound_scores` ⇨ :py:obj:`~typing.Optional` [:class:`~typing.Dict` [:class:`str`, :class:`~.Score`\]\]
+			- :attr:`Compound.results` ⇨ :class:`~typing.List`
 
-		- :attr:`Compound.spectra` ⇨ :class:`~typing.List`
+				- :class:`~.Molecule`
+				- Another :class:`~.Molecule`
+				- ``...``
 
-			- :class:`~.Spectrum`
-			- Another :class:`~.Spectrum`
-			- ``...``
+			- :attr:`Compound.spectra` ⇨ :class:`~typing.List`
+
+				- :class:`~.Spectrum`
+				- Another :class:`~.Spectrum`
+				- ``...``
 
 
 
-	+ Another :class:`Compound`
-	+ ``...``
+		+ Another :class:`Compound`
+		+ ``...``
 
 
 .. clearpage::

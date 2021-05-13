@@ -269,75 +269,75 @@ class Result(Dictable):
 	def __init__(
 			self,
 			cas,
-			name,
+			name: str,
 			hits,
-			index=-1,
-			formula='',
-			score=0.0,
-			abundance=0,
-			height=0,
-			area=0,
-			diff_mDa=0.0,
-			diff_ppm=0.0,
-			rt=0.0,
-			start=0.0,
-			end=0.0,
-			width=0.0,
-			tgt_rt=0.0,
-			rt_diff=0.0,
-			mz=0.0,
-			product_mz=0.0,
-			base_peak=0.0,
-			mass=0.0,
-			average_mass=0.0,
-			tgt_mass=0.0,
-			mining_algorithm='',
-			z_count=0,
-			max_z=0,
-			min_z=0,
-			n_ions=0,
-			polarity='',
-			label='',
-			flags='',
-			flag_severity='',
-			flag_severity_code=0,
+			index: int = -1,
+			formula: str = '',
+			score: float = 0.0,
+			abundance: float = 0,
+			height: float = 0,
+			area: float = 0,
+			diff_mDa: float = 0.0,
+			diff_ppm: float = 0.0,
+			rt: float = 0.0,
+			start: float = 0.0,
+			end: float = 0.0,
+			width: float = 0.0,
+			tgt_rt: float = 0.0,
+			rt_diff: float = 0.0,
+			mz: float = 0.0,
+			product_mz: float = 0.0,
+			base_peak: float = 0.0,
+			mass: float = 0.0,
+			average_mass: float = 0.0,
+			tgt_mass: float = 0.0,
+			mining_algorithm: str = '',
+			z_count: int = 0,
+			max_z: int = 0,
+			min_z: int = 0,
+			n_ions: int = 0,
+			polarity: str = '',
+			label: str = '',
+			flags: str = '',
+			flag_severity: str = '',
+			flag_severity_code: int = 0,
 			):
 		super().__init__()
 
 		# Possible also AL (ID Source) and AM (ID Techniques Applied)
 		self._cas = cas
-		self.name = str(name)
+		self.name: str = str(name)
 		self.hits = hits
-		self.formula = str(formula)
-		self.score = Decimal(score)
-		self.abundance = int(abundance)
-		self.height = int(height)
-		self.area = int(area)
-		self.diff_mDa = Decimal(diff_mDa)
-		self.diff_ppm = Decimal(diff_ppm)
-		self.rt = Decimal(rt)
-		self.start = Decimal(start)
-		self.end = Decimal(end)
-		self.width = Decimal(width)
-		self.tgt_rt = Decimal(tgt_rt)
-		self.rt_diff = Decimal(rt_diff)
-		self.mz = Decimal(mz)
-		self.product_mz = Decimal(product_mz)
-		self.base_peak = Decimal(base_peak)
-		self.mass = Decimal(mass)
-		self.average_mass = Decimal(average_mass)
-		self.tgt_mass = Decimal(tgt_mass)
-		self.mining_algorithm = str(mining_algorithm)
-		self.z_count = int(z_count)
-		self.max_z = int(max_z)
-		self.min_z = int(min_z)
-		self.n_ions = int(n_ions)
-		self.polarity = str(polarity)
-		self.label = str(label)
-		self.flags = str(flags)
-		self.flag_severity = str(flag_severity)
-		self.flag_severity_code = int(flag_severity_code)
-		self.index = index  # Tracks the number of the result in the sample
+		self.formula: str = str(formula)
+		self.score: Decimal = Decimal(score)
+		self.abundance: float = int(abundance)
+		self.height: float = int(height)
+		self.area: float = int(area)
+		self.diff_mDa: Decimal = Decimal(diff_mDa)
+		self.diff_ppm: Decimal = Decimal(diff_ppm)
+		self.rt: Decimal = Decimal(rt)
+		self.start: Decimal = Decimal(start)
+		self.end: Decimal = Decimal(end)
+		self.width: Decimal = Decimal(width)
+		self.tgt_rt: Decimal = Decimal(tgt_rt)
+		self.rt_diff: Decimal = Decimal(rt_diff)
+		self.mz: Decimal = Decimal(mz)
+		self.product_mz: Decimal = Decimal(product_mz)
+		self.base_peak: Decimal = Decimal(base_peak)
+		self.mass: Decimal = Decimal(mass)
+		self.average_mass: Decimal = Decimal(average_mass)
+		self.tgt_mass: Decimal = Decimal(tgt_mass)
+		self.mining_algorithm: str = str(mining_algorithm)
+		self.z_count: int = int(z_count)
+		self.max_z: int = int(max_z)
+		self.min_z: int = int(min_z)
+		self.n_ions: int = int(n_ions)
+		self.polarity: str = str(polarity)
+		self.label: str = str(label)
+		self.flags: str = str(flags)
+		self.flag_severity: str = str(flag_severity)
+		self.flag_severity_code: int = int(flag_severity_code)
+		self.index: int = index  # Tracks the number of the result in the sample
 
 	# "Score (Tgt)",
 	@classmethod

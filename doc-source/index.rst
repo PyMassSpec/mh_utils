@@ -5,6 +5,7 @@ mh_utils
 .. start short_desc
 
 .. documentation-summary::
+	:meta:
 
 .. end short_desc
 
@@ -32,7 +33,7 @@ mh_utils
 		  - |license| |language| |requires|
 
 	.. |docs| rtfd-shield::
-		:project: mh_utils
+		:project: mh-utils
 		:alt: Documentation Build Status
 
 	.. |docs_check| actions-shield::
@@ -59,7 +60,8 @@ mh_utils
 		:workflow: mypy
 		:alt: mypy status
 
-	.. |requires| requires-io-shield::
+	.. |requires| image:: https://dependency-dash.repo-helper.uk/github/PyMassSpec/mh_utils/badge.svg
+		:target: https://dependency-dash.repo-helper.uk/github/PyMassSpec/mh_utils/
 		:alt: Requirements Status
 
 	.. |coveralls| coveralls-shield::
@@ -112,7 +114,7 @@ mh_utils
 		:last-commit:
 		:alt: GitHub last commit
 
-	.. |maintained| maintained-shield:: 2021
+	.. |maintained| maintained-shield:: 2023
 		:alt: Maintenance
 
 	.. |pypi-downloads| pypi-shield::

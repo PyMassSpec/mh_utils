@@ -30,8 +30,8 @@ mh_utils
 	* - Other
 	  - |license| |language| |requires|
 
-.. |docs| image:: https://img.shields.io/readthedocs/mh_utils/latest?logo=read-the-docs
-	:target: https://mh_utils.readthedocs.io/en/latest
+.. |docs| image:: https://img.shields.io/readthedocs/mh-utils/latest?logo=read-the-docs
+	:target: https://mh-utils.readthedocs.io/en/latest
 	:alt: Documentation Build Status
 
 .. |docs_check| image:: https://github.com/PyMassSpec/mh_utils/workflows/Docs%20Check/badge.svg
@@ -58,8 +58,8 @@ mh_utils
 	:target: https://github.com/PyMassSpec/mh_utils/actions?query=workflow%3A%22mypy%22
 	:alt: mypy status
 
-.. |requires| image:: https://requires.io/github/PyMassSpec/mh_utils/requirements.svg?branch=master
-	:target: https://requires.io/github/PyMassSpec/mh_utils/requirements/?branch=master
+.. |requires| image:: https://dependency-dash.repo-helper.uk/github/PyMassSpec/mh_utils/badge.svg
+	:target: https://dependency-dash.repo-helper.uk/github/PyMassSpec/mh_utils/
 	:alt: Requirements Status
 
 .. |coveralls| image:: https://img.shields.io/coveralls/github/PyMassSpec/mh_utils/master?logo=coveralls
@@ -109,7 +109,7 @@ mh_utils
 	:target: https://github.com/PyMassSpec/mh_utils/commit/master
 	:alt: GitHub last commit
 
-.. |maintained| image:: https://img.shields.io/maintenance/yes/2021
+.. |maintained| image:: https://img.shields.io/maintenance/yes/2023
 	:alt: Maintenance
 
 .. |pypi-downloads| image:: https://img.shields.io/pypi/dm/mh_utils

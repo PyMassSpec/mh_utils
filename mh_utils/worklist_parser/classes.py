@@ -332,7 +332,8 @@ class Macro:
 		if self.undefined:
 			return f"{self.__class__.__name__}(Undefined)"
 		else:
-			values = ", ".join(f"{x}={getattr(self, x)!r}" for x in self.__slots__ if x != "__weakref__")
+			slots = self.__slots__  # type: ignore[attr-defined]  # attrs adds __slots__ but mypy doesn't know
+			values = ", ".join(f"{x}={getattr(self, x)!r}" for x in slots if x != "__weakref__")
 			return f"{self.__class__.__name__}({values})"
 
 

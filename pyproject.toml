@@ -22,7 +22,7 @@ file = "LICENSE"
 Homepage = "https://github.com/PyMassSpec/mh_utils"
 "Issue Tracker" = "https://github.com/PyMassSpec/mh_utils/issues"
 "Source Code" = "https://github.com/PyMassSpec/mh_utils"
-Documentation = "https://mh_utils.readthedocs.io/en/latest"
+Documentation = "https://mh-utils.readthedocs.io/en/latest"
 
 [tool.whey]
 base-classifiers = [
@@ -58,20 +58,21 @@ extensions = [
     "sphinx_toolbox.more_autosummary",
     "sphinx_toolbox.documentation_summary",
     "sphinx_toolbox.tweaks.param_dash",
+    "sphinxcontrib.toctree_plus",
     "sphinx_toolbox.tweaks.latex_layout",
     "sphinx_toolbox.tweaks.latex_toc",
     "sphinx.ext.intersphinx",
     "sphinx.ext.mathjax",
-    "sphinxcontrib.httpdomain",
     "sphinxcontrib.extras_require",
     "sphinx.ext.todo",
     "sphinxemoji.sphinxemoji",
     "notfound.extension",
     "sphinx_copybutton",
     "sphinxcontrib.default_values",
-    "sphinxcontrib.toctree_plus",
     "sphinx_debuginfo",
+    "sphinx_licenseinfo",
     "seed_intersphinx_mapping",
+    "html_section",
     "enum_tools.autoenum",
     "attr_utils.autoattrs",
     "attr_utils.annotations",
@@ -98,7 +99,6 @@ toctree_plus_types = [
     "exception",
     "flag",
     "function",
-    "method",
     "namedtuple",
     "protocol",
     "role",
@@ -108,6 +108,7 @@ add_module_names = false
 hide_none_rtype = true
 all_typevars = true
 overloads_location = "bottom"
+html_codeblock_linenos_style = "table"
 autodoc_exclude_members = [
     "__dict__",
     "__class__",
@@ -135,3 +136,27 @@ warn_unused_ignores = true
 no_implicit_optional = true
 show_error_codes = true
 plugins = [ "attr_utils.mypy_plugin",]
+
+[tool.snippet-fmt]
+directives = [ "code-block",]
+
+[tool.dependency-dash."requirements.txt"]
+order = 10
+
+[tool.dependency-dash."tests/requirements.txt"]
+order = 20
+include = false
+
+[tool.dependency-dash."doc-source/requirements.txt"]
+order = 30
+include = false
+
+[tool.snippet-fmt.languages.python]
+reformat = true
+
+[tool.snippet-fmt.languages.TOML]
+reformat = true
+
+[tool.snippet-fmt.languages.ini]
+
+[tool.snippet-fmt.languages.json]

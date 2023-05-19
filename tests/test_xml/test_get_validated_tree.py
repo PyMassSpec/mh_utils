@@ -1,4 +1,5 @@
 # stdlib
+import os
 import pathlib
 from zipimport import zipimporter
 
@@ -20,7 +21,8 @@ except ImportError:
 	# 3rd party
 	from zipp import Path as ZipPath  # type: ignore
 
-test_xml_zipapp = zipimporter(files(tests.test_xml).joinpath("test_xml_zipapp.pyz")).load_module("test_xml_zipapp")
+zipapp_path = os.fspath(files(tests.test_xml) / "test_xml_zipapp.pyz")
+test_xml_zipapp = zipimporter(zipapp_path).load_module("test_xml_zipapp")
 
 shiporder_filename: ZipPath = files(tests.test_xml).joinpath("shiporder.xml")
 bad_file: ZipPath = files(tests.test_xml).joinpath("bad_file.xml")

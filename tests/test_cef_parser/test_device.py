@@ -1,12 +1,9 @@
-# stdlib
-from datetime import timedelta
-
 # 3rd party
 import lxml.objectify  # type: ignore
 import pytest
 
 # this package
-from mh_utils.cef_parser import Device, RTRange, make_timedelta
+from mh_utils.cef_parser import Device
 
 
 @pytest.mark.parametrize(

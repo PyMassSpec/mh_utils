@@ -252,11 +252,11 @@ target_compounds = [
 		]
 
 
+@pytest.mark.usefixtures("pcdl_cassette")
 def test_make_pcdl_csv(
 		tmp_pathplus: PathPlus,
 		advanced_file_regression: AdvancedFileRegressionFixture,
 		dataframe_regression: DataFrameRegressionFixture,
-		pcdl_cassette,
 		):
 
 	df = make_pcdl_csv(target_compounds, tmp_pathplus / "all_compounds_pcdl.csv")

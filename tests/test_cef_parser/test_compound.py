@@ -232,13 +232,15 @@ def expected_compound(fbf_spectrum, tof_spectrum):
 			)
 
 
-def test_from_xml(fbf_spectrum, tof_spectrum, expected_compound):
+@pytest.mark.usefixtures("fbf_spectrum", "tof_spectrum")
+def test_from_xml(expected_compound):
 	tree = lxml.objectify.fromstring(raw_xml)
 	spec = Compound.from_xml(tree)
 	assert spec == expected_compound
 
 
-def test_compound_list_from_xml(fbf_spectrum, tof_spectrum, expected_compound):
+@pytest.mark.usefixtures("tof_spectrum", "fbf_spectrum")
+def test_compound_list_from_xml(expected_compound):
 	expects = CompoundList("LCQTOF", [expected_compound])
 
 	tree = lxml.objectify.fromstring(f'<CompoundList instrumentConfiguration="LCQTOF">{raw_xml}</CompoundList>')
@@ -246,7 +248,8 @@ def test_compound_list_from_xml(fbf_spectrum, tof_spectrum, expected_compound):
 	assert spec == expects
 
 
-def test_parse_cef(tmpdir, fbf_spectrum, tof_spectrum, expected_compound):
+@pytest.mark.usefixtures("tof_spectrum", "fbf_spectrum")
+def test_parse_cef(tmpdir, expected_compound):
 	expects = CompoundList("LCQTOF", [expected_compound])
 
 	(PathPlus(tmpdir) / "demo.cef").write_text(

@@ -171,6 +171,7 @@ API Reference
 
 	Contributing Guide<https://contributing-to-pyms.readthedocs.io/en/latest/>
 	Source
+	license
 
 .. start links
 

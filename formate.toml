@@ -61,4 +61,4 @@ known_third_party = [
     "sdjson",
     "typing_extensions",
 ]
-known_first_party = "mh_utils"
+known_first_party = [ "mh_utils",]

@@ -169,6 +169,7 @@ API Reference
 	:github:
 	:pypi: mh_utils
 
+	license
 	Contributing Guide<https://contributing-to-pyms.readthedocs.io/en/latest/>
 	Source
 	license

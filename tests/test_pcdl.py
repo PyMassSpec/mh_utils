@@ -1,4 +1,5 @@
 # 3rd party
+import sys
 import pytest
 from _pytest.fixtures import FixtureRequest
 from betamax import Betamax  # type: ignore
@@ -251,8 +252,11 @@ target_compounds = [
 		("Styrene", "100-42-5"),
 		]
 
-
-@pytest.mark.usefixtures("pcdl_cassette")
+@pytest.mark.parametrize("python_version", [
+	pytest.param("<=3.8", marks=pytest.mark.skipif(sys.version_info >= (3, 9), reason="Output changes after Python 3.8")),
+	pytest.param(">=3.9", marks=pytest.mark.skipif(sys.version_info < (3, 9), reason="Output changes after Python 3.8")),
+])
+@pytest.mark.usefixtures("pcdl_cassette", "python_version")
 def test_make_pcdl_csv(
 		tmp_pathplus: PathPlus,
 		advanced_file_regression: AdvancedFileRegressionFixture,

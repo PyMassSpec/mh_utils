@@ -39,10 +39,12 @@ import pandas  # type: ignore
 import sdjson
 from cawdrey import AlphaDict
 from domdf_python_tools import doctools
-from domdf_python_tools.bases import Dictable
 from domdf_python_tools.doctools import prettify_docstrings
 from domdf_python_tools.paths import PathPlus
 from domdf_python_tools.typing import PathLike
+
+# this package
+from mh_utils import Dictable
 
 __all__ = [
 		"Sample",
@@ -96,7 +98,6 @@ class Sample(Dictable):
 			filename,
 			results=None,
 			):
-		super().__init__()
 
 		self.sample_name = sample_name
 		self.sample_type = sample_type
@@ -202,8 +203,7 @@ class Sample(Dictable):
 	def __repr__(self):
 		return f"Sample({self.sample_name})"
 
-	@property
-	def __dict__(self):
+	def to_dict(self):
 		return AlphaDict(
 				sample_name=self.sample_name,
 				sample_type=self.sample_type,
@@ -302,7 +302,6 @@ class Result(Dictable):
 			flag_severity: str = '',
 			flag_severity_code: int = 0,
 			):
-		super().__init__()
 
 		# Possible also AL (ID Source) and AM (ID Techniques Applied)
 		self._cas = cas
@@ -425,8 +424,7 @@ class Result(Dictable):
 	def __repr__(self):
 		return f"Result({self.name}; {self.formula}; {self.rt}; {self.score})"
 
-	@property
-	def __dict__(self):
+	def to_dict(self):
 		return AlphaDict(
 				cas=self._cas,
 				name=self.name,

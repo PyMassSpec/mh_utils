@@ -33,14 +33,14 @@ from uuid import UUID
 
 # 3rd party
 import attr
-import lxml.etree  # type: ignore
+import lxml  # type: ignore
 import pandas  # type: ignore
 from attr_utils.docstrings import add_attrs_doc
 from attr_utils.serialise import serde
-from domdf_python_tools.bases import Dictable
 from domdf_python_tools.doctools import prettify_docstrings
 
 # this package
+from mh_utils import Dictable
 from mh_utils.utils import element_to_bool, strip_string
 from mh_utils.worklist_parser.columns import Column, columns
 from mh_utils.worklist_parser.enums import AttributeType
@@ -69,8 +69,6 @@ class JobData(Dictable):
 			run_status: int,
 			sample_info: Optional[dict] = None,
 			):
-
-		super().__init__()
 
 		if isinstance(id, UUID):
 			self.id = id
@@ -112,8 +110,7 @@ class JobData(Dictable):
 				sample_info=parse_sample_info(element.SampleInfo, user_columns),
 				)
 
-	@property
-	def __dict__(self):
+	def to_dict(self):
 		data = {}
 		for key in self.__slots__:
 			if key == "id":
@@ -153,8 +150,6 @@ class Worklist(XMLFileMixin, Dictable):
 			checksum: "Checksum",
 			):
 
-		super().__init__()
-
 		self.version = float(version)
 		self.locked_run_mode = bool(locked_run_mode)
 		self.instrument_name = str(instrument_name)
@@ -165,8 +160,7 @@ class Worklist(XMLFileMixin, Dictable):
 
 	__slots__ = ["version", "user_columns", "jobs", "checksum", "locked_run_mode", "instrument_name", "params"]
 
-	@property
-	def __dict__(self):
+	def to_dict(self):
 		data = {}
 		for key in self.__slots__:
 			data[key] = getattr(self, key)
@@ -332,7 +326,7 @@ class Macro:
 		if self.undefined:
 			return f"{self.__class__.__name__}(Undefined)"
 		else:
-			slots = self.__slots__  # type: ignore[attr-defined]  # attrs adds __slots__ but mypy doesn't know
+			slots = self.__slots__
 			values = ", ".join(f"{x}={getattr(self, x)!r}" for x in slots if x != "__weakref__")
 			return f"{self.__class__.__name__}({values})"
 

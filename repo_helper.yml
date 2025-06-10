@@ -15,7 +15,8 @@ use_whey: true
 min_coverage: 85
 pre_commit_exclude: ^tests/test_xml/.*\.xml$
 preserve_custom_theme: true
-python_deploy_version: 3.7
+mypy_version: 1.16
+python_deploy_version: 3.9
 
 conda_channels:
  - conda-forge

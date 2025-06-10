@@ -1,6 +1,7 @@
 # stdlib
 import os
 import pathlib
+from typing import cast
 from zipimport import zipimporter
 
 # 3rd party
@@ -16,7 +17,7 @@ from mh_utils.xml import get_validated_tree
 
 try:
 	# stdlib
-	from zipfile import Path as ZipPath  # type: ignore
+	from zipfile import Path as ZipPath
 except ImportError:
 	# 3rd party
 	from zipp import Path as ZipPath  # type: ignore
@@ -55,13 +56,13 @@ schema_files = pytest.mark.parametrize(
 
 
 @xml_files
-def test_get_validated_tree(xml_file: PathLike):
+def test_get_validated_tree(xml_file: os.PathLike):
 	tree = get_validated_tree(xml_file=xml_file)
 	assert isinstance(tree, _ElementTree)
 
 
 @schema_files
-def test_get_validated_tree_from_zip(schema_file: PathLike):
+def test_get_validated_tree_from_zip(schema_file: os.PathLike):
 	with as_file(zipapp_shiporder_filename) as unzipped_xml_file:
 		xml_file = pathlib.Path(str(unzipped_xml_file))
 		tree = get_validated_tree(xml_file=xml_file)
@@ -82,7 +83,7 @@ def test_get_validated_tree_from_zip(schema_file: PathLike):
 
 @xml_files
 @schema_files
-def test_get_validated_tree_with_schema(xml_file: PathLike, schema_file: PathLike):
+def test_get_validated_tree_with_schema(xml_file: os.PathLike, schema_file: PathLike):
 	tree = get_validated_tree(xml_file=xml_file, schema_file=schema_file)
 	assert isinstance(tree, _ElementTree)
 
@@ -99,9 +100,9 @@ def test_get_validated_tree_missing_file():
 
 def test_get_validated_tree_invalid_schema():
 	with pytest.raises(XMLSyntaxError, match="Start tag expected, '<' not found, line 1, column 1"):
-		get_validated_tree(xml_file=shiporder_filename, schema_file=str(bad_schema))
+		get_validated_tree(xml_file=cast(os.PathLike, shiporder_filename), schema_file=str(bad_schema))
 
 
 def test_get_validated_tree_missing_schema():
 	with pytest.raises(FileNotFoundError, match="XML schema 'missing_schema.xml' not found."):
-		get_validated_tree(xml_file=shiporder_filename, schema_file="missing_schema.xml")
+		get_validated_tree(xml_file=cast(os.PathLike, shiporder_filename), schema_file="missing_schema.xml")

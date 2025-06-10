@@ -79,7 +79,7 @@ import lxml.objectify  # type: ignore
 from attr_utils.docstrings import add_attrs_doc
 from attr_utils.serialise import serde
 from chemistry_tools.formulae import Formula
-from domdf_python_tools.bases import Dictable, NamedList
+from domdf_python_tools.bases import NamedList
 from domdf_python_tools.doctools import prettify_docstrings
 from domdf_python_tools.pretty_print import FancyPrinter
 from domdf_python_tools.stringlist import DelimitedList
@@ -87,6 +87,7 @@ from domdf_python_tools.typing import PathLike
 from typing_extensions import TypedDict
 
 # this package
+from mh_utils import Dictable
 from mh_utils.utils import make_timedelta
 
 __all__ = [
@@ -125,8 +126,6 @@ class Molecule(Dictable):
 			matches: Optional[Dict[str, "Score"]] = None,
 			):
 
-		super().__init__()
-
 		self.name = str(name)
 		if isinstance(formula, Formula):
 			self.formula = formula
@@ -142,8 +141,7 @@ class Molecule(Dictable):
 		else:
 			raise TypeError(f"'matches' must be a dictionary, not {type(matches)}")
 
-	@property
-	def __dict__(self):
+	def to_dict(self):
 		return dict(
 				name=self.name,
 				formula=self.formula,
@@ -262,7 +260,6 @@ class Spectrum(Dictable):
 			peaks: Optional[Sequence[Peak]] = None,
 			rt_ranges: Optional[Sequence["RTRange"]] = None,
 			):
-		super().__init__()
 
 		self.spectrum_type = str(spectrum_type)
 		self.saturation_limit = int(saturation_limit)
@@ -319,8 +316,7 @@ class Spectrum(Dictable):
 			"rt_ranges",
 			]
 
-	@property
-	def __dict__(self):
+	def to_dict(self):
 		data = {}
 		for key in self.__slots__:
 			data[key] = getattr(self, key)
@@ -591,7 +587,6 @@ class Compound(Dictable):
 			results: Optional[Sequence[Molecule]] = None,
 			spectra: Optional[Sequence[Spectrum]] = None,
 			):
-		super().__init__()
 
 		self.algo = str(algo)
 
@@ -615,8 +610,7 @@ class Compound(Dictable):
 		else:
 			self.spectra = []
 
-	@property
-	def __dict__(self):
+	def to_dict(self):
 		return dict(
 				algo=self.algo,
 				location=self.location,

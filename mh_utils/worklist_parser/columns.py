@@ -158,7 +158,7 @@ class Column:
 				name=attribute.header_name,
 				attribute_id=attribute.attribute_id,
 				attribute_type=attribute.attribute_type,
-				dtype=dtype,  # type: ignore
+				dtype=dtype,
 				default_value=attribute.default_data_value,
 				field_type=attribute.field_type,
 				reorder_id=attribute.reorder_id,

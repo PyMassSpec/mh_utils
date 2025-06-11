@@ -2,8 +2,8 @@
 from pathlib import PureWindowsPath
 
 # 3rd party
+import coincidence.params
 import pytest
-from coincidence.params import count, testing_boolean_values, whitespace_perms
 
 # this package
 from mh_utils.utils import as_path, camel_to_snake, element_to_bool
@@ -20,8 +20,8 @@ class TestAsPath:
 					],
 			)
 
-	@whitespace_perms()
-	@count(100)
+	@coincidence.params.whitespace_perms()
+	@coincidence.params.count(100)
 	def test_as_path_whitespace_none(self, char: str, count: int):
 		assert as_path(char * count) is None
 
@@ -30,8 +30,8 @@ class TestAsPath:
 		assert as_path(value) is None
 
 	@pytest.mark.parametrize("whitespace_pos", ["left", "right", "both"])
-	@count(100)
-	@whitespace_perms()
+	@coincidence.params.count(100)
+	@coincidence.params.whitespace_perms()
 	@filenames
 	def test_as_path(
 			self,
@@ -65,7 +65,7 @@ class TestAsPath:
 
 class TestElementToBool:
 
-	@testing_boolean_values(extra_truthy=[-1])
+	@coincidence.params.testing_boolean_values(extra_truthy=[-1])
 	def test_element_to_bool(self, boolean_string, expected_boolean):
 		assert element_to_bool(boolean_string) == expected_boolean
 

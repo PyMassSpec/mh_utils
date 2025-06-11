@@ -142,6 +142,10 @@ class Molecule(Dictable):
 			raise TypeError(f"'matches' must be a dictionary, not {type(matches)}")
 
 	def to_dict(self):
+		"""
+		Return a dictionary representation of the class.
+		"""
+
 		return dict(
 				name=self.name,
 				formula=self.formula,
@@ -317,6 +321,10 @@ class Spectrum(Dictable):
 			]
 
 	def to_dict(self):
+		"""
+		Return a dictionary representation of the class.
+		"""
+
 		data = {}
 		for key in self.__slots__:
 			data[key] = getattr(self, key)
@@ -611,6 +619,10 @@ class Compound(Dictable):
 			self.spectra = []
 
 	def to_dict(self):
+		"""
+		Return a dictionary representation of the class.
+		"""
+
 		return dict(
 				algo=self.algo,
 				location=self.location,

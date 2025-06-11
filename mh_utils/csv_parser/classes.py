@@ -204,6 +204,10 @@ class Sample(Dictable):
 		return f"Sample({self.sample_name})"
 
 	def to_dict(self):
+		"""
+		Return a dictionary representation of the class.
+		"""
+
 		return AlphaDict(
 				sample_name=self.sample_name,
 				sample_type=self.sample_type,
@@ -425,6 +429,10 @@ class Result(Dictable):
 		return f"Result({self.name}; {self.formula}; {self.rt}; {self.score})"
 
 	def to_dict(self):
+		"""
+		Return a dictionary representation of the class.
+		"""
+
 		return AlphaDict(
 				cas=self._cas,
 				name=self.name,

@@ -82,6 +82,10 @@ class Dictable(Iterable[Tuple[str, _V]]):
 
 	@abstractmethod
 	def to_dict(self):
+		"""
+		Return a dictionary representation of the class.
+		"""
+
 		return {}  # pragma: no cover (abc)
 
 	def __eq__(self, other) -> bool:

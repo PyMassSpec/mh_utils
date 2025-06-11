@@ -111,6 +111,10 @@ class JobData(Dictable):
 				)
 
 	def to_dict(self):
+		"""
+		Return a dictionary representation of the class.
+		"""
+
 		data = {}
 		for key in self.__slots__:
 			if key == "id":
@@ -161,6 +165,10 @@ class Worklist(XMLFileMixin, Dictable):
 	__slots__ = ["version", "user_columns", "jobs", "checksum", "locked_run_mode", "instrument_name", "params"]
 
 	def to_dict(self):
+		"""
+		Return a dictionary representation of the class.
+		"""
+
 		data = {}
 		for key in self.__slots__:
 			data[key] = getattr(self, key)

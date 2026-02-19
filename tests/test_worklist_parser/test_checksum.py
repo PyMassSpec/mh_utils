@@ -1,3 +1,6 @@
+# stdlib
+from typing import Union
+
 # 3rd party
 import pytest
 
@@ -21,7 +24,12 @@ from mh_utils.worklist_parser.classes import Checksum
 				(2.5, 2),
 				],
 		)
-def test_creation(SchemaVersion, SchemaVersion_expects, ALGO_VERSION, ALGO_VERSION_expects):
+def test_creation(
+		SchemaVersion: Union[str, int],
+		SchemaVersion_expects: int,
+		ALGO_VERSION: Union[str, int],
+		ALGO_VERSION_expects: int,
+		):
 	data = Checksum(
 			SchemaVersion=SchemaVersion,
 			ALGO_VERSION=ALGO_VERSION,

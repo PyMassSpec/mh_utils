@@ -1,21 +1,23 @@
 # stdlib
 import sys
+from typing import Iterator
 
 # 3rd party
 import pytest
 from _pytest.fixtures import FixtureRequest
-from betamax import Betamax  # type: ignore
+from betamax import Betamax  # type: ignore[import-untyped]
 from chemistry_tools import cached_requests
 from coincidence.regressions import AdvancedFileRegressionFixture
 from domdf_python_tools.paths import PathPlus
 from pytest_regressions.dataframe_regression import DataFrameRegressionFixture
+from requests import Session
 
 # this package
 from mh_utils.pcdl import make_pcdl_csv
 
 
 @pytest.fixture()
-def pcdl_cassette(request: FixtureRequest):
+def pcdl_cassette(request: FixtureRequest) -> Iterator[Session]:
 	"""
 	Provides a Betamax cassette scoped to the test module
 	which record and plays back interactions with the PubChem API.

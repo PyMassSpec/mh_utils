@@ -1,5 +1,5 @@
 # 3rd party
-from betamax import Betamax  # type: ignore
+from betamax import Betamax  # type: ignore[import-untyped]
 from domdf_python_tools.paths import PathPlus
 
 pytest_plugins = ("coincidence", )

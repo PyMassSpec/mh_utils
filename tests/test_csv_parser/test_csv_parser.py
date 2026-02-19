@@ -11,7 +11,7 @@ from mh_utils.csv_parser import ResultParser
 from mh_utils.csv_parser.utils import concatenate_json
 
 
-def test_csv_parser(tmp_pathplus, file_regression: FileRegressionFixture):
+def test_csv_parser(tmp_pathplus: PathPlus, file_regression: FileRegressionFixture):
 	raw_results_dir = PathPlus(__file__).parent / "raw_results"
 
 	json_results_dir = tmp_pathplus / "json_results"

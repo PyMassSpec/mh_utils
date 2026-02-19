@@ -37,7 +37,7 @@ Parser for CSV result files produced by MassHunter Qualitative.
 from typing import Iterable
 
 # 3rd party
-import pandas  # type: ignore
+import pandas
 import sdjson
 from domdf_python_tools.paths import PathPlus
 from domdf_python_tools.typing import PathLike
@@ -68,7 +68,7 @@ class ResultParser:
 		self.csv_results_dir = PathPlus(csv_results_dir)
 		self.csv_results_dir.maybe_make(parents=True)
 
-	def parse_for_directory(self, directory: PathLike):
+	def parse_for_directory(self, directory: PathLike) -> None:
 		"""
 		Convert the "CSV Results.csv" file in the given directory to CSV and JSON.
 
@@ -86,7 +86,7 @@ class ResultParser:
 
 		parse_masshunter_csv(infile, csv_outfile, json_outfile)
 
-	def parse_directory_list(self, directory_list: Iterable[PathLike]):
+	def parse_directory_list(self, directory_list: Iterable[PathLike]) -> None:
 		"""
 		Runs :meth:`.~ResultsParser.parse_for_directory` for each directory in ``directory_list``.
 
@@ -98,7 +98,7 @@ class ResultParser:
 			self.parse_for_directory(directory)
 
 
-def parse_masshunter_csv(csv_file: PathLike, csv_outfile: PathLike, json_outfile: PathLike):
+def parse_masshunter_csv(csv_file: PathLike, csv_outfile: PathLike, json_outfile: PathLike) -> None:
 	"""
 	Parse CSV results files created by MassHunter.
 
@@ -125,7 +125,7 @@ def parse_masshunter_csv(csv_file: PathLike, csv_outfile: PathLike, json_outfile
 
 	PathPlus(json_outfile).dump_json(
 			samples,
-			json_library=sdjson,  # type: ignore
+			json_library=sdjson,  # type: ignore[arg-type]
 			indent=2,
 			)
 	# TODO: https://github.com/python/mypy/issues/5018

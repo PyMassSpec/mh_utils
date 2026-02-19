@@ -6,7 +6,7 @@ from mh_utils.worklist_parser.classes import Macro
 
 
 @pytest.fixture()
-def sample_macro():
+def sample_macro() -> Macro:
 	return Macro(
 			project_name="the project_name",
 			procedure_name="the procedure_name",
@@ -17,7 +17,7 @@ def sample_macro():
 			)
 
 
-def test_creation(sample_macro):
+def test_creation(sample_macro: Macro):
 
 	assert sample_macro.project_name == "the project_name"
 	assert sample_macro.procedure_name == "the procedure_name"
@@ -50,7 +50,7 @@ def test_from_xml():
 	assert data.display_string == "the display_string"
 
 
-def test_undefined_and_repr(sample_macro):
+def test_undefined_and_repr(sample_macro: Macro):
 
 	assert not sample_macro.undefined
 

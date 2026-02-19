@@ -7,6 +7,6 @@ from the tests base directory. Then delete any test files and move into the "tes
 """
 
 
-def main():
+def main():  # noqa: MAN002
 	# Entry point for zipapp
 	pass

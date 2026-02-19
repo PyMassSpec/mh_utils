@@ -1,9 +1,10 @@
 # stdlib
 import functools
-from typing import Any
+from typing import Any, Type, Union
 
 # 3rd party
 import pytest
+from typing_extensions import Literal
 
 # this package
 from mh_utils.worklist_parser.classes import Attribute
@@ -19,7 +20,7 @@ from tests.common import _test_strings, any_type_parametrize
 				*[(x, x) for x in range(100)],
 				],
 		)
-def test_injection_volume(value, expects):
+def test_injection_volume(value: int, expects: Union[int, Literal["As Method"]]):
 	assert injection_volume(value) == expects
 
 
@@ -36,7 +37,7 @@ class TestColumn:
 
 	def test_field_type_validator(self):
 		validator = functools.partial(
-				Column._Column__field_type_validator,  # type: ignore
+				Column._Column__field_type_validator,  # type: ignore[attr-defined]
 				the_attr=None,
 				the_value=None,
 				)
@@ -64,7 +65,7 @@ class TestColumn:
 	def test_default_value_validator(self):
 		obj = self._TestObj()
 		assert obj.default_value == -1
-		Column._Column__default_value_validator(obj, None, None)  # type: ignore
+		Column._Column__default_value_validator(obj, None, None)  # type: ignore[attr-defined]
 		assert obj.default_value == "-1"
 
 	@pytest.mark.parametrize(
@@ -74,7 +75,7 @@ class TestColumn:
 					('', "The Default"),
 					],
 			)
-	def test_cast_value(self, value, expects):
+	def test_cast_value(self, value: Any, expects: str):
 		c = Column(
 				name="Test Column",
 				attribute_id=1,
@@ -86,7 +87,7 @@ class TestColumn:
 		assert c.cast_value(value) == expects
 
 	@any_type_parametrize()
-	def test_cast_value_any(self, value, expects):
+	def test_cast_value_any(self, value: Any, expects: Any):
 		c = Column(
 				name="Test Column",
 				attribute_id=1,
@@ -107,7 +108,7 @@ class TestColumn:
 					(1, Any, "12.34  ", "12.34"),
 					],
 			)
-	def test_from_attribute(self, data_type, dtype, default, default_expects):
+	def test_from_attribute(self, data_type: int, dtype: Type, default: str, default_expects: Any):
 		attribute = Attribute(
 				attribute_id=42,
 				attribute_type=AttributeType.SystemDefined,

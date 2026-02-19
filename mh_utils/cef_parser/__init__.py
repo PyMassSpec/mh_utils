@@ -71,11 +71,11 @@ and the matching mass spectrum extracted from the LC-MS data (:attr:`~.Compound.
 import datetime
 import re
 from pprint import pformat
-from typing import Dict, Iterable, List, Optional, Sequence, Type, Union
+from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Type, Union
 
 # 3rd party
 import attr
-import lxml.objectify  # type: ignore
+import lxml.objectify  # type: ignore[import-untyped]
 from attr_utils.docstrings import add_attrs_doc
 from attr_utils.serialise import serde
 from chemistry_tools.formulae import Formula
@@ -141,7 +141,7 @@ class Molecule(Dictable):
 		else:
 			raise TypeError(f"'matches' must be a dictionary, not {type(matches)}")
 
-	def to_dict(self):
+	def to_dict(self) -> Mapping[str, Any]:
 		"""
 		Return a dictionary representation of the class.
 		"""
@@ -321,7 +321,7 @@ class Spectrum(Dictable):
 			"rt_ranges",
 			]
 
-	def to_dict(self):
+	def to_dict(self) -> Mapping[str, Any]:
 		"""
 		Return a dictionary representation of the class.
 		"""
@@ -383,10 +383,10 @@ class RTRange:
 	"""
 
 	#: The start time in minutes
-	start: datetime.timedelta = attr.ib(converter=make_timedelta, default=0.0)  # type: ignore
+	start: datetime.timedelta = attr.ib(converter=make_timedelta, default=0.0)  # type: ignore[assignment]
 
 	#: The end time in minutes
-	end: datetime.timedelta = attr.ib(converter=make_timedelta, default=0.0)  # type: ignore
+	end: datetime.timedelta = attr.ib(converter=make_timedelta, default=0.0)  # type: ignore[assignment]
 
 	@classmethod
 	def from_xml(cls, element: lxml.objectify.ObjectifiedElement) -> "RTRange":
@@ -417,10 +417,10 @@ class Flag(str):
 	__slots__ = ("severity", )
 	severity: int
 
-	def __copy__(self):
+	def __copy__(self) -> "Flag":
 		return Flag(str(self), self.severity)
 
-	def __deepcopy__(self, memodict={}):
+	def __deepcopy__(self, memodict={}) -> "Flag":  # noqa: MAN001
 		return Flag(str(self), int(self.severity))
 
 	def __new__(cls: Type["Flag"], string: str, severity: int) -> "Flag":  # noqa: D102
@@ -429,13 +429,13 @@ class Flag(str):
 
 		return obj
 
-	def __eq__(self, other) -> bool:
+	def __eq__(self, other) -> bool:  # noqa: MAN001
 		if isinstance(other, Flag):
 			return str(self) == str(other) and self.severity == other.severity
 		else:
 			return super().__eq__(other)
 
-	def __ne__(self, other) -> bool:
+	def __ne__(self, other) -> bool:  # noqa: MAN001
 		return NotImplemented
 
 	def __repr__(self) -> str:
@@ -465,16 +465,16 @@ class Score(float):
 
 	flag: Flag
 
-	def __copy__(self):
+	def __copy__(self) -> "Score":
 		return Score(float(self), str(self.flag), self.flag.severity)
 
-	def __deepcopy__(self, memodict={}):
+	def __deepcopy__(self, memodict={}) -> "Score":  # noqa: MAN001
 		return Score(float(self), str(self.flag), int(self.flag.severity))
 
-	def __init__(self, score, flag_string: str = '', flag_severity: int = 0):
+	def __init__(self, score, flag_string: str = '', flag_severity: int = 0):  # noqa: MAN001
 		float.__init__(float(score))
 
-	def __new__(cls, score, flag_string: str = '', flag_severity: int = 0) -> "Score":  # noqa: D102
+	def __new__(cls, score, flag_string: str = '', flag_severity: int = 0) -> "Score":  # noqa: D102,MAN001
 		obj = super().__new__(cls, float(score))
 		obj.flag = Flag(flag_string, flag_severity)
 
@@ -497,13 +497,13 @@ class Score(float):
 
 		return str(float(self))
 
-	def __eq__(self, other) -> bool:
+	def __eq__(self, other) -> bool:  # noqa: MAN001
 		if isinstance(other, Score):
 			return float(self) == float(other) and self.flag == other.flag
 		else:
 			return super().__eq__(other)
 
-	def __ne__(self, other) -> bool:
+	def __ne__(self, other) -> bool:  # noqa: MAN001
 		return NotImplemented
 
 
@@ -562,7 +562,7 @@ class LocationDict(TypedDict, total=False):
 
 class _CompoundStrPPrinter(FancyPrinter):
 
-	def _repr(self, object, context, level):  # noqa: A002  # pylint: disable=redefined-builtin
+	def _repr(self, object, context, level) -> str:  # noqa: MAN001,A002  # pylint: disable=redefined-builtin
 		if isinstance(object, (Molecule, Formula)):
 			self._readable = True
 			self._recursive = False
@@ -619,7 +619,7 @@ class Compound(Dictable):
 		else:
 			self.spectra = []
 
-	def to_dict(self):
+	def to_dict(self) -> Mapping[str, Any]:
 		"""
 		Return a dictionary representation of the class.
 		"""

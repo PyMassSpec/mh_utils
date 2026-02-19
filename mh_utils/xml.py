@@ -29,14 +29,15 @@ Functions and classes for handling XML files.
 # stdlib
 import pathlib
 from abc import ABC, abstractmethod
-from typing import Optional
+from typing import Optional, Type
 
 # 3rd party
-import lxml  # type: ignore
+import lxml  # type: ignore[import-untyped]
 from domdf_python_tools.typing import PathLike
 from lxml import etree, objectify
-from lxml.etree import _ElementTree  # type: ignore
-from lxml.objectify import ObjectifiedElement  # type: ignore
+from lxml.etree import _ElementTree  # type: ignore[import-untyped]
+from lxml.objectify import ObjectifiedElement  # type: ignore[import-untyped]
+from typing_extensions import Self
 
 __all__ = ["get_validated_tree", "XMLFileMixin"]
 
@@ -87,7 +88,7 @@ class XMLFileMixin(ABC):
 	_schema: Optional[str] = None
 
 	@classmethod
-	def from_xml_file(cls, filename: PathLike):
+	def from_xml_file(cls: Type[Self], filename: PathLike) -> Self:
 		"""
 		Generate an instance of this class by parsing an from an XML file.
 
@@ -100,7 +101,7 @@ class XMLFileMixin(ABC):
 
 	@classmethod
 	@abstractmethod
-	def from_xml(cls, element: lxml.objectify.ObjectifiedElement):
+	def from_xml(cls: Type[Self], element: lxml.objectify.ObjectifiedElement) -> Self:
 		"""
 		Construct an object from an XML element.
 

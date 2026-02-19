@@ -1,11 +1,11 @@
 # stdlib
 from pathlib import PureWindowsPath
 from pprint import pformat
-from typing import List
+from typing import Iterator, List
 from uuid import UUID
 
 # 3rd party
-import pandas  # type: ignore
+import pandas
 import pytest
 
 # this package
@@ -57,13 +57,13 @@ def test_creation():
 			)
 
 	data = Worklist(
-			version="2.3",  # type: ignore
-			locked_run_mode=0,  # type: ignore
+			version="2.3",  # type: ignore[arg-type]
+			locked_run_mode=0,  # type: ignore[arg-type]
 			instrument_name="The Instrument",
-			params="not a dict ;)",  # type: ignore
+			params="not a dict ;)",  # type: ignore[arg-type]
 			user_columns={},
 			jobs=[],
-			checksum="not a checksum ;)",  # type: ignore
+			checksum="not a checksum ;)",  # type: ignore[arg-type]
 			)
 
 	assert data.version == 2.3
@@ -81,7 +81,7 @@ def test_creation():
 
 class FakeJobDataListElement(List[FakeJobDataElement]):
 
-	def iterchildren(self, *args, **kwargs):
+	def iterchildren(self, *args, **kwargs) -> Iterator:
 		return iter(self)
 
 
@@ -100,7 +100,7 @@ class FakeAttributeInformationElement:
 	def __init__(self):
 		pass
 
-	def iterchildren(self, *args, **kwargs):
+	def iterchildren(self, *args, **kwargs) -> tuple:
 		return ()
 
 
@@ -111,7 +111,7 @@ class FakeWorklistElement:
 		self.Checksum = FakeChecksumElement()
 		self.WorklistInfo = FakeWorklistInfoElement()
 
-	def iterchildren(self, *args, **kwargs):
+	def iterchildren(self, *args, **kwargs) -> tuple:
 		return ()
 
 

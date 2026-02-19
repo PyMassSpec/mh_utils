@@ -41,7 +41,7 @@ from chemistry_tools.pubchem.description import get_common_name, get_compound_id
 from chemistry_tools.pubchem.errors import NotFoundError
 from chemistry_tools.pubchem.properties import get_properties
 from domdf_python_tools.typing import PathLike
-from pandas import DataFrame  # type: ignore
+from pandas import DataFrame
 
 __all__ = ["PCDLCompound", "compound_list_2_pandas", "make_pcdl_csv"]
 
@@ -181,7 +181,7 @@ def compound_list_2_pandas(compound_list: List[PCDLCompound]) -> DataFrame:
 			)
 
 	names = df["IUPAC"]
-	sort_order = get_IUPAC_sort_order(names)
+	sort_order = get_IUPAC_sort_order(names)  # type: ignore[arg-type]
 	df = df.loc[df["IUPAC"].map(sort_order).sort_values(ascending=True).index]
 
 	return df

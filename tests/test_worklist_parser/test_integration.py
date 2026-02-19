@@ -4,6 +4,7 @@ import pathlib
 # 3rd party
 import pytest
 from domdf_python_tools.paths import PathPlus
+from domdf_python_tools.typing import PathLike
 
 # this package
 from mh_utils.worklist_parser import read_worklist
@@ -33,6 +34,6 @@ def test_integration():
 				PathPlus("/home/user/directory/missing.xml"),
 				],
 		)
-def test_read_worklist_missing_file(xml_file):
+def test_read_worklist_missing_file(xml_file: PathLike):
 	with pytest.raises(FileNotFoundError, match="'.*' does not exist."):
 		read_worklist(xml_file)

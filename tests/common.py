@@ -14,7 +14,7 @@ _test_strings = [
 		]
 
 
-def any_type_parametrize():
+def any_type_parametrize():  # noqa: MAN002
 	return pytest.mark.parametrize(
 			"value, expects",
 			[

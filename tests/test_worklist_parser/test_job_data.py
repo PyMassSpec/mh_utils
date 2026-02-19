@@ -1,5 +1,5 @@
 # stdlib
-from typing import Tuple, Union
+from typing import Union
 from uuid import UUID
 
 # 3rd party
@@ -72,7 +72,7 @@ class FakeJobDataElement:
 		self.RunStatus = '1'
 		self.SampleInfo = FakeSampleElement()
 
-	def iterchildren(self, *args, **kwargs) -> Tuple:
+	def iterchildren(self, *args, **kwargs) -> tuple:
 		return ()
 
 

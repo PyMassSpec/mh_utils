@@ -81,13 +81,13 @@ class Column:
 	:param field_type: The field type identifier.
 	"""
 
-	def __field_type_validator(self, the_attr: attr.Attribute, the_value):
+	def __field_type_validator(self, the_attr: attr.Attribute, the_value: Any) -> None:
 		if self.field_type is None:
 			self.field_type = self.attribute_id
 		if self.reorder_id is None:
 			self.reorder_id = self.attribute_id
 
-	def __default_value_validator(self, the_attr: attr.Attribute, the_value):
+	def __default_value_validator(self, the_attr: attr.Attribute, the_value: Any) -> None:
 		if self.dtype is not Any:
 			self.default_value = self.dtype(self.default_value)
 
@@ -124,7 +124,7 @@ class Column:
 
 	reorder_id: Optional[int] = attr.ib(default=None)
 
-	def cast_value(self, value: Any):  # noqa: PRM002
+	def cast_value(self, value: Any):  # noqa: PRM002,MAN002
 		"""
 		Cast ``value`` to the dtype of this column.
 		"""

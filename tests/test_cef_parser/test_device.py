@@ -1,5 +1,8 @@
+# stdlib
+from typing import Any
+
 # 3rd party
-import lxml.objectify  # type: ignore
+import lxml.objectify  # type: ignore[import-untyped]
 import pytest
 
 # this package
@@ -33,7 +36,7 @@ from mh_utils.cef_parser import Device
 				("100", 100),
 				],
 		)
-def test_creation(number, number_expects, device_type, device_type_expects):
+def test_creation(number: Any, number_expects: int, device_type: str, device_type_expects: str):
 	rt = Device(device_type, number)
 	assert rt.number == number_expects
 	assert rt.device_type == device_type_expects
@@ -46,7 +49,7 @@ def test_creation(number, number_expects, device_type, device_type_expects):
 				('<Device type="Hello World" num="20" />', "Hello World", 20),
 				],
 		)
-def test_from_xml(raw_xml, device_type_expects, number_expects):
+def test_from_xml(raw_xml: str, device_type_expects: str, number_expects: str):
 	tree = lxml.objectify.fromstring(raw_xml)
 	rt = Device.from_xml(tree)
 	assert rt.device_type == device_type_expects

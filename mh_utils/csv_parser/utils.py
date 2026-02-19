@@ -32,7 +32,7 @@ CSV utility functions.
 from typing import Optional
 
 # 3rd party
-import pandas  # type: ignore
+import pandas
 import sdjson
 from domdf_python_tools.paths import PathPlus
 from domdf_python_tools.typing import PathLike
@@ -113,13 +113,9 @@ def drop_columns(df: pandas.DataFrame, *, axis: int = 1, inplace: bool = True, *
 
 	lib_cols = ["Lib/DB", "Score (Lib)"]
 
-	new_df = df.drop(
-			[
-					*unknown_cols,
-					*db_cols,
-					*mfg_cols,
-					*lib_cols,
-					],
+	drop_labels = [*unknown_cols, *db_cols, *mfg_cols, *lib_cols]
+	new_df = df.drop(  # type: ignore[call-overload]
+			drop_labels,
 			axis=axis,
 			inplace=inplace,
 			**kwargs,
@@ -205,7 +201,7 @@ def concatenate_json(*files: PathLike, outfile: Optional[PathLike] = None) -> Sa
 
 	for json_file in files:
 		samples = PathPlus(json_file).load_json(
-				json_library=sdjson,  # type: ignore
+				json_library=sdjson,  # type: ignore[arg-type]
 				)
 		# TODO: https://github.com/python/mypy/issues/5018
 		# If it ever gets fixed
@@ -216,7 +212,7 @@ def concatenate_json(*files: PathLike, outfile: Optional[PathLike] = None) -> Sa
 	if outfile is not None:
 		PathPlus(outfile).dump_json(
 				all_samples,
-				json_library=sdjson,  # type: ignore
+				json_library=sdjson,  # type: ignore[arg-type]
 				indent=2,
 				)
 		# TODO: https://github.com/python/mypy/issues/5018

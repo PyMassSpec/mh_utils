@@ -1,5 +1,8 @@
+# stdlib
+from typing import Any, Dict
+
 # 3rd party
-import lxml.objectify  # type: ignore
+import lxml.objectify  # type: ignore[import-untyped]
 import pytest
 
 # this package
@@ -37,7 +40,7 @@ raw_xml_multiline = """
 						),
 				],
 		)
-def test_parse_compound_scores(raw_xml, expects):
+def test_parse_compound_scores(raw_xml: str, expects: Dict[str, Any]):
 	tree = lxml.objectify.fromstring(raw_xml)
 	assert parse_compound_scores(tree) == expects
 

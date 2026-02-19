@@ -1,5 +1,8 @@
+# stdlib
+from typing import Any, Dict, Union
+
 # 3rd party
-import lxml.objectify  # type: ignore
+import lxml.objectify  # type: ignore[import-untyped]
 import pytest
 
 # this package
@@ -16,11 +19,11 @@ class TestCreation:
 
 	def test_saturation_limit(self):
 		assert Spectrum(saturation_limit=10000).saturation_limit == 10000
-		assert Spectrum(saturation_limit="10000").saturation_limit == 10000  # type: ignore
+		assert Spectrum(saturation_limit="10000").saturation_limit == 10000  # type: ignore[arg-type]
 
 	def test_scans(self):
 		assert Spectrum(scans=1).scans == 1
-		assert Spectrum(scans='1').scans == 1  # type: ignore
+		assert Spectrum(scans='1').scans == 1  # type: ignore[arg-type]
 
 	def test_scan_type(self):
 		assert Spectrum(scan_type="Scan").scan_type == "Scan"
@@ -41,7 +44,7 @@ class TestCreation:
 					(22, 22),
 					],
 			)
-	def test_polarity(self, polarity, expected):
+	def test_polarity(self, polarity: Union[str, int], expected: int):
 		assert Spectrum(polarity=polarity).polarity == expected
 
 	def test_peaks(self):
@@ -70,7 +73,7 @@ class TestCreation:
 					("ABCDEFG", 0),
 					],
 			)
-	def test_voltage(self, voltage, expected):
+	def test_voltage(self, voltage: Union[float, int], expected: float):
 		assert Spectrum(voltage=voltage).voltage == expected
 
 
@@ -89,7 +92,7 @@ def spectrum() -> Spectrum:
 			)
 
 
-def test_dict(spectrum):
+def test_dict(spectrum: Spectrum):
 	assert dict(spectrum) == {
 			"spectrum_type": "FbF",
 			"algorithm": "FindByFormula",
@@ -105,7 +108,7 @@ def test_dict(spectrum):
 			}
 
 
-def test_repr(spectrum):
+def test_repr(spectrum: Spectrum):
 	assert (str(spectrum) == "<Spectrum([Peak(x=170.0965, rx=172.1028, y=890559.25, charge=1, label='M+H')])>")
 	assert (repr(spectrum) == "<Spectrum([Peak(x=170.0965, rx=172.1028, y=890559.25, charge=1, label='M+H')])>")
 
@@ -201,7 +204,7 @@ tof_expects = Spectrum(
 				(raw_xml_tof, tof_expects),
 				],
 		)
-def test_from_xml(raw_xml, expects):
+def test_from_xml(raw_xml: str, expects: Dict[str, Any]):
 	tree = lxml.objectify.fromstring(raw_xml)
 	spec = Spectrum.from_xml(tree)
 	assert spec == expects

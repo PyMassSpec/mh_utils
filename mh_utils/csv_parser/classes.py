@@ -31,11 +31,11 @@ Classes to model parts of MassHunter CSV files.
 # stdlib
 from collections import OrderedDict
 from decimal import Decimal
-from typing import Dict, Iterable, List, Optional, Tuple, Type, TypeVar
+from typing import Any, Dict, Iterable, List, Mapping, Optional, Tuple, Type, TypeVar, Union
 
 # 3rd party
 import numpy
-import pandas  # type: ignore
+import pandas
 import sdjson
 from cawdrey import AlphaDict
 from domdf_python_tools import doctools
@@ -61,7 +61,7 @@ __all__ = [
 		"_R",
 		]
 
-pandas.Series.__module_ = "pandas"
+pandas.Series.__module_ = "pandas"  # type: ignore[attr-defined]
 
 _S = TypeVar("_S", bound="Sample")
 _SL = TypeVar("_SL", bound="SampleList")
@@ -85,19 +85,19 @@ class Sample(Dictable):
 	:param results:
 	"""
 
-	def __init__(
-			self,
-			sample_name,
-			sample_type,
-			instrument_name,
-			position,
-			user,
-			acq_method,
-			da_method,
-			irm_cal_status,
-			filename,
-			results=None,
-			):
+	def __init__(  # noqa: MAN001  # TODO
+		self,
+		sample_name,
+		sample_type,
+		instrument_name,
+		position,
+		user,
+		acq_method,
+		da_method,
+		irm_cal_status,
+		filename,
+		results=None,
+	):
 
 		self.sample_name = sample_name
 		self.sample_type = sample_type
@@ -134,7 +134,7 @@ class Sample(Dictable):
 		else:
 			raise TypeError(f"Unknown type for `results`: {type(results)}")
 
-	def add_result(self, result):
+	def add_result(self, result: "Result") -> None:
 		"""
 		Add a result to the sample.
 
@@ -162,15 +162,17 @@ class Sample(Dictable):
 
 		return results_list
 
-	def __eq__(self, other):
+	def __eq__(self, other) -> bool:  # noqa: MAN001
 		if isinstance(other, self.__class__):
 			return (
 					self.sample_name == other.sample_name and self.sample_type == other.sample_type
 					and self.filename == other.filename and self.acq_method == other.acq_method
 					)
 
+		return NotImplemented
+
 	@classmethod
-	def from_series(cls: Type[_S], series) -> _S:
+	def from_series(cls: Type[_S], series: pandas.Series) -> _S:
 		"""
 		Constuct a :class:`~.Sample` from a :class:`pandas.Series`.
 
@@ -200,10 +202,10 @@ class Sample(Dictable):
 				filename,
 				)
 
-	def __repr__(self):
+	def __repr__(self) -> str:
 		return f"Sample({self.sample_name})"
 
-	def to_dict(self):
+	def to_dict(self) -> Mapping[str, Any]:
 		"""
 		Return a dictionary representation of the class.
 		"""
@@ -270,42 +272,42 @@ class Result(Dictable):
 		\end{multicols}
 	"""
 
-	def __init__(
-			self,
-			cas,
-			name: str,
-			hits,
-			index: int = -1,
-			formula: str = '',
-			score: float = 0.0,
-			abundance: float = 0,
-			height: float = 0,
-			area: float = 0,
-			diff_mDa: float = 0.0,
-			diff_ppm: float = 0.0,
-			rt: float = 0.0,
-			start: float = 0.0,
-			end: float = 0.0,
-			width: float = 0.0,
-			tgt_rt: float = 0.0,
-			rt_diff: float = 0.0,
-			mz: float = 0.0,
-			product_mz: float = 0.0,
-			base_peak: float = 0.0,
-			mass: float = 0.0,
-			average_mass: float = 0.0,
-			tgt_mass: float = 0.0,
-			mining_algorithm: str = '',
-			z_count: int = 0,
-			max_z: int = 0,
-			min_z: int = 0,
-			n_ions: int = 0,
-			polarity: str = '',
-			label: str = '',
-			flags: str = '',
-			flag_severity: str = '',
-			flag_severity_code: int = 0,
-			):
+	def __init__(  # noqa: MAN001  # TODO
+		self,
+		cas,
+		name: str,
+		hits,
+		index: int = -1,
+		formula: str = '',
+		score: float = 0.0,
+		abundance: float = 0,
+		height: float = 0,
+		area: float = 0,
+		diff_mDa: float = 0.0,
+		diff_ppm: float = 0.0,
+		rt: float = 0.0,
+		start: float = 0.0,
+		end: float = 0.0,
+		width: float = 0.0,
+		tgt_rt: float = 0.0,
+		rt_diff: float = 0.0,
+		mz: float = 0.0,
+		product_mz: float = 0.0,
+		base_peak: float = 0.0,
+		mass: float = 0.0,
+		average_mass: float = 0.0,
+		tgt_mass: float = 0.0,
+		mining_algorithm: str = '',
+		z_count: int = 0,
+		max_z: int = 0,
+		min_z: int = 0,
+		n_ions: int = 0,
+		polarity: str = '',
+		label: str = '',
+		flags: str = '',
+		flag_severity: str = '',
+		flag_severity_code: int = 0,
+	):
 
 		# Possible also AL (ID Source) and AM (ID Techniques Applied)
 		self._cas = cas
@@ -425,10 +427,10 @@ class Result(Dictable):
 				flag_severity_code,
 				)
 
-	def __repr__(self):
+	def __repr__(self) -> str:
 		return f"Result({self.name}; {self.formula}; {self.rt}; {self.score})"
 
-	def to_dict(self):
+	def to_dict(self) -> Mapping[str, Any]:
 		"""
 		Return a dictionary representation of the class.
 		"""
@@ -469,7 +471,7 @@ class Result(Dictable):
 				index=self.index,
 				)
 
-	def __eq__(self, other):
+	def __eq__(self, other) -> bool:  # noqa: MAN001
 		if isinstance(other, str):
 			return other.casefold() == self.name.casefold()
 		else:
@@ -482,7 +484,7 @@ class SampleList(List[Sample]):
 	"""
 
 	@doctools.append_docstring_from(Sample.__init__)
-	def add_new_sample(self, *args, **kwargs):  # noqa: PRM002
+	def add_new_sample(self, *args, **kwargs) -> Sample:  # noqa: PRM002
 		"""
 		Add a new sample to the list and return the
 		:class:`~classes.Sample` object representing it.
@@ -527,7 +529,7 @@ class SampleList(List[Sample]):
 		tmp_sample = Sample.from_series(series)
 		return self.add_sample(tmp_sample)
 
-	def sort_samples(self, key: str, reverse: bool = False):
+	def sort_samples(self, key: str, reverse: bool = False) -> None:
 		"""
 		Sort the list of :class:`~.Samples` in place.
 
@@ -541,7 +543,7 @@ class SampleList(List[Sample]):
 
 		self.sort(key=lambda samp: getattr(samp, key), reverse=reverse)
 
-	def reorder_samples(self, order_mapping: Dict, key: str = "sample_name"):
+	def reorder_samples(self, order_mapping: Dict, key: str = "sample_name") -> None:
 		"""
 		Reorder the list of :class:`~.Samples` in place.
 
@@ -562,7 +564,7 @@ class SampleList(List[Sample]):
 
 		self.sort(key=lambda s: order_mapping[getattr(s, key)], reverse=True)
 
-	def rename_samples(self, rename_mapping: Dict, key: str = "sample_name"):
+	def rename_samples(self, rename_mapping: Dict, key: str = "sample_name") -> None:
 		r"""
 		Rename the samples in the list.
 
@@ -794,7 +796,7 @@ class SampleList(List[Sample]):
 		all_samples = cls()
 
 		for sample in PathPlus(filename).load_json(
-				json_library=sdjson,  # type: ignore
+				json_library=sdjson,  # type: ignore[arg-type]
 				**kwargs,
 				):
 			all_samples.append(Sample(**sample))
@@ -888,15 +890,15 @@ class SamplesScoresDict(BaseSamplePropertyDict):
 
 @sdjson.encoders.register(Sample)
 @sdjson.encoders.register(Result)
-def encode_result_or_sample(obj):  # noqa: D103
+def encode_result_or_sample(obj: Union[Sample, Result]) -> dict:  # noqa: D103
 	return dict(obj)
 
 
 @sdjson.encoders.register(set)
-def encode_set(obj):  # noqa: D103
+def encode_set(obj: set) -> list:  # noqa: D103
 	return list(obj)
 
 
 @sdjson.encoders.register(Decimal)
-def encode_decimal(obj):  # noqa: D103
+def encode_decimal(obj: Decimal) -> str:  # noqa: D103
 	return str(obj)

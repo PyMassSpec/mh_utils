@@ -58,7 +58,7 @@ class FakeParamsElement:
 		self.PlateBarCodes = "any type"
 
 
-def macro_type_parametrize():
+def macro_type_parametrize():  # noqa: MAN002
 	e = FakeMacroElement()
 
 	m = Macro(
@@ -336,7 +336,7 @@ class FakeSampleElement:
 		self.SampleGroup = "the SampleGroup"
 		self.SampleInformation = "the SampleInformation"
 
-	def iterchildren(self, *args, **kwargs):
+	def iterchildren(self, *args, **kwargs) -> tuple:
 		return ()
 
 
@@ -447,7 +447,14 @@ class TestParseDatetime:
 	@count(100)
 	@whitespace_perms()
 	@dates
-	def test(self, whitespace_pos, count, char, date, expects):
+	def test(
+			self,
+			whitespace_pos: str,
+			count: int,
+			char: str,
+			date: str,
+			expects: datetime,
+			) -> None:
 
 		if whitespace_pos == "left":
 			with_whitespace = f"{char * count}{date}"
@@ -463,8 +470,8 @@ class TestParseDatetime:
 	@dates
 	def test_no_whitespace(
 			self,
-			date,
-			expects,
+			date: str,
+			expects: datetime,
 			):
 
 		assert parse_datetime(date) == expects

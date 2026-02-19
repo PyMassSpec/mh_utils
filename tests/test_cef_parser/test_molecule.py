@@ -1,5 +1,8 @@
+# stdlib
+from typing import Any, Dict
+
 # 3rd party
-import lxml.objectify  # type: ignore
+import lxml.objectify  # type: ignore[import-untyped]
 import pytest
 from chemistry_tools.formulae import Formula
 
@@ -37,7 +40,7 @@ class TestCreation:
 				}
 
 		with pytest.raises(TypeError, match="'matches' must be a dictionary, not"):
-			Molecule(name="Dimethyl Phthalate", matches="Hello World")  # type: ignore
+			Molecule(name="Dimethyl Phthalate", matches="Hello World")  # type: ignore[arg-type]
 
 
 def test_dict():
@@ -94,7 +97,7 @@ expects = Molecule(
 
 
 @pytest.mark.parametrize("raw_xml, expects", [(raw_xml, expects)])
-def test_from_xml(raw_xml, expects):
+def test_from_xml(raw_xml: str, expects: Dict[str, Any]):
 	tree = lxml.objectify.fromstring(raw_xml)
 	spec = Molecule.from_xml(tree)
 	assert spec == expects
@@ -132,6 +135,6 @@ raw_xml_multiline = """
 						),
 				],
 		)
-def test_parse_match_scores(raw_xml, expects):
+def test_parse_match_scores(raw_xml: str, expects: Dict[str, Any]):
 	tree = lxml.objectify.fromstring(raw_xml)
 	assert parse_match_scores(tree) == expects

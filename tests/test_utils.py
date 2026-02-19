@@ -1,5 +1,6 @@
 # stdlib
-from pathlib import PureWindowsPath
+from pathlib import PurePath, PureWindowsPath
+from typing import Any, Type
 
 # 3rd party
 import coincidence.params
@@ -26,7 +27,7 @@ class TestAsPath:
 		assert as_path(char * count) is None
 
 	@pytest.mark.parametrize("value", [None, [], (), set(), {}, 0, False])
-	def test_as_path_none(self, value):
+	def test_as_path_none(self, value: Any):
 		assert as_path(value) is None
 
 	@pytest.mark.parametrize("whitespace_pos", ["left", "right", "both"])
@@ -35,11 +36,11 @@ class TestAsPath:
 	@filenames
 	def test_as_path(
 			self,
-			whitespace_pos,
-			count,
-			char,
-			value,
-			expects,
+			whitespace_pos: str,
+			count: int,
+			char: str,
+			value: str,
+			expects: PurePath,
 			):
 
 		if whitespace_pos == "left":
@@ -56,8 +57,8 @@ class TestAsPath:
 	@filenames
 	def test_as_path_no_whitespace(
 			self,
-			value,
-			expects,
+			value: str,
+			expects: PurePath,
 			):
 
 		assert as_path(value) == expects
@@ -66,7 +67,7 @@ class TestAsPath:
 class TestElementToBool:
 
 	@coincidence.params.testing_boolean_values(extra_truthy=[-1])
-	def test_element_to_bool(self, boolean_string, expected_boolean):
+	def test_element_to_bool(self, boolean_string: Any, expected_boolean: bool):
 		assert element_to_bool(boolean_string) == expected_boolean
 
 	@pytest.mark.parametrize(
@@ -82,7 +83,7 @@ class TestElementToBool:
 					("50", ValueError),  # also invalid in domdf_python_tools
 					],
 			)
-	def test_element_to_bool_errors(self, obj, expects):
+	def test_element_to_bool_errors(self, obj: Any, expects: Type[Exception]):
 		with pytest.raises(expects):
 			element_to_bool(obj)
 
@@ -99,5 +100,5 @@ class TestElementToBool:
 				("HELLOWorld", "hello_world"),
 				],
 		)
-def test_camel_to_snake(value, expects):
+def test_camel_to_snake(value: str, expects: str):
 	assert camel_to_snake(value) == expects

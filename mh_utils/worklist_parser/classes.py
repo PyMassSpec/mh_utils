@@ -28,13 +28,13 @@ Main classes for the worklist parser.
 
 # stdlib
 from pprint import pformat
-from typing import Any, Dict, List, Optional, Sequence, Union
+from typing import Any, Dict, List, Mapping, Optional, Sequence, Union
 from uuid import UUID
 
 # 3rd party
 import attr
-import lxml  # type: ignore
-import pandas  # type: ignore
+import lxml  # type: ignore[import-untyped]
+import pandas
 from attr_utils.docstrings import add_attrs_doc
 from attr_utils.serialise import serde
 from domdf_python_tools.doctools import prettify_docstrings
@@ -110,7 +110,7 @@ class JobData(Dictable):
 				sample_info=parse_sample_info(element.SampleInfo, user_columns),
 				)
 
-	def to_dict(self):
+	def to_dict(self) -> Mapping[str, Any]:
 		"""
 		Return a dictionary representation of the class.
 		"""
@@ -164,7 +164,7 @@ class Worklist(XMLFileMixin, Dictable):
 
 	__slots__ = ["version", "user_columns", "jobs", "checksum", "locked_run_mode", "instrument_name", "params"]
 
-	def to_dict(self):
+	def to_dict(self) -> Mapping[str, Any]:
 		"""
 		Return a dictionary representation of the class.
 		"""

@@ -1,5 +1,8 @@
+# stdlib
+from typing import Any
+
 # 3rd party
-import lxml.objectify  # type: ignore
+import lxml.objectify  # type: ignore[import-untyped]
 import pytest
 
 # this package
@@ -66,15 +69,15 @@ from mh_utils.cef_parser import Peak
 		)
 @pytest.mark.parametrize("label", ["M+H", "M+H+1", "M+H+2", "M+Na"])
 def test_creation(
-		x,
-		x_expects,
-		rx,
-		rx_expects,
-		y,
-		y_expects,
-		charge,
-		charge_expects,
-		label,
+		x: Any,
+		x_expects: float,
+		rx: Any,
+		rx_expects: float,
+		y: Any,
+		y_expects: float,
+		charge: Any,
+		charge_expects: int,
+		label: str,
 		):
 	rt = Peak(x, rx, y, charge, label)
 	assert rt.x == x_expects
@@ -121,7 +124,7 @@ def test_creation(
 						),
 				],
 		)
-def test_from_xml(raw_xml, x, rx, y, charge, label):
+def test_from_xml(raw_xml: str, x: float, rx: float, y: float, charge: int, label: str):
 	tree = lxml.objectify.fromstring(raw_xml)
 	rt = Peak.from_xml(tree)
 	assert rt.x == x

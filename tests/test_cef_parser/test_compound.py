@@ -1,8 +1,9 @@
 # stdlib
 import copy
+from typing import Dict
 
 # 3rd party
-import lxml.objectify  # type: ignore
+import lxml.objectify  # type: ignore[import-untyped]
 import pytest
 from domdf_python_tools.paths import PathPlus
 from pytest_regressions.file_regression import FileRegressionFixture
@@ -12,7 +13,7 @@ from mh_utils.cef_parser import Compound, CompoundList, Device, Molecule, Peak, 
 
 
 @pytest.fixture()
-def spectrum():
+def spectrum() -> Spectrum:
 	return Spectrum(
 			spectrum_type="FbF",
 			algorithm="FindByFormula",
@@ -27,12 +28,12 @@ def spectrum():
 
 
 @pytest.fixture()
-def molecule():
+def molecule() -> Molecule:
 	return Molecule(name="Dimethyl Phthalate", formula="C10 H10 O4")
 
 
 @pytest.fixture()
-def compound(spectrum, molecule):
+def compound(spectrum: Spectrum, molecule: Molecule) -> Compound:
 	return Compound(
 			algo="FindByFormula",
 			location={'m': 169.0893, "rt": 13.649, 'a': 29388223, 'y': 3377289},
@@ -67,18 +68,18 @@ class TestCreation:
 					{"fbf": Score(62.90, flag_string="low score", flag_severity=2)},
 					],
 			)
-	def test_compound_scores(self, scores):
+	def test_compound_scores(self, scores: Dict[str, Score]):
 		assert Compound(algo="FindByFormula", compound_scores=scores).compound_scores == copy.deepcopy(scores)
 		assert Compound(algo="FindByFormula").compound_scores == {}
 
-	def test_results(self, molecule):
+	def test_results(self, molecule: Molecule):
 		results = [molecule, molecule]
 		assert Compound(algo="FindByFormula", results=results).results == copy.deepcopy(results)
 		assert Compound(algo="FindByFormula", results=()).results == []
 		assert Compound(algo="FindByFormula", results=[]).results == []
 		assert Compound(algo="FindByFormula").results == []
 
-	def test_spectra(self, spectrum):
+	def test_spectra(self, spectrum: Spectrum):
 		assert Compound(algo="FindByFormula", spectra=[spectrum]).spectra == [spectrum]
 		assert Compound(algo="FindByFormula", spectra=(spectrum, )).spectra == [spectrum]
 		assert Compound(algo="FindByFormula", spectra=()).spectra == []
@@ -86,7 +87,7 @@ class TestCreation:
 		assert Compound(algo="FindByFormula").spectra == []
 
 
-def test_dict(spectrum, molecule, compound):
+def test_dict(spectrum: Spectrum, molecule: Molecule, compound: Compound):
 
 	as_dict = {
 			"algo": "FindByFormula",
@@ -99,7 +100,7 @@ def test_dict(spectrum, molecule, compound):
 	assert dict(compound) == as_dict
 
 
-def test_repr(compound, spectrum, molecule, file_regression: FileRegressionFixture):
+def test_repr(compound: Compound, spectrum: Spectrum, molecule: Molecule, file_regression: FileRegressionFixture):
 	assert str(compound) == "Compound([Molecule(Dimethyl Phthalate, C10H10O4)])"
 	assert repr(compound) == "<Compound([<Molecule(Dimethyl Phthalate, Formula({'C': 10, 'H': 10, 'O': 4}))>])>"
 
@@ -175,7 +176,7 @@ raw_xml = """
 
 
 @pytest.fixture()
-def fbf_spectrum():
+def fbf_spectrum() -> Spectrum:
 	return Spectrum(
 			spectrum_type="FbF",
 			algorithm="FindByFormula",
@@ -193,7 +194,7 @@ def fbf_spectrum():
 
 
 @pytest.fixture()
-def tof_spectrum():
+def tof_spectrum() -> Spectrum:
 	return Spectrum(
 			spectrum_type="TOF-MS1",
 			algorithm="FindByFormula",
@@ -215,7 +216,7 @@ def tof_spectrum():
 
 
 @pytest.fixture()
-def expected_compound(fbf_spectrum, tof_spectrum):
+def expected_compound(fbf_spectrum: Spectrum, tof_spectrum: Spectrum) -> Compound:
 	score = Score(99.79)
 
 	return Compound(
@@ -237,14 +238,14 @@ def expected_compound(fbf_spectrum, tof_spectrum):
 
 
 @pytest.mark.usefixtures("fbf_spectrum", "tof_spectrum")
-def test_from_xml(expected_compound):
+def test_from_xml(expected_compound: Compound):
 	tree = lxml.objectify.fromstring(raw_xml)
 	spec = Compound.from_xml(tree)
 	assert spec == expected_compound
 
 
 @pytest.mark.usefixtures("tof_spectrum", "fbf_spectrum")
-def test_compound_list_from_xml(expected_compound):
+def test_compound_list_from_xml(expected_compound: Compound):
 	expects = CompoundList("LCQTOF", [expected_compound])
 
 	tree = lxml.objectify.fromstring(f'<CompoundList instrumentConfiguration="LCQTOF">{raw_xml}</CompoundList>')
@@ -253,10 +254,10 @@ def test_compound_list_from_xml(expected_compound):
 
 
 @pytest.mark.usefixtures("tof_spectrum", "fbf_spectrum")
-def test_parse_cef(tmpdir, expected_compound):
+def test_parse_cef(tmp_pathplus: PathPlus, expected_compound: Compound):
 	expects = CompoundList("LCQTOF", [expected_compound])
 
-	(PathPlus(tmpdir) / "demo.cef").write_text(
+	(tmp_pathplus / "demo.cef").write_text(
 			f"""\
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <CEF version="1.0.0.0">
@@ -267,13 +268,13 @@ def test_parse_cef(tmpdir, expected_compound):
 """,
 			)
 
-	cef = parse_cef(PathPlus(tmpdir) / "demo.cef")
+	cef = parse_cef(tmp_pathplus / "demo.cef")
 	assert cef == expects
 
 	assert parse_cef(PathPlus(__file__).parent / "example.cef")
 
 
-def test_compoundlist_repr(expected_compound):
+def test_compoundlist_repr(expected_compound: Compound):
 	compound_list = CompoundList("LCQTOF", [expected_compound])
 
 	assert repr(compound_list) == f"[{expected_compound!r}]"

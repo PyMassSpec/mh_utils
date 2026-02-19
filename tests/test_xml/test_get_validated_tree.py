@@ -9,7 +9,7 @@ import pytest
 from domdf_python_tools.paths import PathPlus
 from domdf_python_tools.typing import PathLike
 from importlib_resources import as_file, files
-from lxml.etree import XMLSyntaxError, _ElementTree  # type: ignore
+from lxml.etree import XMLSyntaxError, _ElementTree  # type: ignore[import-untyped]
 
 # this package
 import tests.test_xml
@@ -20,7 +20,7 @@ try:
 	from zipfile import Path as ZipPath
 except ImportError:
 	# 3rd party
-	from zipp import Path as ZipPath  # type: ignore
+	from zipp import Path as ZipPath  # type: ignore[import-untyped, no-redef]
 
 zipapp_path = os.fspath(files(tests.test_xml) / "test_xml_zipapp.pyz")
 test_xml_zipapp = zipimporter(zipapp_path).load_module("test_xml_zipapp")

@@ -31,7 +31,7 @@ import datetime
 from typing import Any, Dict, Optional
 
 # 3rd party
-import lxml.objectify  # type: ignore
+import lxml.objectify  # type: ignore[import-untyped]
 
 # this package
 from mh_utils.utils import as_path, element_to_bool, strip_string

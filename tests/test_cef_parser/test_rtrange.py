@@ -1,8 +1,9 @@
 # stdlib
 from datetime import timedelta
+from typing import Any
 
 # 3rd party
-import lxml.objectify  # type: ignore
+import lxml.objectify  # type: ignore[import-untyped]
 import pytest
 
 # this package
@@ -27,7 +28,7 @@ from mh_utils.cef_parser import RTRange, make_timedelta
 				(60, timedelta(hours=1)),
 				],
 		)
-def test_creation(start_time, start_expects, end_time, end_expects):
+def test_creation(start_time: int, start_expects: timedelta, end_time: int, end_expects: timedelta):
 	rt = RTRange(start_time, end_time)
 	assert rt.start == start_expects
 	assert rt.end == end_expects
@@ -40,7 +41,7 @@ def test_creation(start_time, start_expects, end_time, end_expects):
 				('<RTRange min="0.123" max="12.345" />', 0.123, 12.345),
 				],
 		)
-def test_from_xml(raw_xml, start_expects, end_expects):
+def test_from_xml(raw_xml: str, start_expects: float, end_expects: float):
 	tree = lxml.objectify.fromstring(raw_xml)
 	rt = RTRange.from_xml(tree)
 	assert rt.start == timedelta(minutes=start_expects)
@@ -76,5 +77,5 @@ def test_from_xml(raw_xml, start_expects, end_expects):
 				(timedelta(minutes=60), timedelta(minutes=60)),
 				],
 		)
-def test_make_timedelta(value, expects):
+def test_make_timedelta(value: Any, expects: timedelta):
 	assert make_timedelta(value) == expects

@@ -45,7 +45,7 @@ data_from_element = data = Attribute.from_xml(element)
 				pytest.param(data_from_element, id="from element"),
 				],
 		)
-def test_attribute(data):
+def test_attribute(data: Attribute):
 
 	assert data.attribute_id == 42
 	assert data.attribute_type == AttributeType.SystemDefined

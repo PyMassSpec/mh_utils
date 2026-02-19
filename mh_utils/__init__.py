@@ -28,7 +28,7 @@ Utilities for handing ancillary files produced by MassHunter.
 
 # stdlib
 from abc import abstractmethod
-from typing import Dict, Iterable, Iterator, Tuple, TypeVar
+from typing import Any, Iterable, Iterator, Mapping, Tuple, TypeVar
 
 # 3rd party
 from domdf_python_tools._is_match import is_match_with
@@ -68,27 +68,27 @@ class Dictable(Iterable[Tuple[str, _V]]):  # noqa: PRM002
 
 		yield from self.to_dict().items()
 
-	def __getstate__(self) -> Dict[str, _V]:
+	def __getstate__(self) -> Mapping[str, _V]:
 		return self.to_dict()
 
-	def __setstate__(self, state):
+	def __setstate__(self, state) -> None:  # noqa: MAN001
 		self.__init__(**state)  # type: ignore[misc]
 
-	def __copy__(self):
+	def __copy__(self) -> "Dictable":
 		return self.__class__(**self.to_dict())
 
-	def __deepcopy__(self, memodict={}):
+	def __deepcopy__(self, memodict={}) -> "Dictable":  # noqa: MAN001
 		return self.__copy__()
 
 	@abstractmethod
-	def to_dict(self):
+	def to_dict(self) -> Mapping[str, Any]:
 		"""
 		Return a dictionary representation of the class.
 		"""
 
 		return {}  # pragma: no cover (abc)
 
-	def __eq__(self, other) -> bool:
+	def __eq__(self, other) -> bool:  # noqa: MAN001
 		if isinstance(other, self.__class__):
 			return is_match_with(other.to_dict(), self.to_dict())
 

@@ -3,7 +3,7 @@ requires = [ "whey",]
 build-backend = "whey"
 
 [project]
-name = "mh_utils"
+name = "mh-utils"
 version = "0.2.2"
 description = "Utilities for handing ancillary files produced by MassHunter."
 readme = "README.rst"
@@ -38,6 +38,7 @@ python-versions = [ "3.7", "3.8", "3.9", "3.10", "3.11", "3.12", "3.13",]
 python-implementations = [ "CPython",]
 platforms = [ "Windows", "macOS", "Linux",]
 license-key = "MIT"
+package = "mh_utils"
 
 [tool.mkrecipe]
 conda-channels = [ "conda-forge", "domdfcoding",]

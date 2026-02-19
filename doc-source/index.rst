@@ -71,22 +71,22 @@ mh_utils
 		:alt: CodeFactor Grade
 
 	.. |pypi-version| pypi-shield::
-		:project: mh_utils
+		:project: mh-utils
 		:version:
 		:alt: PyPI - Package Version
 
 	.. |supported-versions| pypi-shield::
-		:project: mh_utils
+		:project: mh-utils
 		:py-versions:
 		:alt: PyPI - Supported Python Versions
 
 	.. |supported-implementations| pypi-shield::
-		:project: mh_utils
+		:project: mh-utils
 		:implementations:
 		:alt: PyPI - Supported Implementations
 
 	.. |wheel| pypi-shield::
-		:project: mh_utils
+		:project: mh-utils
 		:wheel:
 		:alt: PyPI - Wheel
 
@@ -114,11 +114,11 @@ mh_utils
 		:last-commit:
 		:alt: GitHub last commit
 
-	.. |maintained| maintained-shield:: 2025
+	.. |maintained| maintained-shield:: 2026
 		:alt: Maintenance
 
 	.. |pypi-downloads| pypi-shield::
-		:project: mh_utils
+		:project: mh-utils
 		:downloads: month
 		:alt: PyPI - Downloads
 
@@ -140,6 +140,7 @@ Installation
 
 .. installation:: mh_utils
 	:pypi:
+	:pypi-name: mh-utils
 	:github:
 	:anaconda:
 	:conda-channels: conda-forge, domdfcoding

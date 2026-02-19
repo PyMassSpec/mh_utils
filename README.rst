@@ -70,20 +70,20 @@ mh_utils
 	:target: https://www.codefactor.io/repository/github/PyMassSpec/mh_utils
 	:alt: CodeFactor Grade
 
-.. |pypi-version| image:: https://img.shields.io/pypi/v/mh_utils
-	:target: https://pypi.org/project/mh_utils/
+.. |pypi-version| image:: https://img.shields.io/pypi/v/mh-utils
+	:target: https://pypi.org/project/mh-utils/
 	:alt: PyPI - Package Version
 
-.. |supported-versions| image:: https://img.shields.io/pypi/pyversions/mh_utils?logo=python&logoColor=white
-	:target: https://pypi.org/project/mh_utils/
+.. |supported-versions| image:: https://img.shields.io/pypi/pyversions/mh-utils?logo=python&logoColor=white
+	:target: https://pypi.org/project/mh-utils/
 	:alt: PyPI - Supported Python Versions
 
-.. |supported-implementations| image:: https://img.shields.io/pypi/implementation/mh_utils
-	:target: https://pypi.org/project/mh_utils/
+.. |supported-implementations| image:: https://img.shields.io/pypi/implementation/mh-utils
+	:target: https://pypi.org/project/mh-utils/
 	:alt: PyPI - Supported Implementations
 
-.. |wheel| image:: https://img.shields.io/pypi/wheel/mh_utils
-	:target: https://pypi.org/project/mh_utils/
+.. |wheel| image:: https://img.shields.io/pypi/wheel/mh-utils
+	:target: https://pypi.org/project/mh-utils/
 	:alt: PyPI - Wheel
 
 .. |conda-version| image:: https://img.shields.io/conda/v/domdfcoding/mh_utils?logo=anaconda
@@ -109,11 +109,11 @@ mh_utils
 	:target: https://github.com/PyMassSpec/mh_utils/commit/master
 	:alt: GitHub last commit
 
-.. |maintained| image:: https://img.shields.io/maintenance/yes/2025
+.. |maintained| image:: https://img.shields.io/maintenance/yes/2026
 	:alt: Maintenance
 
-.. |pypi-downloads| image:: https://img.shields.io/pypi/dm/mh_utils
-	:target: https://pypi.org/project/mh_utils/
+.. |pypi-downloads| image:: https://img.shields.io/pypi/dm/mh-utils
+	:target: https://pypistats.org/packages/mh-utils
 	:alt: PyPI - Downloads
 
 .. end shields
@@ -131,7 +131,7 @@ To install with ``pip``:
 
 .. code-block:: bash
 
-	$ python -m pip install mh_utils
+	$ python -m pip install mh-utils
 
 To install with ``conda``:
 

@@ -6,16 +6,15 @@ on:
   schedule:
     - cron: 0 12 * * *
 
-permissions:
-  contents: write
-
 jobs:
   Run:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - uses: domdfcoding/octocheese@master
         with:
-          pypi_name: "mh_utils"
+          pypi_name: "mh-utils"
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         if: startsWith(github.ref, 'refs/tags/') != true

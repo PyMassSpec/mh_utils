@@ -76,6 +76,8 @@ def element_to_bool(val: Union[str, bool]) -> bool:
 
 	:py:obj:`False` values are ``'n'``, ``'no'``, ``'f'``, ``'false'``, ``'off'``, ``'0'``, and ``0``.
 
+	:param val:
+
 	:raises: :py:exc:`ValueError` if 'val' is anything else.
 	"""
 

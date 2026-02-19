@@ -179,6 +179,8 @@ class Worklist(XMLFileMixin, Dictable):
 	def from_xml(cls, element: lxml.objectify.ObjectifiedElement) -> "Worklist":
 		"""
 		Construct a :class:`~.Worklist` object from an XML element.
+
+		:param element:
 		"""
 
 		version = float(element.Version)
@@ -268,12 +270,14 @@ class Checksum:
 	def from_xml(cls, element: lxml.objectify.ObjectifiedElement) -> "Checksum":
 		"""
 		Construct a :class:`~.Checksum` object from an XML element.
+
+		:param element:
 		"""
 
 		return cls(
 				SchemaVersion=element.attrib["SchemaVersion"],
 				ALGO_VERSION=element.attrib["ALGO_VERSION"],
-				HASHCODE=element.MAIN.attrib["HASHCODE"]
+				HASHCODE=element.MAIN.attrib["HASHCODE"],
 				)
 
 
@@ -304,6 +308,8 @@ class Macro:
 	def from_xml(cls, element: lxml.objectify.ObjectifiedElement) -> "Macro":
 		"""
 		Construct a :class:`~.Macro` object from an XML element.
+
+		:param element:
 		"""
 
 		return cls(
@@ -411,6 +417,8 @@ class Attribute:
 	def from_xml(cls, element: lxml.objectify.ObjectifiedElement) -> "Attribute":
 		"""
 		Construct an :class:`~.Attribute` object from an XML element.
+
+		:param element:
 		"""
 
 		return cls(

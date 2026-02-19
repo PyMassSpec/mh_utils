@@ -46,7 +46,7 @@ _V = TypeVar("_V")
 
 
 @prettify_docstrings
-class Dictable(Iterable[Tuple[str, _V]]):
+class Dictable(Iterable[Tuple[str, _V]]):  # noqa: PRM002
 	"""
 	The basic structure of a class that can be converted into a dictionary.
 	"""

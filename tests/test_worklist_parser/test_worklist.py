@@ -211,7 +211,7 @@ the_worklist = pytest.mark.parametrize(
 								ALGO_VERSION=2,
 								HASHCODE="abcdefg",
 								),
-						)
+						),
 				],
 		)
 
@@ -310,11 +310,11 @@ def test_as_dataframe_with_data():
 	assert not df.iloc[0]["Plate Position"]
 	assert df.iloc[0]["Sample Position"] == "P2-A3"
 	assert df.iloc[0]["Method"] == PureWindowsPath(
-			r"D:\MassHunter\Methods\Dominic Davis-Foster\Maitre Gunshot Residue Positive.m"
+			r"D:\MassHunter\Methods\Dominic Davis-Foster\Maitre Gunshot Residue Positive.m",
 			)
 	assert not df.iloc[0]["Override DA Method"]
 	assert df.iloc[0]["Data File"] == PureWindowsPath(
-			r"D:\MassHunter\Data\Dominic Davis-Foster\Methanol_Blank_+ve_191121-0001-r001.d"
+			r"D:\MassHunter\Data\Dominic Davis-Foster\Methanol_Blank_+ve_191121-0001-r001.d",
 			)
 	assert df.iloc[0]["Sample Type"] == "Sample"
 	assert df.iloc[0]["Method Type"] == "Method No Override"

@@ -49,10 +49,12 @@ class TestCreation:
 
 	def test_location(self):
 		assert Compound(
-				algo="FindByFormula", location={'m': 169.0893, "rt": 13.649, 'a': 29388223, 'y': 3377289}
+				algo="FindByFormula",
+				location={'m': 169.0893, "rt": 13.649, 'a': 29388223, 'y': 3377289},
 				).location == {'m': 169.0893, "rt": 13.649, 'a': 29388223, 'y': 3377289}
 		assert Compound(
-				algo="FindByFormula", location={'m': 169.0893, "rt": 13.649, 'a': 29388223, 'y': 3377289}
+				algo="FindByFormula",
+				location={'m': 169.0893, "rt": 13.649, 'a': 29388223, 'y': 3377289},
 				).location == {'m': 169.0893, "rt": 13.649, 'a': 29388223, 'y': 3377289}
 		assert Compound(algo="FindByFormula").location == {}
 
@@ -63,7 +65,7 @@ class TestCreation:
 					{"fbf": Score(82.53, flag_string="No H adduct", flag_severity=2)},
 					{"fbf": Score(60.62, flag_string="low score", flag_severity=2)},
 					{"fbf": Score(62.90, flag_string="low score", flag_severity=2)},
-					]
+					],
 			)
 	def test_compound_scores(self, scores):
 		assert Compound(algo="FindByFormula", compound_scores=scores).compound_scores == copy.deepcopy(scores)
@@ -222,11 +224,13 @@ def expected_compound(fbf_spectrum, tof_spectrum):
 			compound_scores={"fbf": score},
 			results=[
 					Molecule(
-							name="Diphenylamine", formula="C12 H11 N", matches={
+							name="Diphenylamine",
+							formula="C12 H11 N",
+							matches={
 									"overall": score,
 									"tgt": score,
-									}
-							)
+									},
+							),
 					],
 			spectra=[fbf_spectrum, tof_spectrum],
 			)
@@ -260,7 +264,7 @@ def test_parse_cef(tmpdir, expected_compound):
 	{raw_xml}
 </CompoundList>
 </CEF>
-"""
+""",
 			)
 
 	cef = parse_cef(PathPlus(tmpdir) / "demo.cef")

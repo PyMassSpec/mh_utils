@@ -218,7 +218,7 @@ class Sample(Dictable):
 				da_method=self.da_method,
 				irm_cal_status=self.irm_cal_status,
 				filename=self.filename,
-				results=self.results_list
+				results=self.results_list,
 				)
 
 
@@ -482,7 +482,7 @@ class SampleList(List[Sample]):
 	"""
 
 	@doctools.append_docstring_from(Sample.__init__)
-	def add_new_sample(self, *args, **kwargs):
+	def add_new_sample(self, *args, **kwargs):  # noqa: PRM002
 		"""
 		Add a new sample to the list and return the
 		:class:`~classes.Sample` object representing it.
@@ -750,7 +750,7 @@ class SampleList(List[Sample]):
 		sample_names: Iterable[str],
 		key: str = "sample_name",
 		exclude: bool = False,
-		) -> _SL:
+	) -> _SL:
 		"""
 		Filter the list to only contain sample_names whose name is in ``sample_names``.
 

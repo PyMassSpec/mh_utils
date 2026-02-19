@@ -39,10 +39,11 @@ data_from_element = data = Attribute.from_xml(element)
 
 
 @pytest.mark.parametrize(
-		"data", [
+		"data",
+		[
 				pytest.param(data_from_init, id="from init"),
 				pytest.param(data_from_element, id="from element"),
-				]
+				],
 		)
 def test_attribute(data):
 

@@ -2,6 +2,7 @@
 import random
 from datetime import datetime, timezone
 from pathlib import PureWindowsPath
+from typing import Any
 
 # 3rd party
 import pytest
@@ -69,9 +70,12 @@ def macro_type_parametrize():
 			display_string="the DisplayString",
 			)
 
-	return pytest.mark.parametrize(f"value, expects", [
-			(e, m),
-			])
+	return pytest.mark.parametrize(
+			"value, expects",
+			[
+					(e, m),
+					],
+			)
 
 
 class __TestParseParams_str:
@@ -79,8 +83,8 @@ class __TestParseParams_str:
 	param_dict_name: str
 	param_type = str
 
-	@pytest.mark.parametrize(f"value, expects", _test_strings)
-	def test_parse_params(self, value, expects):
+	@pytest.mark.parametrize("value, expects", _test_strings)
+	def test_parse_params(self, value: Any, expects: str):
 		e = FakeParamsElement()
 		setattr(e, self.param_under_test, value)
 		params = parse_params(e)
@@ -108,12 +112,15 @@ class __TestParseParams_int:
 	param_dict_name: str
 	param_type = int
 
-	@pytest.mark.parametrize(f"value, expects", [
-			(1234, 1234),
-			("1234", 1234),
-			(12.34, 12),
-			])
-	def test_parse_params(self, value, expects):
+	@pytest.mark.parametrize(
+			"value, expects",
+			[
+					(1234, 1234),
+					("1234", 1234),
+					(12.34, 12),
+					],
+			)
+	def test_parse_params(self, value: Any, expects: str):
 		e = FakeParamsElement()
 		setattr(e, self.param_under_test, value)
 		params = parse_params(e)
@@ -142,7 +149,7 @@ class __TestParseParams_path:
 	param_type = PureWindowsPath
 
 	@pytest.mark.parametrize(
-			f"value, expects",
+			"value, expects",
 			[
 					("foo", PureWindowsPath("foo")),
 					("foo/bar", PureWindowsPath("foo/bar")),
@@ -150,7 +157,7 @@ class __TestParseParams_path:
 					("C:/foo/bar/file.txt", PureWindowsPath("C:/foo/bar/file.txt")),
 					],
 			)
-	def test_parse_params(self, value, expects):
+	def test_parse_params(self, value: Any, expects: str):
 		e = FakeParamsElement()
 		setattr(e, self.param_under_test, value)
 		params = parse_params(e)
@@ -183,8 +190,8 @@ class __TestParseParams_bool:
 	param_dict_name: str
 	param_type = bool
 
-	@pytest.mark.parametrize(f"value, expects", random.sample(true_false_strings, 3))
-	def test_parse_params(self, value, expects):
+	@pytest.mark.parametrize("value, expects", random.sample(true_false_strings, 3))
+	def test_parse_params(self, value: Any, expects: str):
 		e = FakeParamsElement()
 		setattr(e, self.param_under_test, value)
 		params = parse_params(e)
@@ -258,7 +265,7 @@ class __TestParseParams_macro:
 	param_type = Macro
 
 	@macro_type_parametrize()
-	def test_parse_params(self, value, expects):
+	def test_parse_params(self, value: Any, expects: str):
 		e = FakeParamsElement()
 		setattr(e, self.param_under_test, value)
 		params = parse_params(e)
@@ -338,8 +345,8 @@ class __TestParseSampleInfo_bool:
 	param_dict_name: str
 	param_type = bool
 
-	@pytest.mark.parametrize(f"value, expects", random.sample(true_false_strings, 3))
-	def test_parse_params(self, value, expects):
+	@pytest.mark.parametrize("value, expects", random.sample(true_false_strings, 3))
+	def test_parse_params(self, value: Any, expects: str):
 		e = FakeSampleElement()
 		setattr(e, self.param_under_test, value)
 		sample_info = parse_sample_info(e)
@@ -352,8 +359,8 @@ class __TestParseSampleInfo_str:
 	param_dict_name: str
 	param_type = str
 
-	@pytest.mark.parametrize(f"value, expects", _test_strings)
-	def test_parse_params(self, value, expects):
+	@pytest.mark.parametrize("value, expects", _test_strings)
+	def test_parse_params(self, value: Any, expects: str):
 		e = FakeSampleElement()
 		setattr(e, self.param_under_test, value)
 		sample_info = parse_sample_info(e)
@@ -389,7 +396,7 @@ class TestParseDatetime:
 									hour=11,
 									minute=36,
 									second=57,
-									tzinfo=timezone.utc
+									tzinfo=timezone.utc,
 									),
 							),
 					(
@@ -401,13 +408,19 @@ class TestParseDatetime:
 									hour=15,
 									minute=13,
 									second=58,
-									tzinfo=timezone.utc
+									tzinfo=timezone.utc,
 									),
 							),
 					(
 							"2020-02-06T11:21:16.2434446+00:00",
 							datetime(
-									year=2020, month=2, day=6, hour=11, minute=21, second=16, tzinfo=timezone.utc
+									year=2020,
+									month=2,
+									day=6,
+									hour=11,
+									minute=21,
+									second=16,
+									tzinfo=timezone.utc,
 									),
 							),
 					(
@@ -421,7 +434,13 @@ class TestParseDatetime:
 	@count(100)
 	def test_whitespace(self, char: str, count: int):
 		assert parse_datetime(char * count) == datetime(
-				year=1970, month=1, day=1, hour=0, minute=0, second=0, tzinfo=timezone.utc
+				year=1970,
+				month=1,
+				day=1,
+				hour=0,
+				minute=0,
+				second=0,
+				tzinfo=timezone.utc,
 				)
 
 	@pytest.mark.parametrize("whitespace_pos", ["left", "right", "both"])

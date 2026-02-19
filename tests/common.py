@@ -16,10 +16,11 @@ _test_strings = [
 
 def any_type_parametrize():
 	return pytest.mark.parametrize(
-			f"value, expects", [
+			"value, expects",
+			[
 					("foo", "foo"),
 					(1234, 1234),
 					(12.34, 12.34),
 					(True, True),
-					]
+					],
 			)

@@ -245,6 +245,7 @@ class Spectrum(Dictable):
 	:param scan_type:
 	:param ionisation: The type of ionisation e.g. ESI.
 	:param polarity: The polarity of the ionisation.
+	:param voltage: The ionosation voltage.
 	:param device: The device that acquired the data.
 	:param peaks: A list of identified peaks in the mass spectrum.
 	:param rt_ranges: A list of retention time ranges for the mass spectrum.

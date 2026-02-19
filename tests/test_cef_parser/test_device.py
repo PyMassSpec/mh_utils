@@ -7,10 +7,11 @@ from mh_utils.cef_parser import Device
 
 
 @pytest.mark.parametrize(
-		"device_type, device_type_expects", [
+		"device_type, device_type_expects",
+		[
 				("hello world", "hello world"),
 				("An Instrument", "An Instrument"),
-				]
+				],
 		)
 @pytest.mark.parametrize(
 		"number, number_expects",

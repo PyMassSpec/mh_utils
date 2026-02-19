@@ -103,4 +103,6 @@ class XMLFileMixin(ABC):
 	def from_xml(cls, element: lxml.objectify.ObjectifiedElement):
 		"""
 		Construct an object from an XML element.
+
+		:param element:
 		"""

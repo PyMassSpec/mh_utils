@@ -1,4 +1,5 @@
 # stdlib
+from typing import Tuple, Union
 from uuid import UUID
 
 # 3rd party
@@ -18,7 +19,11 @@ from tests.test_worklist_parser.test_parser import FakeSampleElement
 				(UUID("{B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C}"), '7', '1'),
 				],
 		)
-def test_creation(id, job_type, run_status):  # noqa: A002  # pylint: disable=redefined-builtin
+def test_creation(
+		id: Union[str, UUID],  # noqa: A002  # pylint: disable=redefined-builtin
+		job_type: int,
+		run_status: int,
+		):
 	data = JobData(
 			id=id,
 			job_type=job_type,
@@ -40,7 +45,12 @@ def test_creation(id, job_type, run_status):  # noqa: A002  # pylint: disable=re
 				(UUID("{B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C}"), '7', '1', {"foo": "a string"}),
 				],
 		)
-def test_creation_sample_info(id, job_type, run_status, sample_info):  # noqa: A002  # pylint: disable=redefined-builtin
+def test_creation_sample_info(
+		id: Union[str, UUID],  # noqa: A002  # pylint: disable=redefined-builtin
+		job_type: int,
+		run_status: int,
+		sample_info: dict,
+		):
 	data = JobData(
 			id=id,
 			job_type=job_type,
@@ -62,7 +72,7 @@ class FakeJobDataElement:
 		self.RunStatus = '1'
 		self.SampleInfo = FakeSampleElement()
 
-	def iterchildren(self, *args, **kwargs):
+	def iterchildren(self, *args, **kwargs) -> Tuple:
 		return ()
 
 
@@ -77,7 +87,7 @@ def test_from_xml():
 
 
 @pytest.fixture()
-def sample_jobdata():
+def sample_jobdata() -> JobData:
 	return JobData(
 			id="{B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C}",
 			job_type=7,
@@ -86,7 +96,7 @@ def sample_jobdata():
 			)
 
 
-def test_dict(sample_jobdata):
+def test_dict(sample_jobdata: JobData):
 	assert dict(sample_jobdata) == {
 			"id": "B1F6E4D5-A300-40DF-8FB0-2A26FD8B8C0C".lower(),
 			"job_type": 7,
@@ -95,7 +105,7 @@ def test_dict(sample_jobdata):
 			}
 
 
-def test_repr(sample_jobdata):
+def test_repr(sample_jobdata: JobData):
 	assert str(sample_jobdata).startswith("JobData(")
 	assert str(sample_jobdata).endswith(')')
 	assert str(sample_jobdata) == (

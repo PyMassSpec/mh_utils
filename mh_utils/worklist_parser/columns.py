@@ -124,7 +124,7 @@ class Column:
 
 	reorder_id: Optional[int] = attr.ib(default=None)
 
-	def cast_value(self, value: Any):
+	def cast_value(self, value: Any):  # noqa: PRM002
 		"""
 		Cast ``value`` to the dtype of this column.
 		"""

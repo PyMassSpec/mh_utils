@@ -46,13 +46,13 @@ pandas.DataFrame.__module__ = "pandas"
 
 
 def drop_columns(df: pandas.DataFrame, *, axis: int = 1, inplace: bool = True, **kwargs) -> pandas.DataFrame:
-	"""
+	r"""
 	Drop columns from the MassHunter CSV file.
 
 	:param df: The :class:`pandas.DataFrame` to drop columns in.
 	:param axis: Which axis to drop columns on.
 	:param inplace: Whether to modify the :class:`pandas.DataFrame` in place.
-	:param kwargs: Additional keyword arguments passed to :meth:`pandas.DataFrame.drop`.
+	:param \*\*kwargs: Additional keyword arguments passed to :meth:`pandas.DataFrame.drop`.
 	"""
 
 	# Columns where I have no idea what they represent
@@ -113,12 +113,17 @@ def drop_columns(df: pandas.DataFrame, *, axis: int = 1, inplace: bool = True, *
 
 	lib_cols = ["Lib/DB", "Score (Lib)"]
 
-	new_df = df.drop([
-			*unknown_cols,
-			*db_cols,
-			*mfg_cols,
-			*lib_cols,
-			], axis=axis, inplace=inplace, **kwargs)
+	new_df = df.drop(
+			[
+					*unknown_cols,
+					*db_cols,
+					*mfg_cols,
+					*lib_cols,
+					],
+			axis=axis,
+			inplace=inplace,
+			**kwargs,
+			)
 
 	if inplace:
 		return df

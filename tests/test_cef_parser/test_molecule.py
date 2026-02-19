@@ -14,10 +14,12 @@ class TestCreation:
 
 	def test_formula(self):
 		assert Molecule(
-				name="Dimethyl Phthalate", formula="C10 H10 O4"
+				name="Dimethyl Phthalate",
+				formula="C10 H10 O4",
 				).formula == Formula({'C': 10, 'H': 10, 'O': 4})
 		assert Molecule(
-				name="Dimethyl Phthalate", formula=Formula({'C': 10, 'H': 10, 'O': 4})
+				name="Dimethyl Phthalate",
+				formula=Formula({'C': 10, 'H': 10, 'O': 4}),
 				).formula == Formula({'C': 10, 'H': 10, 'O': 4})
 		assert Molecule(name="Dimethyl Phthalate").formula == Formula()
 
@@ -47,7 +49,7 @@ def test_dict():
 							"overall": Score(62.90),
 							"tgt": Score(62.90, flag_string="low score", flag_severity=2),
 							},
-					)
+					),
 			) == {
 					"name": "Dimethyl Phthalate",
 					"formula": Formula({'C': 10, 'H': 10, 'O': 4}),
@@ -126,7 +128,7 @@ raw_xml_multiline = """
 				(raw_xml_5, {"fbf": Score(62.90, flag_string="low score", flag_severity=2)}),
 				(
 						raw_xml_multiline,
-						{"fbf": Score(62.90, flag_string="low score", flag_severity=2), "abc": Score(12.34)}
+						{"fbf": Score(62.90, flag_string="low score", flag_severity=2), "abc": Score(12.34)},
 						),
 				],
 		)

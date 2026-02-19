@@ -160,23 +160,25 @@ def compound_list_2_pandas(compound_list: List[PCDLCompound]) -> DataFrame:
 			data.append(compound.as_list())
 
 	df = DataFrame(data, columns=columns)
-	df = df.reindex([
-			"Name",
-			"Formula",
-			"Mass",
-			"Retention Time",
-			"Retention Index",
-			"Cation",
-			"Anion",
-			"CAS",
-			"ChemSpider",
-			"PubChem",
-			"Synonyms",
-			"IUPAC",
-			"NumSpectra",
-			"CCS Count",
-			],
-					axis=1)
+	df = df.reindex(
+			[
+					"Name",
+					"Formula",
+					"Mass",
+					"Retention Time",
+					"Retention Index",
+					"Cation",
+					"Anion",
+					"CAS",
+					"ChemSpider",
+					"PubChem",
+					"Synonyms",
+					"IUPAC",
+					"NumSpectra",
+					"CCS Count",
+					],
+			axis=1,
+			)
 
 	names = df["IUPAC"]
 	sort_order = get_IUPAC_sort_order(names)

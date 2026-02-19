@@ -12,10 +12,13 @@ from mh_utils.worklist_parser.enums import AttributeType
 from tests.common import _test_strings, any_type_parametrize
 
 
-@pytest.mark.parametrize("value, expects", [
-		(-1, "As Method"),
-		*[(x, x) for x in range(100)],
-		])
+@pytest.mark.parametrize(
+		"value, expects",
+		[
+				(-1, "As Method"),
+				*[(x, x) for x in range(100)],
+				],
+		)
 def test_injection_volume(value, expects):
 	assert injection_volume(value) == expects
 
@@ -64,10 +67,13 @@ class TestColumn:
 		Column._Column__default_value_validator(obj, None, None)  # type: ignore
 		assert obj.default_value == "-1"
 
-	@pytest.mark.parametrize("value, expects", [
-			*_test_strings,
-			('', "The Default"),
-			])
+	@pytest.mark.parametrize(
+			"value, expects",
+			[
+					*_test_strings,
+					('', "The Default"),
+					],
+			)
 	def test_cast_value(self, value, expects):
 		c = Column(
 				name="Test Column",

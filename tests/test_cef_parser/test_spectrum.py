@@ -29,7 +29,8 @@ class TestCreation:
 		assert Spectrum(ionisation="Esi").ionisation == "Esi"
 
 	@pytest.mark.parametrize(
-			"polarity, expected", [
+			"polarity, expected",
+			[
 					('+', 1),
 					("positive", 1),
 					(1, 1),
@@ -38,7 +39,7 @@ class TestCreation:
 					(-1, -1),
 					(0, 0),
 					(22, 22),
-					]
+					],
 			)
 	def test_polarity(self, polarity, expected):
 		assert Spectrum(polarity=polarity).polarity == expected
@@ -55,7 +56,7 @@ class TestCreation:
 		assert Spectrum().rt_ranges == []
 		assert Spectrum(rt_ranges=[]).rt_ranges == []
 		assert Spectrum(rt_ranges=()).rt_ranges == []
-		assert Spectrum(rt_ranges=[RTRange(12, 34)], ).rt_ranges == [RTRange(12, 34)]
+		assert Spectrum(rt_ranges=[RTRange(12, 34)]).rt_ranges == [RTRange(12, 34)]
 
 	@pytest.mark.parametrize(
 			"voltage, expected",
@@ -67,7 +68,7 @@ class TestCreation:
 					(1234.0, 1234.0),
 					(1234, 1234.0),
 					("ABCDEFG", 0),
-					]
+					],
 			)
 	def test_voltage(self, voltage, expected):
 		assert Spectrum(voltage=voltage).voltage == expected
@@ -193,10 +194,13 @@ tof_expects = Spectrum(
 		)
 
 
-@pytest.mark.parametrize("raw_xml, expects", [
-		(raw_xml_fbf, fbf_expects),
-		(raw_xml_tof, tof_expects),
-		])
+@pytest.mark.parametrize(
+		"raw_xml, expects",
+		[
+				(raw_xml_fbf, fbf_expects),
+				(raw_xml_tof, tof_expects),
+				],
+		)
 def test_from_xml(raw_xml, expects):
 	tree = lxml.objectify.fromstring(raw_xml)
 	spec = Spectrum.from_xml(tree)

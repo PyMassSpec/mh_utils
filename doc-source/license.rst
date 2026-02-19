@@ -7,4 +7,4 @@ License
 .. license-info:: MIT
 
 .. license::
-	:py: mh_utils
+	:py: mh-utils

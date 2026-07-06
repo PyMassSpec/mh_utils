@@ -488,7 +488,6 @@ class SampleList(List[Sample]):
 		"""
 		Add a new sample to the list and return the
 		:class:`~classes.Sample` object representing it.
-
 		"""  # noqa: D400
 
 		tmp_sample = Sample(*args, **kwargs)

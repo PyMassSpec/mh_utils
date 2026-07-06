@@ -364,7 +364,6 @@ class Attribute:
 		\end{multicols}
 
 	.. clearpage::
-
 	"""
 
 	attribute_id: int = attr.ib(converter=int)

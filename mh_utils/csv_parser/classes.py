@@ -553,11 +553,11 @@ class SampleList(List[Sample]):
 				.. code-block:: python
 
 					order_mapping = {
-						"Propellant 1ug +ve": 0,
-						"Propellant 1mg +ve": 1,
-						"Propellant 1ug -ve": 2,
-						"Propellant 1mg -ve": 3,
-						}
+							"Propellant 1ug +ve": 0,
+							"Propellant 1mg +ve": 1,
+							"Propellant 1ug -ve": 2,
+							"Propellant 1mg -ve": 3,
+							}
 
 		:param key: The name of the property in the sample to sort by.
 		"""
@@ -579,10 +579,10 @@ class SampleList(List[Sample]):
 		.. code-block:: python
 
 			rename_mapping = {
-				"Propellant 1ug +ve": "Alliant Unique 1µg/L +ESI",
-				"Propellant 1mg +ve": "Alliant Unique 1mg/L +ESI",
-				"Propellant 1mg -ve": None,
-				}
+					"Propellant 1ug +ve": "Alliant Unique 1µg/L +ESI",
+					"Propellant 1mg +ve": "Alliant Unique 1mg/L +ESI",
+					"Propellant 1mg -ve": None,
+					}
 		"""
 
 		for sample in self:
